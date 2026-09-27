@@ -1,0 +1,35 @@
+name: FTP Diagnostic
+
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List FTP structure
+        env:
+          FTP_USER: petfriends@petfriendspv.com
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          python3 - <<'PY'
+          import ftplib, os
+          host = "50.31.188.8"
+          ftp = ftplib.FTP(host, timeout=30)
+          ftp.login(os.environ["FTP_USER"], os.environ["FTP_PASSWORD"])
+          print("PWD (FTP root):", ftp.pwd())
+
+          def listing(path):
+              print("\n=== ls -la", path, "===")
+              try:
+                  names = []
+                  ftp.retrlines(f'LIST {path}', names.append)
+                  for n in names:
+                      print(n)
+              except Exception as e:
+                  print("  ERROR:", e)
+
+          for p in ["", ".", "/", "public_html", "public_html/petfriendspv.com", "public_html/petfriendspv.com/public_html"]:
+              listing(p)
+          ftp.quit()
+          PY
