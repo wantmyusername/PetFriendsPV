@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+.astro/
+
+# generated / runtime files
+.pf_ratelimit.json
+
+# local artifacts
+petfriendspv-host.zip
+*.zip
+
+# macOS
+.DS_Store
+
+# env
+.env
+.env.*

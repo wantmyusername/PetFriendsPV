@@ -1,0 +1,54 @@
+---
+import "../../styles/global.css";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { t } from "../../i18n/translations";
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: "es" } },
+  ];
+}
+
+const lang = Astro.params.lang || Astro.props.lang || "en";
+const dict = t[lang];
+---
+
+<html lang={lang}>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{lang === "en" ? "Terms & Conditions | Pet Friends Puerto Vallarta" : "Términos y Condiciones | Pet Friends Puerto Vallarta"}</title>
+    <meta name="description" content={lang === "en" ? "Terms and conditions for Pet Friends Veterinary Hospital in Puerto Vallarta." : "Términos y condiciones del Hospital Veterinario Pet Friends en Puerto Vallarta."} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/terms" />
+    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/terms" />
+</head>
+
+<body class="font-readex bg-white text-zinc-800 antialiased">
+
+    <Navbar lang={lang} currentPath={Astro.url.pathname} />
+
+    <section class="py-24 px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+            <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-600">{dict.terms.eyebrow}</span>
+            <h1 class="font-fredoka text-4xl font-bold text-[#0e144a] mt-2">{dict.terms.title}</h1>
+            <p class="text-zinc-500 mt-4 text-sm">{dict.terms.updated}</p>
+
+            <div class="mt-10 space-y-6 text-sm text-zinc-600 leading-relaxed">
+                {dict.terms.sections.map((section) => (
+                <>
+                <h2 class="font-fredoka text-xl font-bold text-[#0e144a]">{section.title}</h2>
+                <p set:html={section.content.replace("petfriendspv@gmail.com", '<a href="mailto:petfriendspv@gmail.com" class="text-[#0091a1] hover:underline">petfriendspv@gmail.com</a>')}></p>
+                </>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <Footer lang={lang} />
+
+</body>
+
+</html>

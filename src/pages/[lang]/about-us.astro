@@ -1,0 +1,595 @@
+---
+import "../../styles/global.css";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { t } from "../../i18n/translations";
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: "es" } },
+  ];
+}
+
+const lang = Astro.params.lang || Astro.props.lang || "en";
+const dict = t[lang];
+---
+
+<html lang={lang}>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{lang === "en" ? "About Pet Friends PV | Bilingual Vet Clinic in Puerto Vallarta" : "Sobre Pet Friends PV | Clínica Veterinaria Bilingüe en Puerto Vallarta"}</title>
+    <meta name="description" content={lang === "en" ? "Meet Dr. Mohammad Soleimani and the Pet Friends team. Learn about our accredited bilingual veterinary hospital, clinical standards, and compassionate approach to pet care in Puerto Vallarta." : "Conoce al Dr. Mohammad Soleimani y al equipo de Pet Friends. Conoce nuestro hospital veterinario bilingüe acreditado, estándares clínicos y enfoque compasivo."} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/about-us" />
+    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/about-us" />
+</head>
+
+<body class="font-readex bg-white text-zinc-800 antialiased overflow-x-hidden">
+
+    <Navbar lang={lang} currentPath={Astro.url.pathname} />
+
+    <!-- HERO -->
+    <section class="relative pt-0 overflow-hidden">
+
+        <!-- Background principal -->
+        <div class="relative h-[420px] md:h-[500px] overflow-hidden bg-[#dcf1f4]">
+
+            <!-- Imagen -->
+            <img src="/pz-breadcrumb-image-1.jpg"
+                alt="Puppy Background"
+                class="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-luminosity max-md:object-[50%_20%]" />
+
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0e144a]/5 via-transparent to-[#0e144a]/10"></div>
+
+            <!-- Huella decorativa izquierda -->
+            <div
+                class="absolute left-[-40px] top-1/2 -translate-y-1/2 opacity-[0.08] pointer-events-none hidden lg:block">
+                <img src="/huella.svg" alt="Decorative Paw"
+                    class="w-[220px] h-[220px] object-contain rotate-[-12deg]" />
+            </div>
+
+            <!-- Huesito decorativo derecha -->
+            <div class="absolute right-[-30px] top-24 opacity-[0.06] pointer-events-none hidden lg:block">
+                <img src="/huesito.svg" alt="Decorative Bone"
+                    class="w-[180px] h-[180px] object-contain rotate-[18deg]" />
+            </div>
+
+            <!-- Contenido -->
+            <div class="relative z-20 flex h-full flex-col items-center justify-center text-center pt-28 md:pt-32 px-4">
+
+                <!-- Eyebrow -->
+                <span class="text-xs font-bold uppercase tracking-[0.28em] text-[#0e144a]/70 mb-3">
+                    {dict.about.hero.eyebrow}
+                </span>
+
+                <!-- Heading -->
+                <h1 class="font-fredoka text-5xl md:text-6xl font-bold text-[#0e144a] tracking-tight leading-none">
+                    {dict.about.hero.title}
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="mt-5 max-w-xl text-sm md:text-base text-[#0e144a]/70 leading-relaxed font-readex">
+                    {dict.about.hero.subtitle}
+                </p>
+
+            </div>
+
+            <!-- Wave -->
+            <div class="absolute bottom-0 left-0 z-10 w-full leading-none">
+                <svg viewBox="0 0 1440 320" class="block h-[70px] md:h-[110px] w-full" preserveAspectRatio="none">
+                    <path fill="#ffffff"
+                        d="M0,160 C320,320 640,64 1080,192 C1260,240 1360,224 1440,192 L1440,320 L0,320 Z" />
+                </svg>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- STORY & PURPOSE SECTION -->
+    <section class="relative bg-white py-20 px-6 lg:px-8 overflow-visible">
+
+        <!-- Background Grid -->
+        <div
+            class="absolute inset-y-0 right-0 w-full lg:w-2/3 bg-[linear-gradient(to_right,#f4f1eb_1px,transparent_1px),linear-gradient(to_bottom,#f4f1eb_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0 opacity-40">
+        </div>
+
+        <!-- Decorative Paw -->
+        <div class="absolute right-[6%] top-24 hidden lg:block opacity-[0.06] pointer-events-none z-0">
+            <img src="/huella.svg" alt="Decorative Paw" class="w-44 h-44 object-contain rotate-[-18deg]" loading="lazy"
+                decoding="async" />
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
+
+            <!-- LEFT SIDE -->
+            <div class="lg:col-span-5 relative flex justify-center">
+
+                <!-- Glow -->
+                <div class="absolute -z-10 w-[280px] sm:w-[420px] h-[280px] sm:h-[420px] rounded-full bg-emerald-100/60 blur-3xl top-10">
+                </div>
+
+                <!-- Floating Label -->
+                <div
+                    class="absolute top-10 left-0 bg-white/90 backdrop-blur-md border border-zinc-100 rounded-full px-4 py-2 shadow-lg z-20">
+                    <p class="text-[10px] uppercase tracking-[0.2em] font-bold text-[#0e144a]">
+                        Compassion • Trust
+                    </p>
+                </div>
+
+                <!-- Main Image -->
+                <div
+                    class="relative w-[320px] h-[440px] sm:w-[400px] sm:h-[460px] rounded-[120px_220px_120px_220px] overflow-hidden bg-emerald-50 shadow-xl border-b-[24px] border-[#f4f1eb]">
+
+                    <img src="/pet-friends-about.jpg" alt="Veterinarians caring for a dog"
+                        class="w-full h-full object-cover scale-105" />
+                </div>
+
+                <!-- Certified Doctors Badge -->
+                <div
+                    class="absolute -top-4 right-6 sm:right-2 bg-white border-[3px] border-[#0e144a] rounded-full w-28 h-28 flex flex-col items-center justify-center shadow-lg transform rotate-12 transition-transform hover:rotate-0 duration-300 z-20">
+
+                    <span class="text-[9px] font-bold tracking-[0.15em] text-[#0e144a]/60 uppercase">
+                        100%
+                    </span>
+
+                    <span class="font-fredoka text-[20px] font-bold text-[#0e144a] my-0.5 leading-none">
+                        Certified
+                    </span>
+
+                    <span class="text-[9px] font-bold tracking-widest text-emerald-600 uppercase">
+                        Doctors
+                    </span>
+
+                    <div
+                        class="absolute inset-1.5 rounded-full border border-dashed border-[#0e144a]/20 pointer-events-none">
+                    </div>
+                </div>
+
+                <!-- Bottom Badge -->
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0
+                bg-white/95 backdrop-blur-md px-5 py-4 rounded-2xl shadow-xl border border-zinc-100
+                flex items-center gap-4 z-20 rotate-[-2deg]">
+
+                    <div
+                        class="w-11 h-11 rounded-xl bg-[#f4f1eb] border border-zinc-200 flex items-center justify-center flex-shrink-0">
+
+                        <img src="/certified.svg" alt="" class="w-5 h-5" />
+                    </div>
+
+                    <div>
+                        <h5 class="text-[10px] font-bold text-[#0e144a] uppercase tracking-[0.18em] leading-none">
+                            Accredited Clinic
+                        </h5>
+
+                        <p class="font-fredoka text-sm font-bold text-emerald-600 mt-1 leading-none">
+                            PET WELLBEING
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left relative z-10">
+
+                <div class="flex items-center justify-center lg:justify-start gap-2">
+                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#0e144a]">
+                        {dict.about.story.eyebrow}
+                    </span>
+                </div>
+
+                <h2 class="font-fredoka text-4xl sm:text-5xl font-bold text-[#0e144a] leading-tight tracking-tight">
+                    {dict.about.story.title}
+                </h2>
+
+                <p class="text-sm sm:text-base text-zinc-500 leading-relaxed max-w-2xl font-normal font-readex">
+                    {dict.about.story.desc}
+                </p>
+
+                <!-- Experience Stats -->
+                <div class="flex flex-wrap items-center gap-8 pt-2 justify-center lg:justify-start">
+
+                    <div>
+                        <h3 class="font-fredoka text-3xl font-bold text-[#0e144a]">
+                            12+
+                        </h3>
+
+                        <p class="text-xs uppercase tracking-[0.18em] text-zinc-400 font-bold mt-1">
+                            {dict.about.story.years}
+                        </p>
+                    </div>
+
+                    <div class="w-px h-10 bg-zinc-200"></div>
+
+                    <div>
+                        <h3 class="font-fredoka text-3xl font-bold text-[#0e144a]">
+                            4.9★
+                        </h3>
+
+                        <p class="text-xs uppercase tracking-[0.18em] text-zinc-400 font-bold mt-1">
+                            {dict.about.story.rating}
+                        </p>
+                    </div>
+
+                    <div class="w-px h-10 bg-zinc-200"></div>
+
+                    <div>
+                        <h3 class="font-fredoka text-3xl font-bold text-[#0e144a]">
+                            24/7
+                        </h3>
+
+                        <p class="text-xs uppercase tracking-[0.18em] text-zinc-400 font-bold mt-1">
+                            {dict.about.story.emergency}
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Features -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 pt-6 text-left max-w-xl mx-auto lg:mx-0">
+
+                    <div class="flex items-center gap-3">
+                        <img src="/huella.svg" alt="" class="w-6 h-6 flex-shrink-0" />
+                        <h4 class="font-readex font-bold text-lg text-[#0e144a]">{dict.about.story.features[0]}</h4>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <img src="/huella.svg" alt="" class="w-6 h-6 flex-shrink-0" />
+                        <h4 class="font-readex font-bold text-lg text-[#0e144a]">{dict.about.story.features[1]}</h4>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <img src="/huella.svg" alt="" class="w-6 h-6 flex-shrink-0" />
+                        <h4 class="font-readex font-bold text-lg text-[#0e144a]">{dict.about.story.features[2]}</h4>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <img src="/huella.svg" alt="" class="w-6 h-6 flex-shrink-0" />
+                        <h4 class="font-readex font-bold text-lg text-[#0e144a]">{dict.about.story.features[3]}</h4>
+                    </div>
+
+                </div>
+
+                <!-- CTA -->
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-6 pt-6">
+
+                    <a href={lang === "en" ? "/services" : "/es/services"}
+                        class="inline-flex items-center justify-center gap-2.5 bg-[#0e144a] text-white font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-full shadow-md hover:bg-emerald-500 hover:text-[#0e144a] transition-all duration-300 w-full sm:w-auto text-center">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+
+                        {dict.about.story.ourServices}
+                    </a>
+
+                    <a href="tel:+523222232760"
+                        class="inline-flex items-center justify-center gap-2.5 bg-[#0091a1] text-white font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-full shadow-sm hover:bg-[#007b8a] transition-all duration-300 w-full sm:w-auto text-center">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 5a2 2 0 012-2h2.28a2 2 0 011.94 1.515l.516 2.064a2 2 0 01-.45 1.95l-1.27 1.27a16.042 16.042 0 006.586 6.586l1.27-1.27a2 2 0 011.95-.45l2.064.516A2 2 0 0121 16.72V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+
+                        {dict.about.story.bookAppointment}
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MEET THE TEAM SECTION -->
+    <section class="bg-white py-20 sm:py-28 px-6 lg:px-8 border-t border-zinc-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14 space-y-2">
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-600 block">{dict.about.team.eyebrow}</span>
+                <h2 class="font-fredoka text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0e144a]">{dict.about.team.title}</h2>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 bg-[#f4f1eb]/30 rounded-[2.5rem] p-8 sm:p-12 lg:p-14 border border-[#f4f1eb]">
+                <!-- Photo -->
+                <div class="flex-shrink-0">
+                    <div class="relative">
+                        <div class="w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden border-[5px] border-white shadow-xl shadow-[#0e144a]/5">
+                            <img src="/clinical-director-about.jpg" alt="Dr. Mohammad Soleimani"
+                                class="w-full h-full object-cover" />
+                        </div>
+                        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full whitespace-nowrap shadow-md">
+                            {dict.about.team.role}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info -->
+                <div class="flex-1 text-center lg:text-left space-y-5">
+                    <h3 class="font-fredoka text-3xl sm:text-4xl font-bold text-[#0e144a]">Dr. Mohammad Soleimani</h3>
+                    <p class="text-sm sm:text-base text-zinc-500 leading-relaxed">
+                        {dict.about.team.bio}
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                        <div class="bg-white rounded-xl px-4 py-3 border border-zinc-100 text-center">
+                            <span class="block text-[11px] font-bold uppercase tracking-wider text-emerald-600">{dict.about.team.surgery}</span>
+                            <span class="block text-xs text-zinc-500 mt-0.5">{dict.about.team.surgeryDesc}</span>
+                        </div>
+                        <div class="bg-white rounded-xl px-4 py-3 border border-zinc-100 text-center">
+                            <span class="block text-[11px] font-bold uppercase tracking-wider text-emerald-600">{dict.about.team.medicine}</span>
+                            <span class="block text-xs text-zinc-500 mt-0.5">{dict.about.team.medicineDesc}</span>
+                        </div>
+                        <div class="bg-white rounded-xl px-4 py-3 border border-zinc-100 text-center col-span-2 sm:col-span-1">
+                            <span class="block text-[11px] font-bold uppercase tracking-wider text-emerald-600">{dict.about.team.dentistry}</span>
+                            <span class="block text-xs text-zinc-500 mt-0.5">{dict.about.team.dentistryDesc}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLINICAL SERVICES DETAIL SECTION -->
+    <section class="relative py-20 px-6 lg:px-8 overflow-hidden bg-white">
+
+
+        <div class="absolute left-6 bottom-6 pointer-events-none hidden lg:block opacity-70">
+            <img src="/footer-image-dog.webp" alt="" class="h-56 w-auto object-contain" />
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto">
+
+            <!-- Heading -->
+            <div class="text-center mb-16 space-y-2">
+
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-600 block">
+                    {dict.about.services.eyebrow}
+                </span>
+
+                <h2 class="font-fredoka text-3xl sm:text-4xl font-bold text-[#0e144a]">
+                    {dict.about.services.title}
+                </h2>
+
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Dog Boarding -->
+                <div
+                    class="bg-[#fcfaf7] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                    style="background-image: url('/line-image.png'); background-size: cover; background-position: center;">
+
+                    <div
+                        class="w-28 h-28 bg-[#f4e9d7] flex items-center justify-center group-hover:bg-[#ffa028] transition-colors duration-300"
+                        style="clip-path:path('M 50 8 C 72 2 93 18 95 45 C 97 72 82 93 55 96 C 28 99 5 85 3 58 C 1 31 28 14 50 8 Z')">
+
+                        <img src="/dog-boarding.svg" alt="" class="w-14 h-14" />
+                    </div>
+
+                    <h3 class="font-fredoka text-xl font-bold text-[#0e144a] mt-5">
+                        {dict.about.services.items[0].title}
+                    </h3>
+
+                    <p class="text-sm text-zinc-500 mt-2 leading-relaxed">
+                        {dict.about.services.items[0].desc}
+                    </p>
+                </div>
+
+                <!-- Dog Daycare -->
+                <div
+                    class="bg-[#fcfaf7] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                    style="background-image: url('/line-image.png'); background-size: cover; background-position: center;">
+
+                    <div
+                        class="w-28 h-28 bg-[#f4e9d7] flex items-center justify-center group-hover:bg-[#ffa028] transition-colors duration-300"
+                        style="clip-path:path('M 45 12 C 68 5 90 15 92 40 C 94 65 78 88 52 92 C 26 96 8 80 5 55 C 2 30 22 19 45 12 Z')">
+
+                        <img src="/dog-daycare.svg" alt="" class="w-14 h-14" />
+                    </div>
+
+                    <h3 class="font-fredoka text-xl font-bold text-[#0e144a] mt-5">
+                        {dict.about.services.items[1].title}
+                    </h3>
+
+                    <p class="text-sm text-zinc-500 mt-2 leading-relaxed">
+                        {dict.about.services.items[1].desc}
+                    </p>
+                </div>
+
+                <!-- Pet Food -->
+                <div
+                    class="bg-[#fcfaf7] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                    style="background-image: url('/line-image.png'); background-size: cover; background-position: center;">
+
+                    <div
+                        class="w-28 h-28 bg-[#f4e9d7] flex items-center justify-center group-hover:bg-[#ffa028] transition-colors duration-300"
+                        style="clip-path:path('M 55 6 C 78 3 96 20 95 48 C 94 76 78 92 50 95 C 22 98 6 85 3 58 C 0 31 32 9 55 6 Z')">
+
+                        <img src="/pet-food.svg" alt="" class="w-14 h-14" />
+                    </div>
+
+                    <h3 class="font-fredoka text-xl font-bold text-[#0e144a] mt-5">
+                        {dict.about.services.items[2].title}
+                    </h3>
+
+                    <p class="text-sm text-zinc-500 mt-2 leading-relaxed">
+                        {dict.about.services.items[2].desc}
+                    </p>
+                </div>
+
+                <!-- Veterinary Care -->
+                <div
+                    class="bg-[#fcfaf7] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                    style="background-image: url('/line-image.png'); background-size: cover; background-position: center;">
+
+                    <div
+                        class="w-28 h-28 bg-[#f4e9d7] flex items-center justify-center group-hover:bg-[#ffa028] transition-colors duration-300"
+                        style="clip-path:path('M 48 15 C 72 5 88 18 90 42 C 92 66 75 85 48 90 C 21 95 10 78 6 54 C 2 30 24 25 48 15 Z')">
+
+                        <img src="/veterinary-care.svg" alt="" class="w-14 h-14" />
+                    </div>
+
+                    <h3 class="font-fredoka text-xl font-bold text-[#0e144a] mt-5">
+                        {dict.about.services.items[3].title}
+                    </h3>
+
+                    <p class="text-sm text-zinc-500 mt-2 leading-relaxed">
+                        {dict.about.services.items[3].desc}
+                    </p>
+                </div>
+
+                <!-- Dog Training -->
+                <div
+                    class="bg-[#fcfaf7] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                    style="background-image: url('/line-image.png'); background-size: cover; background-position: center;">
+
+                    <div
+                        class="w-28 h-28 bg-[#f4e9d7] flex items-center justify-center group-hover:bg-[#ffa028] transition-colors duration-300"
+                        style="clip-path:path('M 52 10 C 75 2 92 22 93 50 C 94 78 80 90 52 94 C 24 98 5 82 3 56 C 1 30 30 18 52 10 Z')">
+
+                        <img src="/dog-training.svg" alt="" class="w-14 h-14" />
+                    </div>
+
+                    <h3 class="font-fredoka text-xl font-bold text-[#0e144a] mt-5">
+                        {dict.about.services.items[4].title}
+                    </h3>
+
+                    <p class="text-sm text-zinc-500 mt-2 leading-relaxed">
+                        {dict.about.services.items[4].desc}
+                    </p>
+                </div>
+
+                <!-- Dog Grooming -->
+                <div
+                    class="bg-[#fcfaf7] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                    style="background-image: url('/line-image.png'); background-size: cover; background-position: center;">
+
+                    <div
+                        class="w-28 h-28 bg-[#f4e9d7] flex items-center justify-center group-hover:bg-[#ffa028] transition-colors duration-300"
+                        style="clip-path:path('M 42 14 C 65 3 85 12 88 38 C 91 64 78 85 52 92 C 26 99 8 82 5 56 C 2 30 20 25 42 14 Z')">
+
+                        <img src="/dog-grooming.svg" alt="" class="w-14 h-14" />
+                    </div>
+
+                    <h3 class="font-fredoka text-xl font-bold text-[#0e144a] mt-5">
+                        {dict.about.services.items[5].title}
+                    </h3>
+
+                    <p class="text-sm text-zinc-500 mt-2 leading-relaxed">
+                        {dict.about.services.items[5].desc}
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- View All Services Button -->
+            <div class="mt-12 text-center">
+                    <a href={lang === "en" ? "/services" : "/es/services"}
+                        class="inline-flex items-center justify-center gap-3 bg-[#0e144a] hover:bg-emerald-500 hover:text-[#0e144a] text-white font-fredoka font-medium text-lg px-8 py-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group">
+                        <span>{dict.about.services.viewAll}</span>
+                    <!-- SVG Icon (Arrow Right) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                        stroke="currentColor"
+                        class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-200">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="bg-white py-20 px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center space-y-10">
+            <div class="space-y-2">
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-600 block">{dict.about.testimonials.eyebrow}</span>
+                <h2 class="font-fredoka text-4xl font-bold text-[#0e144a]">{dict.about.testimonials.title}
+                </h2>
+            </div>
+
+            <div class="bg-[#f4f1eb]/60 border border-zinc-100 p-8 md:p-12 rounded-[2.5rem] relative">
+                <span class="absolute top-4 left-6 text-7xl text-[#0e144a]/10 font-serif pointer-events-none">“</span>
+                <p class="text-base md:text-lg text-zinc-700 italic leading-relaxed relative z-10 font-medium">
+                    {dict.about.testimonials.quote}
+                </p>
+                <div class="mt-6 flex flex-col items-center gap-1">
+                    <h4 class="font-fredoka font-bold text-[#0e144a] text-base">{dict.about.testimonials.owner}</h4>
+                    <p class="text-[11px] text-zinc-400 font-bold uppercase tracking-wider leading-none">{dict.about.testimonials.ownerRole}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="relative bg-white py-24 px-6 lg:px-8 overflow-hidden border-t border-zinc-100">
+
+        <!-- Soft Background Glow -->
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-emerald-100/50 rounded-full blur-3xl pointer-events-none">
+        </div>
+
+        <!-- Decorative Paw -->
+        <div class="absolute right-12 bottom-10 opacity-[0.04] hidden lg:block">
+            <img src="/huesito.svg" alt="Decorative Paw" class="w-44 h-44 object-contain rotate-[-12deg]" />
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto text-center">
+
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-600">
+                {dict.about.cta.label}
+            </span>
+
+            <h2 class="mt-5 font-fredoka text-4xl sm:text-5xl font-bold text-[#0e144a] leading-tight tracking-tight">
+
+                {dict.about.cta.title}
+            </h2>
+
+            <p class="mt-6 text-zinc-500 text-base leading-relaxed max-w-2xl mx-auto">
+
+                {dict.about.cta.desc}
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+
+                <!-- Primary Button -->
+                <a href={lang === "en" ? "/contact-us" : "/es/contact-us"}
+                    class="inline-flex items-center justify-center gap-2 bg-[#0e144a] text-white font-bold text-[11px] uppercase tracking-[0.18em] px-7 py-3 rounded-full hover:bg-emerald-500 hover:text-[#0e144a] transition-all duration-300 shadow-md w-full sm:w-auto text-center">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8 7V3m8 4V3m-9 8h10m-11 9h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v11a2 2 0 002 2z" />
+                    </svg>
+
+                    {dict.about.cta.schedule}
+                </a>
+
+                <!-- Secondary Button -->
+                <a href={lang === "en" ? "/services" : "/es/services"}
+                    class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#0e144a] text-[#0e144a] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.18em] hover:bg-[#0e144a] hover:text-white transition-all duration-300 w-full sm:w-auto text-center">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m7-7l-7 7 7 7" />
+                    </svg>
+
+                    {dict.about.cta.explore}
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <Footer lang={lang} />
+
+</body>
+
+</html>

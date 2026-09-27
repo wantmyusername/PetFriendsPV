@@ -1,0 +1,23 @@
+/* src/styles/global.css */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap&family=Montserrat:ital,wght@0,100..900;1,100..900');
+
+@import "tailwindcss";
+
+/* En Tailwind v4, configuramos los nombres de las tipografías aquí */
+@theme {
+  --font-fredoka: 'Open Sans', sans-serif;
+  --font-readex: 'Montserrat', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-tap-highlight-color: transparent;
+}

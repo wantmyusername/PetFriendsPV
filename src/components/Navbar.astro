@@ -1,0 +1,412 @@
+---
+import { t } from "../i18n/translations";
+const { lang = "en", currentPath = "/" } = Astro.props;
+const dict = t[lang];
+const p = (path) => lang === "en" ? path : `/es${path}`;
+const toggleLang = lang === "en" ? "es" : "en";
+const togglePath = lang === "en" ? `/es${currentPath}` : currentPath.replace(/^\/es/, "") || "/";
+---
+
+<header id="main-header"
+    class="fixed top-5 left-1/2 z-50 w-[95%] max-w-7xl -translate-x-1/2 font-readex transition-all duration-500 ease-in-out">
+
+    <nav id="nav-container"
+        class="flex items-center justify-between rounded-full border border-white/30 bg-white/75 px-3 py-2.5 shadow-[0_8px_30px_-10px_rgba(0,145,161,0.12)] backdrop-blur-md transition-all duration-500">
+
+        <!-- Logo Area -->
+        <a href={p('/')} class="group flex shrink-0 items-center pl-2">
+
+            <img src="/logo.png" alt="Pet Friends Puerto Vallarta"
+                class="h-12 w-auto transition-transform duration-300 group-hover:scale-105" />
+
+        </a>
+
+        <!-- Desktop Navigation -->
+        <ul class="hidden items-center gap-1 font-readex md:flex" id="desktop-menu">
+
+            <li>
+                <a href={p('/')} data-path="/"
+                    class="nav-link rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-600 transition-all duration-200 hover:bg-[#0091a1]/5 hover:text-[#0091a1]">
+                    {dict.nav.home}
+                </a>
+            </li>
+
+            <li>
+                <a href={p('/about-us')} data-path="/about-us"
+                    class="nav-link rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-600 transition-all duration-200 hover:bg-[#0091a1]/5 hover:text-[#0091a1]">
+                    {dict.nav.about}
+                </a>
+            </li>
+
+            <li>
+                <a href={p('/services')} data-path="/services"
+                    class="nav-link rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-600 transition-all duration-200 hover:bg-[#0091a1]/5 hover:text-[#0091a1]">
+                    {dict.nav.services}
+                </a>
+            </li>
+
+            <li>
+                <a href={p('/gallery')} data-path="/gallery"
+                    class="nav-link rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-600 transition-all duration-200 hover:bg-[#0091a1]/5 hover:text-[#0091a1]">
+                    {dict.nav.gallery}
+                </a>
+            </li>
+
+            <li>
+                <a href={p('/contact-us')} data-path="/contact-us"
+                    class="nav-link rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-600 transition-all duration-200 hover:bg-[#0091a1]/5 hover:text-[#0091a1]">
+                    {dict.nav.contact}
+                </a>
+            </li>
+
+        </ul>
+
+        <!-- Desktop Actions -->
+        <div class="hidden items-center gap-2 pr-1 md:flex">
+
+            <!-- Language -->
+            <a href={togglePath}
+                class="inline-flex items-center gap-1.5 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-500 transition-all duration-300 hover:text-[#0091a1]">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-70">
+                    <path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>
+                </svg>
+
+                <span>{dict.langLabel}</span>
+
+            </a>
+
+            <!-- CTA -->
+            <a href={p('/contact-us')}
+                class="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-full bg-[#0091a1] px-5 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition-all duration-300 hover:bg-[#007b8a] hover:shadow-md active:scale-95">
+
+                <img src="/huella.svg" alt="" class="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:rotate-12" style="filter: brightness(0) invert(1);" />
+
+                <span class="relative z-10">
+                    {dict.nav.bookAppointment}
+                </span>
+
+            </a>
+
+        </div>
+
+        <!-- Mobile Actions -->
+        <div class="flex items-center gap-2 pr-1 md:hidden">
+
+            <!-- Language -->
+            <a href={togglePath}
+                class="inline-flex items-center gap-1.5 rounded-full border border-zinc-200/80 bg-white px-3 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-zinc-700 shadow-sm transition-all duration-300 hover:border-[#0091a1]/30 hover:text-[#0091a1]">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-70">
+                    <path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>
+                </svg>
+
+                <span>{dict.langLabel}</span>
+
+            </a>
+
+            <!-- Menu Button -->
+            <button id="menu-btn" aria-label="Menu"
+                class="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200/80 bg-white text-[#0091a1] shadow-sm transition-colors duration-300 hover:bg-zinc-50 focus:outline-none">
+
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="2.5" stroke="currentColor" class="h-5 w-5 transition-transform duration-300">
+
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6h16.5" />
+
+                </svg>
+
+            </button>
+
+        </div>
+
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu"
+        class="pointer-events-none absolute left-1/2 z-50 mt-3 w-[98%] origin-top -translate-x-1/2 scale-95 rounded-[2rem] border border-zinc-200/60 bg-[#fdfdfd]/98 p-8 opacity-0 shadow-[0_25px_60px_-15px_rgba(0,145,161,0.18)] backdrop-blur-xl transition-all duration-300 ease-out md:hidden">
+
+        <div class="space-y-8">
+
+            <!-- Navigation -->
+            <div class="space-y-4">
+
+                <span class="block text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-400">
+                    {dict.nav.navigation}
+                </span>
+
+                <ul class="flex flex-col gap-1.5">
+
+                    <li>
+                        <a href={p('/')} data-path="/"
+                            class="mobile-nav-link flex items-center rounded-xl px-4 py-3 font-readex text-xs font-bold uppercase tracking-wider text-zinc-700 transition-all hover:bg-[#0091a1]/5 hover:text-[#0091a1]">
+
+                            <span class="nav-number mr-3 font-fredoka text-[9px] font-semibold text-[#0091a1]">
+                                01 /
+                            </span>
+
+                            {dict.nav.home}
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href={p('/about-us')} data-path="/about-us"
+                            class="mobile-nav-link flex items-center rounded-xl px-4 py-3 font-readex text-xs font-bold uppercase tracking-wider text-zinc-700 transition-all hover:bg-[#0091a1]/5 hover:text-[#0091a1]">
+
+                            <span class="nav-number mr-3 font-fredoka text-[9px] font-semibold text-[#0091a1]">
+                                02 /
+                            </span>
+
+                            {dict.nav.about}
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href={p('/services')} data-path="/services"
+                            class="mobile-nav-link flex items-center rounded-xl px-4 py-3 font-readex text-xs font-bold uppercase tracking-wider text-zinc-700 transition-all hover:bg-[#0091a1]/5 hover:text-[#0091a1]">
+
+                            <span class="nav-number mr-3 font-fredoka text-[9px] font-semibold text-[#0091a1]">
+                                03 /
+                            </span>
+
+                            {dict.nav.services}
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href={p('/gallery')} data-path="/gallery"
+                            class="mobile-nav-link flex items-center rounded-xl px-4 py-3 font-readex text-xs font-bold uppercase tracking-wider text-zinc-700 transition-all hover:bg-[#0091a1]/5 hover:text-[#0091a1]">
+
+                            <span class="nav-number mr-3 font-fredoka text-[9px] font-semibold text-[#0091a1]">
+                                04 /
+                            </span>
+
+                            {dict.nav.gallery}
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href={p('/contact-us')} data-path="/contact-us"
+                            class="mobile-nav-link flex items-center rounded-xl px-4 py-3 font-readex text-xs font-bold uppercase tracking-wider text-zinc-700 transition-all hover:bg-[#0091a1]/5 hover:text-[#0091a1]">
+
+                            <span class="nav-number mr-3 font-fredoka text-[9px] font-semibold text-[#0091a1]">
+                                05 /
+                            </span>
+
+                            {dict.nav.contact}
+
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="space-y-4 border-t border-zinc-200/60 pt-6">
+
+                <a href="tel:+523222232760"
+                    class="flex flex-col items-center gap-1 rounded-xl border border-rose-100 bg-rose-50/80 p-4 text-rose-700 transition-colors hover:bg-rose-100">
+
+                    <span class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.634-5.165-3.974-6.799-6.8l1.293-.97a1.125 1.125 0 0 0 .417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                        </svg>
+                        {dict.nav.emergency}
+                    </span>
+
+                    <span class="font-fredoka text-xs font-bold">
+                        +52 322 223 2760
+                    </span>
+
+                </a>
+
+                <a href={p('/contact-us')}
+                    class="flex items-center justify-center gap-2.5 rounded-full bg-[#0091a1] py-4 text-center font-readex text-xs font-bold uppercase tracking-wider text-white shadow-sm transition-all hover:bg-[#007b8a]">
+
+                    <img src="/huella.svg" alt="" class="h-4 w-4" style="filter: brightness(0) invert(1);" />
+
+                    <span>{dict.nav.bookAppointment}</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<style>
+    .active-bubble {
+        background-color: #0091a1 !important;
+        color: #ffffff !important;
+        font-weight: 700;
+        box-shadow: 0 4px 15px rgba(0, 145, 161, 0.25);
+    }
+    .active-bubble .nav-number {
+        color: #ffffff !important;
+    }
+    .mobile-nav-link .nav-number {
+        transition: color 0.2s;
+    }
+</style>
+
+<script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    const header = document.getElementById('main-header');
+    const navContainer = document.getElementById('nav-container');
+
+    const navLinks = document.querySelectorAll('.nav-link');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    // Mobile Menu
+    btn?.addEventListener('click', (e) => {
+
+        e.stopPropagation();
+
+        if (menu && menuIcon) {
+
+            const isOpen = !menu.classList.contains('opacity-0');
+
+            if (isOpen) {
+
+                menu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                menu.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+
+                menuIcon.innerHTML =
+                    `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3.75 9h16.5m-16.5 6h16.5" />`;
+
+            } else {
+
+                menu.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+                menu.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
+
+                menuIcon.innerHTML =
+                    `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18 18 6M6 6l12 12" />`;
+
+            }
+
+        }
+
+    });
+
+    // Click Outside
+    document.addEventListener('click', (event) => {
+
+        const target = event.target;
+
+        if (menu && !menu.classList.contains('opacity-0')) {
+
+            if (!menu.contains(target) && !btn?.contains(target)) {
+
+                menu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                menu.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+
+                if (menuIcon) {
+
+                    menuIcon.innerHTML =
+                        `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3.75 9h16.5m-16.5 6h16.5" />`;
+
+                }
+
+            }
+
+        }
+
+    });
+
+    // Scroll Effect
+    window.addEventListener('scroll', () => {
+
+        if (window.scrollY > 30) {
+
+            header?.classList.remove('top-5', 'w-[95%]', 'max-w-7xl');
+            header?.classList.add('top-2.5', 'w-[90%]', 'max-w-5xl');
+
+            navContainer?.classList.remove('py-2.5', 'bg-white/75');
+
+            navContainer?.classList.add(
+                'py-1.5',
+                'bg-white/85',
+                'shadow-[0_12px_40px_-10px_rgba(0,145,161,0.22)]',
+                'border-white/40'
+            );
+
+        } else {
+
+            header?.classList.remove('top-2.5', 'w-[90%]', 'max-w-5xl');
+            header?.classList.add('top-5', 'w-[95%]', 'max-w-7xl');
+
+            navContainer?.classList.remove(
+                'py-1.5',
+                'bg-white/85',
+                'shadow-[0_12px_40px_-10px_rgba(0,145,161,0.22)]',
+                'border-white/40'
+            );
+
+            navContainer?.classList.add('py-2.5', 'bg-white/75');
+
+        }
+
+    });
+
+    // Active Link (handles /es/ prefix for Spanish)
+    const currentPath = window.location.pathname.replace(/^\/es/, "") || "/";
+
+    function highlightCurrentPage() {
+
+        const cleanedPath = currentPath.replace(/\/$/, "");
+
+        navLinks.forEach(link => {
+
+            const linkPath = link.getAttribute('data-path');
+
+            if (linkPath === '/' && (cleanedPath === '' || cleanedPath === '/')) {
+
+                link.classList.add('active-bubble');
+
+            } else if (linkPath && linkPath !== '/' && cleanedPath.startsWith(linkPath)) {
+
+                link.classList.add('active-bubble');
+
+            } else {
+
+                link.classList.remove('active-bubble');
+
+            }
+
+        });
+
+        mobileLinks.forEach(link => {
+
+            const linkPath = link.getAttribute('data-path');
+
+            if (linkPath === '/' && (cleanedPath === '' || cleanedPath === '/')) {
+
+                link.classList.add('active-bubble');
+
+            } else if (linkPath && linkPath !== '/' && cleanedPath.startsWith(linkPath)) {
+
+                link.classList.add('active-bubble');
+
+            } else {
+
+                link.classList.remove('active-bubble');
+
+            }
+
+        });
+
+    }
+
+    highlightCurrentPage();
+</script>

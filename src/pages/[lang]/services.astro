@@ -1,0 +1,610 @@
+---
+import "../../styles/global.css";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { t } from "../../i18n/translations";
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: "es" } },
+  ];
+}
+
+const lang = Astro.params.lang || Astro.props.lang || "en";
+const dict = t[lang];
+
+const svgIcons = {
+veterinary: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 65" class="w-14 h-14">
+    <g clip-path="url(#clip0_173_2402)">
+        <path
+            d="M20.9199 21.3281C20.9199 21.3281 18.8887 38.152 18.8887 44.6875C18.8887 49.7225 22.9842 53.8281 28.0293 53.8281C33.0744 53.8281 37.1699 49.7225 37.1699 44.6875C37.1699 38.152 28.0293 32.7514 28.0293 21.3281"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M48.3418 25.7766V28.4655C48.3418 30.4612 50.2842 31.4844 52.2672 31.4844H54.4355" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M41.2324 42.6562H43.2637C50.7895 42.5014 54.4355 35.5164 54.4355 31.9084C54.4355 28.3004 54.4355 25.3906 45.2949 25.3906H43.2637C43.2637 18.1873 37.4695 11.1719 28.0445 11.1719C18.6195 11.1719 14.8262 19.2969 13.8105 26.4062L11.7793 40.625"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M38.1855 25.3906C38.1855 24.2684 37.2766 23.3594 36.1543 23.3594C35.032 23.3594 34.123 24.2684 34.123 25.3906"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M33.1074 1.01562C45.2924 9.13809 64.5918 10.1562 64.5918 10.1562V19.9063C64.5918 32.5 61.3951 50.7787 33.1074 63.9844C4.81973 50.7787 1.62305 32.5 1.62305 19.9063V10.1562C1.62305 10.1562 20.9225 9.13809 33.1074 1.01562Z"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </g>
+    <defs>
+        <clipPath id="clip0_173_2402">
+            <rect width="65" height="65" fill="white" transform="translate(0.607422)"></rect>
+        </clipPath>
+    </defs>
+</svg>`,
+grooming: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 68 67" class="w-14 h-14">
+    <path d="M47.7344 20.9197L56.9419 52.3712" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    <path d="M36.1992 66.0004C39.0954 66.0004 41.4412 63.6546 41.4412 60.7584V57.6133" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path
+        d="M61.3611 63.9041C64.2561 63.9041 66.603 60.8532 66.603 57.0896C66.603 53.3261 64.2561 50.2751 61.3611 50.2751C58.466 50.2751 56.1191 53.3261 56.1191 57.0896C56.1191 60.8532 58.466 63.9041 61.3611 63.9041Z"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M60.3103 20.9197L51.1055 52.3712" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    <path
+        d="M46.6795 63.9041C49.5745 63.9041 51.9214 60.8532 51.9214 57.0896C51.9214 53.3261 49.5745 50.2751 46.6795 50.2751C43.7844 50.2751 41.4375 53.3261 41.4375 57.0896C41.4375 60.8532 43.7844 63.9041 46.6795 63.9041Z"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path
+        d="M36.2 11.4846C36.2 11.4846 38.2968 28.8511 38.2968 35.5975C38.2968 40.7948 34.0718 45.0329 28.8613 45.0329C23.6508 45.0329 19.4258 40.7948 19.4258 35.5975C19.4258 28.8511 28.8613 23.2763 28.8613 11.4846"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M7.89776 16.0759V18.8515C7.89776 20.9116 5.89272 21.9678 3.84574 21.9678H1.60742" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M23.6211 43.4412V50.1036C23.6211 56.0532 24.8398 59.028 27.8147 63.5046V65.9998" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path
+        d="M43.543 16.7258C42.4946 9.38708 38.5763 1 28.8498 1C19.1234 1 13.1397 8.24172 13.1397 15.6774H11.0429C1.60742 15.6774 1.60742 18.6915 1.60742 22.4054C1.60742 26.1193 5.37114 33.34 13.1397 33.4999H15.2365"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path
+        d="M18.3809 15.6771C18.3809 14.519 19.3192 13.5811 20.4776 13.5811C21.6361 13.5811 22.5744 14.519 22.5744 15.6771"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>`,
+sitting: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 65" class="w-14 h-14">
+    <g clip-path="url(#clip0_173_2367)">
+        <path
+            d="M40.5925 8.99561C40.5925 8.99561 39.2671 20.1903 39.2671 24.9333C39.2671 28.5997 42.2378 31.5755 45.9093 31.5755C49.5808 31.5755 52.5515 28.5997 52.5515 24.9333C52.5515 20.1929 45.9093 17.2958 45.9093 8.99561"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M51.4043 11.1791C51.4043 11.1812 51.4041 11.1823 51.404 11.1826L51.4036 11.1841C51.403 11.1854 51.4017 11.1877 51.3992 11.1902C51.3966 11.1928 51.3944 11.194 51.3934 11.1944L51.3928 11.1946L51.3925 11.1947L51.3912 11.1947C51.3894 11.1947 51.3885 11.1945 51.387 11.1939C51.3848 11.193 51.3815 11.191 51.3783 11.1878C51.3751 11.1846 51.3737 11.182 51.3733 11.181C51.3731 11.1807 51.3731 11.1806 51.3731 11.1807C51.3732 11.1808 51.373 11.1804 51.373 11.1791C51.373 11.177 51.3732 11.1761 51.3733 11.176L51.3734 11.1757C51.3735 11.1753 51.3743 11.1737 51.3764 11.1717C51.3785 11.1696 51.3807 11.1682 51.3826 11.1674C51.3839 11.1668 51.3862 11.166 51.3912 11.166C51.3937 11.166 51.395 11.1662 51.3954 11.1663L51.3964 11.1667C51.3971 11.1669 51.3987 11.1678 51.4005 11.1696C51.4023 11.1714 51.4032 11.1731 51.4036 11.174L51.404 11.1753C51.4041 11.1757 51.4043 11.1769 51.4043 11.1791Z"
+            fill="currentColor" stroke="currentColor" stroke-width="2"></path>
+        <path
+            d="M11.7793 52.8223C11.7793 54.9805 10.8652 55.7828 9.74805 55.8691C8.09766 55.9961 7.1582 55.1049 6.70117 53.8379C6.70117 53.8379 5.68809 51.8066 5.68555 45.7129C5.68555 44.6973 4.77656 43.6816 3.6543 43.6816C2.53203 43.6816 1.62305 44.5906 1.62305 45.7129V53.8785C1.62305 58.916 5.36562 61.9629 8.73242 61.9629H16.1338"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M20.4705 47.3353L21.0545 45.8677C23.1086 42.0007 27.9404 41.757 31.4088 44.4839C34.5928 46.9824 34.8619 51.248 32.7977 53.5027C31.1498 55.3029 29.0424 56.8873 29.0424 56.8873L35.1361 57.9029C38.183 58.497 38.183 60.4191 38.183 61.4347C38.183 62.7042 37.1674 63.9966 35.1361 63.9966H15.8418C15.8418 61.9654 16.8574 59.9341 17.873 56.8873"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M60.5293 11.311V13.2128C60.5293 14.6144 61.6668 15.7519 63.0684 15.7519H64.5918" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M49.3574 30.6055V34.541C49.3574 38.6035 48.3418 40.6348 46.3105 43.6816V56.8848L49.3574 57.9004C52.4043 58.916 52.4043 60.4166 52.4043 61.4322C52.4043 62.7018 51.3887 63.9941 49.3574 63.9941H38.1855V43.6816C38.1855 40.6348 37.1699 38.6035 36.1543 37.5879"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M13.1073 57.6947C12.2491 55.9479 11.7769 53.942 11.7769 51.8066C11.7769 40.8887 18.6272 36.9125 22.9513 32.5098C29.0552 26.2941 33.1075 20.2842 35.479 11.6488C36.8247 6.74844 39.3587 1.02539 46.0009 1.02539C52.6431 1.02539 56.6243 6.10606 56.6243 11.1816H57.9497C64.5919 11.1816 64.5919 13.0986 64.5919 15.6377C64.5919 18.1768 61.7761 23.2676 56.4669 23.3691"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </g>
+    <defs>
+        <clipPath id="clip0_173_2367">
+            <rect width="65" height="65" fill="white" transform="translate(0.607422 0.00976562)"></rect>
+        </clipPath>
+    </defs>
+</svg>`,
+nutritional: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 65" class="w-14 h-14">
+    <g clip-path="url(#clip0_173_2384)">
+        <path
+            d="M10.7283 17.2656C10.3703 17.4434 10.0478 17.6262 9.7609 17.8115C7.40719 19.3197 7.21168 20.9955 6.90192 22.2346C5.68317 27.0994 2.66169 43.2275 1.81364 46.6096C1.6359 47.323 1.57751 48.0619 1.66383 48.7906C2.79372 58.2842 16.4234 63.9818 33.072 63.9818C49.7207 63.9818 63.3503 58.2842 64.4802 48.7906C64.5666 48.0594 64.5107 47.323 64.3304 46.6096C63.4824 43.2275 60.4609 27.0994 59.2421 22.2346C58.9375 21.0158 58.7419 19.3781 56.505 17.8902"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M17.8379 17.2656C15.5934 17.2656 13.7754 15.4477 13.7754 13.2031C13.7754 10.9586 15.5934 9.14062 17.8379 9.14062C18.5996 9.14062 19.3029 9.36406 19.9123 9.72715C20.1307 7.68828 21.8344 6.09375 23.9316 6.09375C24.899 6.09375 25.775 6.44414 26.4707 7.01035C26.1559 6.43398 25.9629 5.78145 25.9629 5.07812C25.9629 2.83359 27.7809 1.01562 30.0254 1.01562C31.5666 1.01562 32.3842 1.88398 33.0723 3.15098"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M37.1348 5.07812C39.1863 5.07812 40.8646 6.6041 41.1414 8.57949C41.8854 7.68828 42.9924 7.10938 44.2441 7.10938C46.4887 7.10938 48.3066 8.92734 48.3066 11.1719"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M46.2754 18.7332C46.8746 19.0836 47.5627 19.2969 48.3066 19.2969C50.5512 19.2969 52.3691 17.4789 52.3691 15.2344C52.3691 12.9898 50.5512 11.1719 48.3066 11.1719C47.5627 11.1719 46.8746 11.3852 46.2754 11.7355"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M39.166 20.3125C39.166 18.068 37.348 16.25 35.1035 16.25C33.8518 16.25 32.7447 16.8289 32.0008 17.7201C31.724 15.7447 30.0457 14.2188 27.9941 14.2188H25.9629"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M30.9468 36.0878C30.5685 34.4247 29.1695 33.2897 27.8187 33.5538C26.4679 33.8153 25.6783 35.3743 26.0566 37.0374C26.4324 38.7005 27.8314 39.8329 29.1822 39.5739C30.5329 39.3124 31.3226 37.7508 30.9468 36.0903V36.0878Z"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M22.1513 40.7089C23.1898 40.3179 24.373 41.331 24.797 42.9661C25.2185 44.5988 24.7183 46.2441 23.6798 46.6351C22.6413 47.0236 21.4581 46.013 21.0341 44.3753C20.6126 42.7427 21.1103 41.0974 22.1513 40.7064V40.7089Z"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M33.0718 57.0299C33.8208 57.0299 36.5528 57.8906 37.5253 57.8906C39.5565 57.8906 41.1968 56.0549 41.1968 53.7977C41.1968 53.0766 41.1968 51.8553 40.0415 50.507L36.1694 45.3375C35.395 44.2584 34.2372 43.6719 33.0718 43.6719C31.9063 43.6719 30.7485 44.2584 29.9741 45.3375L26.1071 50.507C24.9468 51.8553 24.9468 53.074 24.9468 53.7977C24.9468 56.0549 26.5921 57.8906 28.6208 57.8906C29.5882 57.8906 32.3202 57.0299 33.0718 57.0299Z"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M35.1969 36.0878C35.5752 34.4247 36.9743 33.2897 38.325 33.5538C39.6758 33.8153 40.4655 35.3743 40.0872 37.0374C39.7114 38.7005 38.3123 39.8329 36.9616 39.5739C35.6133 39.3124 34.8211 37.7508 35.1969 36.0903V36.0878Z"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M43.9922 40.7089C42.9537 40.3179 41.7705 41.331 41.3491 42.9661C40.9276 44.5988 41.4252 46.2441 42.4662 46.6351C43.5047 47.0236 44.6879 46.013 45.1094 44.3753C45.5309 42.7427 45.0332 41.0974 43.9922 40.7064V40.7089Z"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M59.0186 21.3281C59.0186 22.9354 57.0025 24.4334 54.4863 25.6953" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M18.9318 28.077C12.1475 26.617 7.18359 24.1389 7.18359 21.3281" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M11.7441 21.3281C13.8617 22.8566 21.4459 25.3906 33.0723 25.3906C44.6986 25.3906 52.2828 22.8566 54.4004 21.3281"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </g>
+    <defs>
+        <clipPath id="clip0_173_2384">
+            <rect width="64.9289" height="65" fill="white" transform="translate(0.607422)"></rect>
+        </clipPath>
+    </defs>
+</svg>`,
+hygiene: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+    stroke="currentColor" class="w-14 h-14">
+    <path stroke-linecap="round" stroke-linejoin="round"
+        d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+</svg>`,
+training: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 65" class="w-14 h-14">
+    <g clip-path="url(#clip0_173_2411)">
+        <path
+            d="M26.3483 52.066C25.4774 50.3369 24.9849 48.3742 24.9849 46.2947C24.9849 37.3369 37.1724 30.9156 37.1724 15.2344"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M48.9358 38.5632C49.1923 41.4832 49.3599 44.1949 49.3599 46.2947C49.3599 53.2212 43.906 58.8427 37.1724 58.8427C34.0519 58.8427 31.203 57.6341 29.0474 55.646"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M46.313 17.2656C46.313 17.2656 47.4022 24.4385 48.2782 32.1217" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M29.0474 20.3124C29.0474 18.6315 27.6788 17.2681 25.9954 17.2681C24.312 17.2681 22.9536 18.6315 22.9536 20.3124"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M9.75049 21.3281V24.375C9.75049 27.1807 7.47803 29.4531 4.67236 29.4531H1.62549" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M55.9437 20.0916C54.1029 10.8393 48.5906 1.01562 37.0074 1.01562C24.3679 1.01562 16.7863 10.6844 16.7863 20.3455L13.813 20.3125C1.1736 20.3125 1.62555 23.9916 1.62555 28.8234C1.62555 33.6553 6.75699 43.4738 16.8599 43.6719H20.9224"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M64.5941 41.6407C62.149 37.2278 58.9676 32.2233 57.2334 26.4749" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M52.2595 3.09521C54.0419 3.26279 55.5171 3.86709 56.5988 4.94873C62.1289 10.4788 55.1871 26.3886 41.0927 40.4829C26.9984 54.5773 11.0886 61.519 5.55855 55.989C3.13883 53.5692 3.10582 49.164 5.01519 43.7913"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path
+            d="M58.2846 8.11499L64.5941 41.6281C64.6246 46.5665 62.5857 52.6248 57.924 57.2865L57.9088 57.3017C53.2471 61.9634 47.1889 64.015 42.2504 63.9871L8.7373 57.6623"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </g>
+    <defs>
+        <clipPath id="clip0_173_2411">
+            <rect width="65.0025" height="65" fill="white" transform="translate(0.607422)"></rect>
+        </clipPath>
+    </defs>
+</svg>`,
+laboratory: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+    stroke="currentColor" class="w-14 h-14">
+    <path stroke-linecap="round" stroke-linejoin="round"
+        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+</svg>`,
+pharmacy: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+    stroke="currentColor" class="w-14 h-14">
+    <path stroke-linecap="round" stroke-linejoin="round"
+        d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+</svg>`,
+vaccines: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+    stroke="currentColor" class="w-14 h-14">
+    <path stroke-linecap="round" stroke-linejoin="round"
+        d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+</svg>`
+};
+
+const blobPaths = [
+'M 50 8 C 72 2 93 18 95 45 C 97 72 82 93 55 96 C 28 99 5 85 3 58 C 1 31 28 14 50 8 Z',
+'M 45 12 C 68 5 90 15 92 40 C 94 65 78 88 52 92 C 26 96 8 80 5 55 C 2 30 22 19 45 12 Z',
+'M 55 6 C 78 3 96 20 95 48 C 94 76 78 92 50 95 C 22 98 6 85 3 58 C 0 31 32 9 55 6 Z',
+'M 48 15 C 72 5 88 18 90 42 C 92 66 75 85 48 90 C 21 95 10 78 6 54 C 2 30 24 25 48 15 Z',
+'M 52 10 C 75 2 92 22 93 50 C 94 78 80 90 52 94 C 24 98 5 82 3 56 C 1 30 30 18 52 10 Z',
+'M 42 14 C 65 3 85 12 88 38 C 91 64 78 85 52 92 C 26 99 8 82 5 56 C 2 30 20 25 42 14 Z',
+'M 38 10 C 60 2 82 15 85 40 C 88 65 72 88 48 93 C 24 98 10 82 5 58 C 0 34 16 18 38 10 Z',
+'M 56 8 C 78 5 94 25 92 52 C 90 79 72 92 46 95 C 20 98 4 80 2 55 C 0 30 34 11 56 8 Z',
+'M 44 16 C 68 8 86 22 88 46 C 90 70 72 86 48 90 C 24 94 8 78 5 54 C 2 30 20 24 44 16 Z'
+];
+
+const iconKeys = ["veterinary", "grooming", "sitting", "nutritional", "hygiene", "training", "laboratory", "pharmacy", "vaccines"];
+const imgList = [
+  "https://images.unsplash.com/photo-1630359486912-4b085e38f1e7?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1647616350787-6428e907a7fa?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1415369629372-26f2fe60c467?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1632236542159-809925d85fc0?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1654895716780-b4664497420d?q=80&w=800&auto=format&fit=crop"
+];
+
+const coreServices = dict.services.catalog.core.map((item, i) => ({
+  ...item,
+  id: iconKeys[i],
+  iconKey: iconKeys[i],
+  img: imgList[i],
+}));
+---
+<html lang={lang}>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{lang === "en" ? "Veterinary Services in Puerto Vallarta | Pet Friends PV" : "Servicios Veterinarios en Puerto Vallarta | Pet Friends PV"}</title>
+    <meta name="description" content={lang === "en" ? "Comprehensive veterinary services in Puerto Vallarta: surgery, diagnostics, grooming, daycare, nutritional counseling, and 24/7 emergency care. Bilingual team, US-licensed vets." : "Servicios veterinarios integrales en Puerto Vallarta: cirugía, diagnósticos, estética, guardería, asesoría nutricional y emergencias 24/7. Equipo bilingüe, veterinarios con licencia EUA."} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/services" />
+    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/services" />
+</head>
+
+<body class="font-readex bg-white text-zinc-800 antialiased overflow-x-hidden">
+    <Navbar lang={lang} currentPath={Astro.url.pathname} />
+
+    <!-- HERO -->
+    <section class="relative pt-0 overflow-hidden">
+
+        <!-- Background principal -->
+        <div class="relative h-[420px] md:h-[500px] overflow-hidden bg-[#dcf1f4]">
+
+            <!-- Imagen -->
+            <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=4032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Puppy Background"
+                class="absolute inset-0 h-full w-full object-cover object-bottom opacity-25 mix-blend-luminosity scale-105" />
+
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0e144a]/5 via-transparent to-[#0e144a]/10"></div>
+
+            <!-- Huella decorativa izquierda -->
+            <div
+                class="absolute left-[-40px] top-1/2 -translate-y-1/2 opacity-[0.08] pointer-events-none hidden lg:block">
+                <img src="/huella.svg" alt="Decorative Paw"
+                    class="w-[220px] h-[220px] object-contain rotate-[-12deg]" />
+            </div>
+
+            <!-- Huesito decorativo derecha -->
+            <div class="absolute right-[-30px] top-24 opacity-[0.06] pointer-events-none hidden lg:block">
+                <img src="/huesito.svg" alt="Decorative Bone"
+                    class="w-[180px] h-[180px] object-contain rotate-[18deg]" />
+            </div>
+
+            <!-- Contenido -->
+            <div class="relative z-20 flex h-full flex-col items-center justify-center text-center pt-28 md:pt-32 px-4">
+
+                <!-- Eyebrow -->
+                <span class="text-xs font-bold uppercase tracking-[0.28em] text-[#0e144a]/70 mb-3">
+                    {dict.services.hero.eyebrow}
+                </span>
+
+                <!-- Heading -->
+                <h1 class="font-fredoka text-5xl md:text-6xl font-bold text-[#0e144a] tracking-tight leading-none">
+                    {dict.services.hero.title}
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="mt-5 max-w-xl text-sm md:text-base text-[#0e144a]/70 leading-relaxed font-readex">
+                    {dict.services.hero.subtitle}
+                </p>
+
+            </div>
+
+            <!-- Wave -->
+            <div class="absolute bottom-0 left-0 z-10 w-full leading-none">
+                <svg viewBox="0 0 1440 320" class="block h-[70px] md:h-[110px] w-full" preserveAspectRatio="none">
+                    <path fill="#ffffff"
+                        d="M0,160 C320,320 640,64 1080,192 C1260,240 1360,224 1440,192 L1440,320 L0,320 Z" />
+                </svg>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="relative bg-white py-24 px-6 lg:px-8 overflow-visible">
+        <div
+            class="absolute inset-y-0 right-0 w-full lg:w-2/3 bg-[linear-gradient(to_right,#f4f1eb_1px,transparent_1px),linear-gradient(to_bottom,#f4f1eb_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0 opacity-40">
+        </div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-1">
+                <div class="flex items-center justify-center lg:justify-start gap-2">
+                    <span class="w-6 h-px bg-emerald-500"></span>
+                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#0e144a]">{dict.services.intro.eyebrow}</span>
+                </div>
+                <h2
+                    class="font-fredoka text-4xl sm:text-5xl lg:text-6xl font-bold text-[#0e144a] leading-tight tracking-tight">
+                    {dict.services.intro.title}</h2>
+                <p class="text-sm sm:text-base text-zinc-500 leading-relaxed max-w-2xl font-normal">{dict.services.intro.desc}</p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 pt-4">
+                    <a href="#catalogo"
+                        class="bg-[#0e144a] text-white font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-full shadow-md hover:bg-emerald-500 hover:text-[#0e144a] transition-all duration-300 w-full sm:w-auto text-center">{dict.services.intro.viewCatalog}</a>
+                    <a href={`https://wa.me/523223846328?text=${encodeURIComponent(dict.whatsapp.emergency)}`}
+                        target="_blank"
+                        class="inline-flex items-center justify-center gap-2.5 bg-rose-50/80 border border-rose-200 text-rose-700 font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-full shadow-sm hover:bg-rose-100 hover:text-rose-800 transition-all duration-300 w-full sm:w-auto text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor"
+                            viewBox="0 0 448 512">
+                            <path
+                                d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                        </svg>
+                        {dict.services.intro.emergency}
+                    </a>
+                </div>
+            </div>
+            <div class="lg:col-span-5 relative flex justify-center order-1 lg:order-2">
+                <div
+                    class="absolute -top-4 left-6 sm:left-2 bg-white border-[3px] border-[#0e144a] rounded-full w-28 h-28 flex flex-col items-center justify-center shadow-lg transform -rotate-12 z-20">
+                    <span class="text-[9px] font-bold tracking-[0.25em] text-[#0e144a]/60 uppercase">{dict.services.intro.serviceGuaranteed}</span>
+                    <span class="font-fredoka text-[22px] font-bold text-[#0e144a] my-0.5 leading-none">100%</span>
+                    <span class="text-[9px] font-bold tracking-widest text-emerald-600 uppercase">{dict.services.intro.guaranteed}</span>
+                    <div
+                        class="absolute inset-1.5 rounded-full border border-dashed border-[#0e144a]/20 pointer-events-none">
+                    </div>
+                </div>
+                <div
+                    class="relative w-[340px] h-[440px] sm:w-[380px] sm:h-[460px] rounded-[220px_120px_220px_120px] overflow-hidden bg-emerald-100 shadow-xl border-b-[24px] border-[#f4f1eb]">
+                    <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=4332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Veterinarian" class="w-full h-full object-cover scale-105" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="catalogo"
+        class="bg-[#f4f1eb]/30 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 scroll-mt-12 overflow-hidden font-readex">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12 sm:mb-16 space-y-4">
+                <span
+                    class="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-emerald-600">
+                    <span class="w-6 h-px bg-emerald-600/40"></span>
+                    {dict.services.catalog.eyebrow}
+                    <span class="w-6 h-px bg-emerald-600/40"></span>
+                </span>
+                <h2 class="font-fredoka text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0e144a] tracking-tight">
+                    {dict.services.catalog.title}</h2>
+            </div>
+            <div class="space-y-20 sm:space-y-28 lg:space-y-36">
+                {coreServices.map((service, index) => (
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+                    <div class={`${index % 2===0 ? 'lg:col-span-7' : 'lg:col-span-7 lg:order-2' }`}>
+                        <div
+                            class="relative w-full h-[260px] sm:h-[380px] lg:h-[480px] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-xl bg-[#0e144a]/5">
+                            <img src={service.img} alt={service.title}
+                                class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#0e144a]/20 via-transparent to-transparent pointer-events-none">
+                            </div>
+                        </div>
+                    </div>
+                    <div class={`${index % 2===0 ? 'lg:col-span-5' : 'lg:col-span-5 lg:order-1' }`}>
+                        <div class="space-y-5 sm:space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="flex-shrink-0 w-28 h-28 bg-[#f4e9d7] flex items-center justify-center group-hover:bg-[#ffa028] transition-colors duration-300"
+                                    style={`clip-path:path('${blobPaths[index]}')`}>
+                                    <span set:html={svgIcons[service.iconKey]} />
+                                </div>
+                                <h3
+                                    class="font-fredoka text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0e144a] leading-tight tracking-tight">
+                                    {service.title}</h3>
+                            </div>
+                            <p class="text-sm sm:text-base text-zinc-500 leading-relaxed font-normal">
+                                {service.desc}</p>
+                            <ul class="space-y-3">
+                                {service.bullets.map((bullet) => (
+                                <li class="flex items-start gap-3 text-sm text-zinc-700 font-medium">
+                                    <span
+                                        class="flex-shrink-0 w-5 h-5 bg-emerald-500/10 text-emerald-600 rounded-full flex items-center justify-center text-[10px] mt-0.5 font-bold">&#10003;</span>
+                                    <span>{bullet}</span>
+                                </li>
+                                ))}
+                            </ul>
+                            <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                                <a href={`https://wa.me/523223846328?text=${encodeURIComponent(`${dict.whatsapp.servicePrefix} ${service.title}.`)}`}
+                                    target="_blank"
+                                    class="inline-flex items-center justify-center gap-2 rounded-full bg-[#0091a1] px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-sm hover:bg-[#007b8a] transition-all duration-300 w-full sm:w-auto text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor"
+                                        viewBox="0 0 448 512">
+                                        <path
+                                            d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                                    </svg>
+                                    {dict.services.catalog.bookViaWhatsApp}
+                                </a>
+                                <a href={`/${lang === "en" ? "" : "es/"}contact-us`}
+                                    class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#0e144a] text-[#0e144a] px-6 py-3.5 text-xs font-bold uppercase tracking-widest shadow-sm hover:bg-[#0e144a] hover:text-white transition-all duration-300 w-full sm:w-auto text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                    </svg>
+                                    {dict.services.catalog.contactForm}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- PASOS DE FUNCIONAMIENTO -->
+    <section class="relative bg-[#E1FFD5] pt-32 pb-36 px-6 lg:px-8 overflow-hidden font-readex">
+        <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] z-10">
+            <svg viewBox="0 0 1440 120" class="relative block w-full h-[60px] md:h-[100px]" preserveAspectRatio="none">
+                <path fill="#ffffff" d="M0,0 L1440,0 L1440,40 C1140,90 720,0 280,90 C150,95 80,80 0,60 Z"></path>
+            </svg>
+        </div>
+        <img src="/perro-sider.png" alt="" aria-hidden="true"
+            class="absolute right-0 bottom-0 h-full w-auto object-contain object-bottom opacity-10 pointer-events-none z-0" />
+        <div class="max-w-6xl mx-auto relative z-20">
+            <div class="text-center mb-14 space-y-4">
+                <img src="/huella.svg" alt="" aria-hidden="true" class="h-8 w-auto mx-auto" />
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-[#0e144a]/70 block">{dict.services.steps.eyebrow}</span>
+                <h2 class="font-fredoka text-3xl sm:text-4xl font-bold text-[#0e144a]">{dict.services.steps.title}</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                <div
+                    class="absolute top-16 left-1/6 right-1/6 h-0.5 border-t border-dashed border-[#0e144a]/15 hidden md:block z-0">
+                </div>
+                <div class="text-center space-y-4 relative z-10 group">
+                    <div
+                        class="w-16 h-16 rounded-full bg-[#0e144a] text-white flex items-center justify-center font-fredoka text-xl font-bold mx-auto border-4 border-[#E1FFD5] shadow-md group-hover:bg-emerald-500 group-hover:text-[#0e144a] transition-all duration-300 group-hover:scale-105">
+                        01</div>
+                    <h4 class="font-readex font-bold text-[16px] text-[#0e144a]">{dict.services.steps.steps[0].title}</h4>
+                    <p class="text-xs sm:text-sm text-[#0e144a]/70 leading-relaxed max-w-xs mx-auto">{dict.services.steps.steps[0].desc}</p>
+                </div>
+                <div class="text-center space-y-4 relative z-10 group">
+                    <div
+                        class="w-16 h-16 rounded-full bg-[#0e144a] text-white flex items-center justify-center font-fredoka text-xl font-bold mx-auto border-4 border-[#E1FFD5] shadow-md group-hover:bg-emerald-500 group-hover:text-[#0e144a] transition-all duration-300 group-hover:scale-105">
+                        02</div>
+                    <h4 class="font-readex font-bold text-[16px] text-[#0e144a]">{dict.services.steps.steps[1].title}</h4>
+                    <p class="text-xs sm:text-sm text-[#0e144a]/70 leading-relaxed max-w-xs mx-auto">{dict.services.steps.steps[1].desc}</p>
+                </div>
+                <div class="text-center space-y-4 relative z-10 group">
+                    <div
+                        class="w-16 h-16 rounded-full bg-[#0e144a] text-white flex items-center justify-center font-fredoka text-xl font-bold mx-auto border-4 border-[#E1FFD5] shadow-md group-hover:bg-emerald-500 group-hover:text-[#0e144a] transition-all duration-300 group-hover:scale-105">
+                        03</div>
+                    <h4 class="font-readex font-bold text-[16px] text-[#0e144a]">{dict.services.steps.steps[2].title}</h4>
+                    <p class="text-xs sm:text-sm text-[#0e144a]/70 leading-relaxed max-w-xs mx-auto">{dict.services.steps.steps[2].desc}</p>
+                </div>
+            </div>
+            <div class="flex flex-row items-center justify-center gap-4 sm:gap-6 mt-14">
+                <a href={`https://wa.me/523223846328?text=${encodeURIComponent(dict.whatsapp.general)}`} target="_blank"
+                    class="inline-flex items-center justify-center gap-3 bg-[#0091a1] text-white text-xs sm:text-sm font-bold uppercase tracking-widest px-8 py-4 rounded-full shadow-sm hover:bg-[#007b8a] transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor"
+                        viewBox="0 0 448 512">
+                        <path
+                            d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                    </svg>
+                    {dict.services.steps.bookViaWhatsApp}
+                </a>
+                <a href={`/${lang === "en" ? "" : "es/"}contact-us`}
+                    class="inline-flex items-center justify-center gap-3 text-[#0e144a] text-xs sm:text-sm font-bold uppercase tracking-widest px-8 py-4 rounded-full border-2 border-[#0e144a] hover:bg-[#0e144a] hover:text-white transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-5 sm:h-5" fill="none"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    </svg>
+                    {dict.services.steps.contactForm}
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-10">
+            <svg viewBox="0 0 1440 120" class="relative block w-full h-[60px] md:h-[100px]" preserveAspectRatio="none">
+                <path fill="#ffffff" d="M0,64 C320,160 640,0 1080,96 C1260,120 1360,112 1440,96 L1440,120 L0,120 Z">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="relative bg-white py-20 px-6 lg:px-8 border-zinc-100 overflow-visible font-readex">
+        <div
+            class="absolute inset-y-0 right-0 w-full bg-[url('/blog-line-mask-image.webp')] bg-auto bg-right bg-no-repeat pointer-events-none z-0">
+        </div>
+        <div class="absolute left-6 md:left-12 bottom-4 opacity-70 pointer-events-none hidden lg:block z-10 w-28 h-28">
+            <img src="/perro-juguete.svg" alt="Pet decoration" class="w-full h-full object-contain"
+                style="filter: invert(71%) sepia(50%) saturate(1487%) hue-rotate(341deg) brightness(101%) contrast(101%);" />
+        </div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-16 space-y-2">
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-600 block">{dict.services.faq.eyebrow}</span>
+                <h2 class="font-fredoka text-3xl sm:text-4xl font-bold text-[#0e144a]">{dict.services.faq.title}</h2>
+            </div>
+            <div class="space-y-4">
+                <div
+                    class="faq-item border border-zinc-200/60 rounded-2xl bg-[#f4f1eb]/30 overflow-hidden transition-all duration-300">
+                    <button
+                        class="faq-toggle w-full flex items-center justify-between p-6 text-left cursor-pointer outline-none select-none">
+                        <span class="font-readex font-bold text-[16px] text-[#0e144a]">{dict.services.faq.items[0].q}</span>
+                        <span
+                            class="faq-icon text-[#0e144a] font-bold text-xl transition-transform duration-300">+</span>
+                    </button>
+                    <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out"
+                        style="max-height: 0px;">
+                        <p class="px-6 pb-6 text-sm sm:text-base text-zinc-500 leading-relaxed">{dict.services.faq.items[0].a}</p>
+                    </div>
+                </div>
+                <div
+                    class="faq-item border border-zinc-200/60 rounded-2xl bg-[#f4f1eb]/30 overflow-hidden transition-all duration-300">
+                    <button
+                        class="faq-toggle w-full flex items-center justify-between p-6 text-left cursor-pointer outline-none select-none">
+                        <span class="font-readex font-bold text-[16px] text-[#0e144a]">{dict.services.faq.items[1].q}</span>
+                        <span
+                            class="faq-icon text-[#0e144a] font-bold text-xl transition-transform duration-300">+</span>
+                    </button>
+                    <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out"
+                        style="max-height: 0px;">
+                        <p class="px-6 pb-6 text-sm sm:text-base text-zinc-500 leading-relaxed">{dict.services.faq.items[1].a}</p>
+                    </div>
+                </div>
+                <div
+                    class="faq-item border border-zinc-200/60 rounded-2xl bg-[#f4f1eb]/30 overflow-hidden transition-all duration-300">
+                    <button
+                        class="faq-toggle w-full flex items-center justify-between p-6 text-left cursor-pointer outline-none select-none">
+                        <span class="font-readex font-bold text-[16px] text-[#0e144a]">{dict.services.faq.items[2].q}</span>
+                        <span
+                            class="faq-icon text-[#0e144a] font-bold text-xl transition-transform duration-300">+</span>
+                    </button>
+                    <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out"
+                        style="max-height: 0px;">
+                        <p class="px-6 pb-6 text-sm sm:text-base text-zinc-500 leading-relaxed">{dict.services.faq.items[2].a}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- URGENCY -->
+    <section class="bg-white py-16 px-6 lg:px-8 relative overflow-visible font-readex">
+        <div
+            class="max-w-4xl mx-auto bg-[#0e144a] rounded-[2rem] px-8 sm:px-12 flex flex-row items-center justify-between h-28 sm:h-32 relative overflow-visible shadow-lg border border-white/5">
+            <div class="flex flex-col justify-center text-left z-10 relative">
+                <h2
+                    class="font-fredoka text-sm sm:text-lg md:text-2xl font-bold text-white tracking-tight leading-none flex items-center gap-3">
+                    {dict.services.urgency.emergency}</h2>
+                <a href="tel:+523222232760"
+                    class="font-fredoka text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-emerald-400 hover:text-emerald-300 transition-colors mt-2 select-all leading-none inline-flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.634-5.165-3.974-6.799-6.8l1.293-.97a1.125 1.125 0 0 0 .417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                    </svg>
+                    +52 322 223 2760</a>
+            </div>
+            <div
+                class="absolute top-0 bottom-0 sm:-top-8 sm:-bottom-8 right-0 sm:right-12 w-32 sm:w-52 pointer-events-none z-20 flex items-center justify-end overflow-visible">
+                <img src="/gato-telefono.webp" alt="Pet Friends Medical Emergency"
+                    class="h-[100%] sm:h-[150%] w-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)]"
+                    style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;" />
+            </div>
+        </div>
+    </section>
+
+    <Footer lang={lang} />
+    <script>
+        const toggles = document.querySelectorAll('.faq-toggle');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const item = toggle.parentElement;
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('.faq-icon');
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('bg-white', 'shadow-md', 'border-emerald-500/40');
+                        otherItem.querySelector('.faq-content').style.maxHeight = '0px';
+                        otherItem.querySelector('.faq-icon').innerText = '+';
+                    }
+                });
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                    content.style.maxHeight = '0px';
+                    icon.innerText = '+';
+                    item.classList.remove('bg-white', 'shadow-md', 'border-emerald-500/40');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.innerText = '−';
+                    item.classList.add('bg-white', 'shadow-md', 'border-emerald-500/40');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

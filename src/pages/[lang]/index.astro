@@ -1,0 +1,1255 @@
+---
+import "../../styles/global.css";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { t } from "../../i18n/translations";
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: "es" } },
+  ];
+}
+
+const lang = Astro.params.lang || Astro.props.lang || "en";
+const dict = t[lang];
+
+const medicalTeam = [
+{
+name: "Dr. Mohammad Soleimani",
+role: "Lead Surgeon & Director",
+specialty: "Veterinary Medicine & Surgery",
+education: "DVM - Doctor of Veterinary Medicine",
+avatar: "/clinical-director.jpg"
+},
+];
+
+const testimonials = dict.home.testimonials.list;
+---
+
+<html lang={lang}>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{lang === "en" ? "Pet Friends Puerto Vallarta | Bilingual Veterinary Hospital & 24/7 ICU" : "Pet Friends Puerto Vallarta | Hospital Veterinario Bilingüe y UCI 24/7"}</title>
+    <meta name="description"
+        content={lang === "en" ? "Pet Friends PV is a bilingual veterinary hospital in Puerto Vallarta's Romantic Zone. Board-certified surgeons, advanced diagnostics, 24/7 emergency care, and fear-free protocols for expats and travelers." : "Pet Friends PV es un hospital veterinario bilingüe en la Zona Romántica de Puerto Vallarta. Cirujanos certificados, diagnósticos avanzados, emergencias 24/7 y protocolos libres de miedo."} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="theme-color" content="#0091a1" />
+    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/" />
+    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/" />
+    <link rel="alternate" hreflang="x-default" href="https://petfriendspv.com/" />
+</head>
+
+<body class="font-readex bg-white text-zinc-800 antialiased overflow-x-hidden">
+
+    <Navbar lang={lang} currentPath={Astro.url.pathname} />
+
+    <!-- 1. HERO SECTION (Luminous Editorial Split Layout con fachada visible) -->
+    <section class="relative min-h-[78vh] lg:min-h-[88vh] flex items-center overflow-hidden bg-[#fdfdfd]"
+        aria-label="Welcome and Introduction">
+
+        <!-- Capas de fondo optimizadas para mostrar la clínica veterinaria exterior con claridad -->
+        <div class="absolute inset-0 z-0">
+            <!-- Imagen de la veterinaria con alta opacidad y color natural -->
+            <img src="/hero-home.jpg?ver=1" alt="Pet Friends Puerto Vallarta Exterior Facade"
+                class="w-full h-full object-cover opacity-85 max-md:object-[50%_30%]" fetchpriority="high"
+                loading="eager" />
+
+            <!-- Transición de neblina blanca: Excelente legibilidad a la izquierda, total transparencia a la derecha -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#fdfdfd] from-50% to-transparent">
+            </div>
+            <!-- Suavizado inferior sutil -->
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fdfdfd]/10"></div>
+
+
+
+            <!-- Destellos de luz natural turquesa para aportar vitalidad y frescura costera -->
+            <div
+                class="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full bg-[#0091a1]/5 blur-[90px] pointer-events-none mix-blend-multiply">
+            </div>
+        </div>
+
+        <!-- Contenedor Principal (Optimizado para evitar colisiones con el Navbar) -->
+        <div class="container mx-auto max-w-7xl px-6 relative z-10 pt-32 sm:pt-40 lg:pt-24 pb-16 lg:pb-0">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
+
+                <!-- Columna Izquierda: Mensajes, Badge, Botones y Prueba Social (Tipografía Oscura de Lujo) -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+
+                    <!-- Badge de Cristal Esmerilado Claro Premium -->
+                    <div
+                        class="inline-flex items-center gap-3 py-1.5 px-4 rounded-full bg-white/75 backdrop-blur-md border border-zinc-200/80 text-[#0a0e35] text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] shadow-sm font-readex">
+                        <span class="flex h-2 w-2 relative">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0091a1] opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#0091a1]"></span>
+                        </span>
+                        {dict.home.hero.badge}
+                    </div>
+
+                    <!-- Jerarquía de Encabezados Refinada (Contraste Luminous) -->
+                    <div class="space-y-5">
+                        <h1
+                            class="font-fredoka text-4xl sm:text-6xl lg:text-[56px] text-[#0a0e35] font-extrabold leading-[1.08] tracking-tight">
+                            {dict.home.hero.title} <br class="hidden md:inline" />
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0091a1] to-[#0a0e35]">
+                                {dict.home.hero.titleHighlight}
+                            </span>
+                        </h1>
+                        <p
+                            class="font-readex text-base sm:text-lg text-slate-600/95 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                            {dict.home.hero.subtitle}
+                        </p>
+                    </div>
+
+                    <!-- Botones de Acción Estilo App de Lujo (Ajustados a paleta clara) -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start font-readex">
+                        <!-- Botón WhatsApp: Vestido con el color de marca #0091a1 -->
+                        <a class="relative group inline-flex justify-center items-center gap-3 px-8 py-4 rounded-full bg-[#0091a1] text-white font-bold text-xs uppercase tracking-wider hover:bg-[#007b8a] active:scale-98 transition-all duration-300 shadow-[0_10px_30px_-5px_rgba(0,145,161,0.25)] overflow-hidden"
+                            href={`https://wa.me/523223846328?text=${encodeURIComponent(dict.whatsapp.general)}`} target="_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 relative" fill="currentColor"
+                                viewBox="0 0 448 512">
+                                <path
+                                    d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                            </svg>
+                            <span class="relative">{dict.home.hero.bookViaWhatsApp}</span>
+                        </a>
+
+                        <!-- Botón Emergencias: Fondo suave para evitar sobrecargar -->
+                        <a class="relative group inline-flex justify-center items-center gap-3 px-8 py-4 rounded-full bg-rose-50/80 border border-rose-200 text-rose-700 font-bold text-xs uppercase tracking-wider hover:bg-rose-100 hover:text-rose-800 active:scale-98 transition-all duration-300"
+                            href="tel:+523222232760">
+                            <span class="absolute -top-1 -left-1 w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.634-5.165-3.974-6.799-6.8l1.293-.97a1.125 1.125 0 0 0 .417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                            </svg>
+                            <span>{dict.home.hero.emergencyCall}</span>
+                        </a>
+                    </div>
+
+                    <!-- Prueba Social / Indicadores de Confianza Micro-detallados -->
+                    <div
+                        class="pt-6 border-t border-zinc-200/60 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-left">
+                        <div class="flex -space-x-3">
+                            <div
+                                class="w-9 h-9 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-white overflow-hidden shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=100&auto=format&fit=crop"
+                                    alt="Client's Pet" class="w-full h-full object-cover">
+                            </div>
+                            <div
+                                class="w-9 h-9 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-white overflow-hidden shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop"
+                                    alt="Client's Pet" class="w-full h-full object-cover">
+                            </div>
+                            <div
+                                class="w-9 h-9 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-white overflow-hidden shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=100&auto=format&fit=crop"
+                                    alt="Client's Pet" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-1">
+                                <span class="text-amber-500 text-sm">★★★★★</span>
+                                <span class="text-[#0a0e35] text-xs font-bold font-readex ml-1">{dict.home.hero.rating}</span>
+                            </div>
+                            <p
+                                class="text-[11px] text-zinc-500 uppercase tracking-widest font-medium font-readex mt-0.5">
+                                {dict.home.hero.trusted}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Imagen Principal con Enmarcado Escultórico -->
+                <div class="lg:col-span-5 relative flex justify-center">
+
+                    <!-- Resplandor decorativo interno exclusivo de la imagen -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-tr from-[#0091a1]/15 to-transparent blur-3xl rounded-full scale-95 pointer-events-none">
+                    </div>
+
+                    <!-- Contenedor Principal de la Imagen (Silueta sofisticada con doble borde claro) -->
+                    <div
+                        class="relative w-[320px] h-[450px] sm:w-[400px] sm:h-[480px] rounded-[60px_160px_60px_160px] overflow-hidden bg-white/40 p-1.5 backdrop-blur-sm border border-zinc-200/80 shadow-[0_20px_40px_rgba(0,0,0,0.08)] z-10 transition-transform duration-500 hover:scale-[1.01]">
+                        <!-- Contenedor interno para recortar la imagen de forma limpia -->
+                        <div class="w-full h-full rounded-[54px_154px_54px_154px] overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0a0e35]/10 to-transparent z-10"></div>
+                            <img src="/veterinario-principal.jpg?ver=1" alt="Experienced Veterinarian"
+                                class="w-full h-full object-cover scale-102 hover:scale-105 transition-transform duration-700 ease-out"
+                                loading="lazy" />
+                        </div>
+                    </div>
+
+                    <!-- ADDON 1: Sello Circular Rotado Elegante (Fondo turquesa de marca #0091a1) -->
+                    <div
+                        class="absolute -top-5 -right-2 sm:-right-4 bg-[#0091a1] border-2 border-white rounded-full w-28 h-28 flex flex-col items-center justify-center shadow-xl transform rotate-6 hover:rotate-0 transition-transform duration-500 z-30 select-none">
+                        <!-- Anillo de puntos decorativos internos -->
+                        <div
+                            class="absolute inset-1 border border-dashed border-white/20 rounded-full pointer-events-none">
+                        </div>
+
+                        <span class="text-[7px] font-bold tracking-[0.22em] text-white/90 uppercase leading-none">{dict.home.hero.boardCertified}</span>
+                        <span class="font-fredoka text-[22px] font-black text-white my-1 leading-none">{dict.home.hero.dvm}</span>
+                        <span
+                            class="text-[7px] font-bold tracking-[0.18em] text-teal-100 uppercase font-readex leading-none">{dict.home.hero.veterinarian}</span>
+                    </div>
+
+                    <!-- ADDON 2: Tarjeta Credencial Minimalista de Alta Fidelidad (Fondo blanco cristalizado) -->
+                    <div
+                        class="absolute bottom-6 -left-6 bg-white/95 backdrop-blur-xl px-5 py-4 rounded-2xl shadow-[0_15px_30px_rgba(0,0,0,0.06)] border border-zinc-200/80 flex items-center gap-4 z-30 select-none font-readex max-w-[220px]">
+                        <div
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#0091a1]/10 text-[#0091a1] border border-[#0091a1]/20">
+                            <!-- Icono Clínico Avanzado -->
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h5 class="text-[9px] font-bold text-[#0a0e35] uppercase tracking-wider leading-none">
+                                {dict.home.hero.clinicalQuality}</h5>
+                            <p class="font-fredoka text-xs font-bold text-[#0091a1] mt-1">{dict.home.hero.expatChoice}</p>
+                            <div class="mt-1.5 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1] inline-block"></span>
+                                <span class="text-[8px] text-zinc-500 font-medium">{dict.home.hero.verified}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. EDITORIAL INTRO SECTION (Seamless Light-Mist Transition) -->
+    <section
+        class="bg-gradient-to-b from-[#fdfdfd] to-[#f0f7f8] pb-24 px-6 lg:px-8 relative z-10 border-b border-zinc-100/80"
+        aria-label="Our Philosophy">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+                <!-- Columna Izquierda: Introducción e Impacto (5/12 width) -->
+                <div class="lg:col-span-5 space-y-5">
+                    <span class="text-xs font-bold uppercase tracking-[0.25em] text-[#0091a1] block">
+                        {dict.home.intro.welcome}
+                    </span>
+                    <h2
+                        class="font-fredoka text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#0a0e35] leading-[1.15] tracking-tight">
+                        {dict.home.intro.title} <br />
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0091a1] to-[#0a0e35]">
+                            {dict.home.intro.titleHighlight}
+                        </span>
+                    </h2>
+                    <!-- Línea decorativa minimalista de marca -->
+                    <div class="w-16 h-0.5 bg-[#0091a1] mt-6"></div>
+                </div>
+
+                <!-- Columna Derecha: Narrativa Editorial & Propuestas de Valor (7/12 width) -->
+                <div class="lg:col-span-7 space-y-8 font-readex">
+                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed font-light font-readex">
+                        {dict.home.intro.desc}
+                    </p>
+
+                    <!-- Cita Destacada con Borde Fino Turquesa -->
+                    <div class="border-l-2 border-[#0091a1] pl-6 py-1">
+                        <p class="text-sm sm:text-base font-semibold text-[#0a0e35] italic leading-relaxed">
+                            {dict.home.intro.quote}
+                        </p>
+                    </div>
+
+                    <!-- Tarjetas de Valor Estilo Cristal Flotante (Ligeras y sofisticadas) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-zinc-200/50">
+                        <div
+                            class="p-5 rounded-2xl bg-white/75 backdrop-blur-sm border border-white shadow-[0_8px_30px_rgba(0,0,0,0.02)] space-y-1.5">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-[#0091a1]">{dict.home.intro.accredited.title}
+                            </h4>
+                            <p class="text-[11px] text-zinc-500 font-light leading-relaxed">
+                                {dict.home.intro.accredited.desc}
+                            </p>
+                        </div>
+                        <div
+                            class="p-5 rounded-2xl bg-white/75 backdrop-blur-sm border border-white shadow-[0_8px_30px_rgba(0,0,0,0.02)] space-y-1.5">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-[#0091a1]">{dict.home.intro.bilingual.title}
+                            </h4>
+                            <p class="text-[11px] text-zinc-500 font-light leading-relaxed">
+                                {dict.home.intro.bilingual.desc}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 2.5 CINEMATIC EDGE-TO-EDGE PANORAMA GALLERY (Contrast Separator) -->
+    <section class="w-full overflow-hidden bg-[#f0f7f8] pb-20 relative z-10" aria-label="Clinical Facilities Gallery">
+        <div class="w-full">
+
+            <!-- Retícula de 4 columnas con separaciones finas estilo galería de arte -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-1.5 lg:gap-2">
+
+                <!-- Gallery Image 1 -->
+                <div class="overflow-hidden h-[200px] sm:h-[300px] lg:h-[380px]">
+                    <img src="/gallery-home-1.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+                </div>
+
+                <!-- Gallery Image 2 -->
+                <div class="overflow-hidden h-[200px] sm:h-[300px] lg:h-[380px]">
+                    <img src="/gallery-home-2.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+                </div>
+
+                <!-- Gallery Image 3 -->
+                <div class="overflow-hidden h-[200px] sm:h-[300px] lg:h-[380px]">
+                    <img src="/gallery-home-3.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+                </div>
+
+                <!-- Gallery Image 4 -->
+                <div class="overflow-hidden h-[200px] sm:h-[300px] lg:h-[380px]">
+                    <img src="/gallery-home-4.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Fade suave al blanco para evitar corte abrupto -->
+        <div
+            class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#fdfdfd] to-transparent pointer-events-none">
+        </div>
+    </section>
+
+    <!-- 3. BENTO GRID OF CLINICAL SERVICES -->
+    <section class="bg-[#fdfdfd] py-24 px-6 lg:px-8 relative z-10" id="specialties">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Encabezado de la Sección -->
+            <div class="text-center mb-20 space-y-3">
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-[#0091a1] block">
+                    {dict.home.specialties.eyebrow}
+                </span>
+                <h2 class="font-fredoka text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#0a0e35] tracking-tight">
+                    {dict.home.specialties.title}
+                </h2>
+                <p class="text-sm sm:text-base text-zinc-500 max-w-xl mx-auto font-readex font-light leading-relaxed">
+                    {dict.home.specialties.subtitle}
+                </p>
+            </div>
+
+            <!-- Grid de 3 columnas geométricas impecables -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Tarjeta Bento 1: Diagnostics (Gradiente Brisa Turquesa + Líneas Topográficas) -->
+                <div
+                    class="md:col-span-2 bg-gradient-to-br from-[#e6f4f6] to-[#f4fafb] rounded-[2.5rem] p-8 md:p-11 border border-[#0091a1]/10 flex flex-col justify-between relative overflow-hidden group hover:shadow-[0_25px_50px_rgba(0,145,161,0.08)] hover:-translate-y-1.5 transition-all duration-500 ease-out">
+
+                    <!-- SVG de Fondo: Curvas Orgánicas de Nivel (Topografía/Ondas de Agua) -->
+                    <svg class="absolute inset-0 w-full h-full opacity-[0.06] text-[#0091a1] pointer-events-none"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 800 400">
+                        <path
+                            d="M-100 150 C 200 300, 400 50, 900 200 M-100 180 C 200 330, 400 80, 900 230 M-100 210 C 200 360, 400 110, 900 260 M-100 120 C 200 270, 400 20, 900 170"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+
+                    <div class="relative z-10 space-y-8">
+                        <div class="flex-shrink-0 w-28 h-28 bg-[#f4e9d7] flex items-center justify-center transition-colors duration-300"
+                            style="clip-path:path('M 50 8 C 72 2 93 18 95 45 C 97 72 82 93 55 96 C 28 99 5 85 3 58 C 1 31 28 14 50 8 Z')">
+                            <img src="/veterinary-care.svg" alt="" class="w-12 h-12" />
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="font-fredoka text-2xl sm:text-3xl font-bold text-[#0a0e35]">{dict.home.specialties.diagnostics.title}</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed max-w-lg font-readex font-light">
+                                {dict.home.specialties.diagnostics.desc}
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 pt-1">
+                            <span
+                                class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/90 border border-[#0091a1]/15 text-[#0091a1] shadow-xs">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.specialties.diagnostics.tags[0]}
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/90 border border-[#0091a1]/15 text-[#0091a1] shadow-xs">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.specialties.diagnostics.tags[1]}
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/90 border border-[#0091a1]/15 text-[#0091a1] shadow-xs">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.specialties.diagnostics.tags[2]}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Bento 2: Certified Veterinary Care (Gradiente Arena Champagne + Rejilla Dotted) -->
+                <div
+                    class="relative overflow-hidden bg-gradient-to-br from-[#f8f5ee] to-[#fdfcfb] rounded-[2.5rem] p-8 md:p-10 border border-[#f8f5ee]/10 flex flex-col justify-between group hover:shadow-[0_25px_50px_rgba(0,0,0,0.03)] hover:-translate-y-1.5 transition-all duration-500 ease-out">
+
+                    <!-- SVG de Fondo: Rejilla de Puntos Minimalista de Ingeniería (Matriz Tecnológica) -->
+                    <svg class="absolute right-0 bottom-0 w-44 h-44 opacity-[0.05] text-[#0a0e35] pointer-events-none"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 100 100">
+                        <circle cx="10" cy="10" r="1.5" />
+                        <circle cx="30" cy="10" r="1.5" />
+                        <circle cx="50" cy="10" r="1.5" />
+                        <circle cx="70" cy="10" r="1.5" />
+                        <circle cx="90" cy="10" r="1.5" />
+                        <circle cx="10" cy="30" r="1.5" />
+                        <circle cx="30" cy="30" r="1.5" />
+                        <circle cx="50" cy="30" r="1.5" />
+                        <circle cx="70" cy="30" r="1.5" />
+                        <circle cx="90" cy="30" r="1.5" />
+                        <circle cx="10" cy="50" r="1.5" />
+                        <circle cx="30" cy="50" r="1.5" />
+                        <circle cx="50" cy="50" r="1.5" />
+                        <circle cx="70" cy="50" r="1.5" />
+                        <circle cx="90" cy="50" r="1.5" />
+                        <circle cx="10" cy="70" r="1.5" />
+                        <circle cx="30" cy="70" r="1.5" />
+                        <circle cx="50" cy="70" r="1.5" />
+                        <circle cx="70" cy="70" r="1.5" />
+                        <circle cx="90" cy="70" r="1.5" />
+                    </svg>
+
+                    <div class="space-y-8 relative z-10">
+                        <div class="flex-shrink-0 w-28 h-28 bg-[#f4e9d7] flex items-center justify-center transition-colors duration-300"
+                            style="clip-path:path('M 45 12 C 68 5 90 15 92 40 C 94 65 78 88 52 92 C 26 96 8 80 5 55 C 2 30 22 19 45 12 Z')">
+                            <img src="/certified.svg" alt="" class="w-12 h-12" />
+                        </div>
+                        <div class="space-y-3">
+                            <h3 class="font-fredoka text-xl font-bold text-[#0a0e35]">{dict.home.specialties.certified.title}</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-readex font-light">
+                                {dict.home.specialties.certified.desc}
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/90 border border-[#0091a1]/15 text-[#0091a1] shadow-xs">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.specialties.certified.tags[0]}
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/90 border border-[#0091a1]/15 text-[#0091a1] shadow-xs">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.specialties.certified.tags[1]}
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/90 border border-[#0091a1]/15 text-[#0091a1] shadow-xs">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.specialties.certified.tags[2]}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Bento 3: Advanced Surgery (Gradiente Menta + Órbitas Concéntricas) -->
+                <div
+                    class="relative overflow-hidden bg-gradient-to-br from-[#ecf6f2] to-[#f8fcfb] rounded-[2.5rem] p-8 md:p-10 border border-[#ecf6f2]/10 flex flex-col justify-between group hover:shadow-[0_25px_50px_rgba(0,145,161,0.03)] hover:-translate-y-1.5 transition-all duration-500 ease-out">
+
+                    <!-- SVG de Fondo: Círculos Concéntricos de Precisión (Estilo Radar u Órbita Científica) -->
+                    <svg class="absolute -right-10 -bottom-10 w-48 h-48 opacity-[0.05] text-[#0091a1] pointer-events-none"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="90" stroke="currentColor" stroke-width="1" />
+                        <circle cx="100" cy="100" r="70" stroke="currentColor" stroke-width="1"
+                            stroke-dasharray="4 4" />
+                        <circle cx="100" cy="100" r="50" stroke="currentColor" stroke-width="1" />
+                        <circle cx="100" cy="100" r="30" stroke="currentColor" stroke-width="1"
+                            stroke-dasharray="2 2" />
+                    </svg>
+
+                    <div class="space-y-8 relative z-10">
+                        <div class="flex-shrink-0 w-28 h-28 bg-[#f4e9d7] flex items-center justify-center transition-colors duration-300"
+                            style="clip-path:path('M 55 6 C 78 3 96 20 95 48 C 94 76 78 92 50 95 C 22 98 6 85 3 58 C 0 31 32 9 55 6 Z')">
+                            <img src="/health.svg" alt="" class="w-12 h-12" />
+                        </div>
+                        <div class="space-y-3">
+                            <h3 class="font-fredoka text-xl font-bold text-[#0a0e35]">{dict.home.specialties.surgery.title}</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-readex font-light">
+                                {dict.home.specialties.surgery.desc}
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/90 border border-[#0091a1]/15 text-[#0091a1] shadow-xs">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.specialties.surgery.tags[0]}
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/90 border border-[#0091a1]/15 text-[#0091a1] shadow-xs">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.specialties.surgery.tags[1]}
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/90 border border-[#0091a1]/15 text-[#0091a1] shadow-xs">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.specialties.surgery.tags[2]}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Bento 4: Spa & Grooming (Gradiente Pétalo + Ondas Suaves de Relajación) -->
+                <div
+                    class="relative overflow-hidden bg-gradient-to-br from-[#f9f3f4] to-[#fdfafb] rounded-[2.5rem] p-8 md:p-10 border border-[#f9f3f4]/10 flex flex-col justify-between group hover:shadow-[0_25px_50px_rgba(0,0,0,0.03)] hover:-translate-y-1.5 transition-all duration-500 ease-out">
+
+                    <!-- SVG de Fondo: Ondas Sinusoidales Suaves (Estilo Zen o Relajación Aromática) -->
+                    <svg class="absolute inset-0 w-full h-full opacity-[0.04] text-rose-500 pointer-events-none"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 400 400">
+                        <path d="M0 300 Q 100 250, 200 300 T 400 300" stroke="currentColor" stroke-width="2" />
+                        <path d="M0 330 Q 100 280, 200 330 T 400 330" stroke="currentColor" stroke-width="1.5" />
+                        <path d="M0 270 Q 100 220, 200 270 T 400 270" stroke="currentColor" stroke-width="1" />
+                    </svg>
+
+                    <div class="space-y-8 relative z-10">
+                        <div class="flex-shrink-0 w-28 h-28 bg-[#f4e9d7] flex items-center justify-center transition-colors duration-300"
+                            style="clip-path:path('M 48 15 C 72 5 88 18 90 42 C 92 66 75 85 48 90 C 21 95 10 78 6 54 C 2 30 24 25 48 15 Z')">
+                            <img src="/dog-grooming.svg" alt="" class="w-12 h-12" />
+                        </div>
+                        <div class="space-y-3">
+                            <h3 class="font-fredoka text-xl font-bold text-[#0a0e35]">{dict.home.specialties.spa.title}</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-readex font-light">
+                                {dict.home.specialties.spa.desc}
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/90 border border-[#0091a1]/15 text-[#0091a1] shadow-xs">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.specialties.spa.tags[0]}
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/90 border border-[#0091a1]/15 text-[#0091a1] shadow-xs">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.specialties.spa.tags[1]}
+                            </span>
+                            <span
+                                class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-white/90 border border-[#0091a1]/15 text-[#0091a1] shadow-xs">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.specialties.spa.tags[2]}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Bento 5: Acción "Explore More" (Gradiente Corporativo Contraste) -->
+                <div
+                    class="relative overflow-hidden bg-gradient-to-br from-[#0091a1] to-[#0a0e35] rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between group hover:shadow-[0_25px_50px_rgba(0,145,161,0.25)] hover:-translate-y-1.5 transition-all duration-500 ease-out">
+
+                    <!-- SVG de Fondo: Líneas Cinéticas Dinámicas de Tránsito (Enfoque Moderno) -->
+                    <svg class="absolute right-0 bottom-0 w-44 h-44 opacity-[0.1] text-white pointer-events-none"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 100 100">
+                        <line x1="10" y1="90" x2="90" y2="10" stroke="currentColor" stroke-width="2" />
+                        <line x1="30" y1="90" x2="90" y2="30" stroke="currentColor" stroke-width="1" />
+                        <line x1="50" y1="90" x2="90" y2="50" stroke="currentColor" stroke-width="0.5" />
+                    </svg>
+
+                    <div class="space-y-8 relative z-10">
+                        <div class="flex-shrink-0 w-28 h-28 bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20"
+                            style="clip-path:path('M 52 10 C 75 2 92 22 93 50 C 94 78 80 90 52 94 C 24 98 5 82 3 56 C 1 30 30 18 52 10 Z')">
+                            <img src="/more.svg" alt="" class="w-12 h-12" style="filter: brightness(0) invert(1);" />
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="font-fredoka text-xl font-bold text-white">{dict.home.specialties.explore.title}</h3>
+                            <p class="text-xs sm:text-sm text-teal-100/90 leading-relaxed font-readex font-light">
+                                {dict.home.specialties.explore.desc}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 relative z-10">
+                        <a href={lang === "en" ? "/services" : "/es/services"}
+                            class="inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-6 py-3.5 text-[11px] font-bold uppercase tracking-widest text-[#0a0e35] shadow-md hover:bg-teal-50 active:scale-95 transition-all duration-300 w-full sm:w-auto">
+                            <span>{dict.home.specialties.explore.btn}</span>
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- 4. MERGED SECTION: WHY US & MEDICAL TEAM (Bilingual Specialists - Warm Linen Transition) -->
+    <section class="bg-[#f6f3eb] py-24 px-6 lg:px-8 border-t border-b border-zinc-200/40 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+            <!-- Left Column: Why Us Standards list (4/12 width) -->
+            <div class="lg:col-span-4 space-y-6 text-center lg:text-left">
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-[#0091a1] block">
+                    {dict.home.about.eyebrow}
+                </span>
+                <h2
+                    class="font-fredoka text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#0a0e35] tracking-tight leading-tight">
+                    {dict.home.about.title}<br />{dict.home.about.titleBr}
+                </h2>
+                <p class="text-sm sm:text-base text-zinc-600 leading-relaxed font-light font-readex">
+                    {dict.home.about.desc}
+                </p>
+
+                <div class="space-y-4 pt-4 text-left max-w-xl mx-auto lg:mx-0">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-6 h-6 rounded-full bg-[#0091a1]/10 flex items-center justify-center shrink-0 mt-0.5">
+                            <img src="/huella.svg" alt="" class="w-4 h-4 opacity-80" />
+                        </div>
+                        <div>
+                            <h4 class="font-manrope font-bold text-base text-[#0a0e35]">{dict.home.about.englishSpeaking.title}</h4>
+                            <p class="text-xs text-zinc-500 mt-0.5 font-readex font-light leading-relaxed">
+                                {dict.home.about.englishSpeaking.desc}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-6 h-6 rounded-full bg-[#0091a1]/10 flex items-center justify-center shrink-0 mt-0.5">
+                            <img src="/huella.svg" alt="" class="w-4 h-4 opacity-80" />
+                        </div>
+                        <div>
+                            <h4 class="font-manrope font-bold text-base text-[#0a0e35]">{dict.home.about.northAmerican.title}</h4>
+                            <p class="text-xs text-zinc-500 mt-0.5 font-readex font-light leading-relaxed">
+                                {dict.home.about.northAmerican.desc}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Featured Doctor Profile Card (8/12 width) -->
+            <div class="lg:col-span-8">
+                {(() => {
+                const doctor = medicalTeam[0];
+                return (
+                <div
+                    class="bg-white rounded-[2.5rem] p-8 sm:p-10 lg:p-12 border border-zinc-200/50 shadow-[0_20px_50px_rgba(0,0,0,0.04)] relative overflow-hidden group hover:shadow-[0_40px_80px_rgba(0,145,161,0.06)] transition-all duration-500">
+
+                    <!-- Brand gradient decoration -->
+                    <div
+                        class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-gradient-to-br from-[#0091a1]/10 to-[#0a0e35]/5 blur-3xl pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-[#0091a1]/5 blur-3xl pointer-events-none">
+                    </div>
+
+                    <!-- Subtle top accent line -->
+                    <div
+                        class="absolute top-0 left-12 right-12 h-0.5 bg-gradient-to-r from-transparent via-[#0091a1]/30 to-transparent">
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8 lg:gap-12 relative z-10">
+
+                        <!-- Doctor portrait with premium frame -->
+                        <div class="relative shrink-0">
+                            <div
+                                class="relative w-44 h-44 sm:w-56 sm:h-56 rounded-2xl overflow-hidden bg-zinc-50 border-2 border-zinc-100 p-1 shadow-lg">
+                                <div class="w-full h-full rounded-xl overflow-hidden">
+                                    <img src={doctor.avatar} alt={doctor.name}
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                </div>
+                            </div>
+                            <!-- Floating badge -->
+                            <div
+                                class="absolute -bottom-2 -right-2 bg-[#0091a1] text-white text-[8px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg border-2 border-white">
+                                {dict.home.about.topRated}
+                            </div>
+                        </div>
+
+                        <!-- Doctor Info -->
+                        <div class="space-y-4 text-center md:text-left flex-grow">
+                            <div class="space-y-1.5">
+                                <span
+                                    class="text-[10px] font-bold tracking-[0.22em] text-[#0091a1] uppercase block">{dict.home.about.clinicalDirector}</span>
+                                <h3 class="font-fredoka text-3xl font-bold text-[#0a0e35]">{doctor.name}</h3>
+                                <p class="text-sm font-semibold text-zinc-500 font-readex">{dict.home.about.specialty}</p>
+                            </div>
+
+                            <p
+                                class="text-xs text-zinc-400 font-medium leading-relaxed pt-3 border-t border-zinc-100 font-readex">
+                                {dict.home.about.education}
+                            </p>
+
+                            <div class="pt-3 border-t border-zinc-100/80">
+                                <p class="text-sm italic text-zinc-500 leading-relaxed font-light">
+                                {dict.home.about.directorQuote}
+                                </p>
+                            </div>
+
+                            <!-- Stats row -->
+                            <div class="flex flex-wrap gap-6 pt-3 border-t border-zinc-100/80">
+                                <div class="text-center md:text-left">
+                                    <span class="font-fredoka text-lg font-bold text-[#0091a1]">12+</span>
+                                    <p class="text-[9px] text-zinc-400 uppercase tracking-wider font-medium">{dict.home.about.yearsExp}
+                                    </p>
+                                </div>
+                                <div class="text-center md:text-left">
+                                    <span class="font-fredoka text-lg font-bold text-[#0091a1]">2k+</span>
+                                    <p class="text-[9px] text-zinc-400 uppercase tracking-wider font-medium">{dict.home.about.surgeries}
+                                    </p>
+                                </div>
+                                <div class="text-center md:text-left">
+                                    <span class="font-fredoka text-lg font-bold text-[#0091a1]">4.9</span>
+                                    <p class="text-[9px] text-zinc-400 uppercase tracking-wider font-medium">{dict.home.about.rating}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                );
+                })()}
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. HONOURS AND AWARDS (Premium Accreditations & Diploma Gallery - Clean Transition) -->
+    <section class="bg-white py-20 px-6 lg:px-8 relative z-10 border-b border-zinc-100">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
+
+            <!-- Bloque de Texto de la Izquierda (Guía Visual) -->
+            <div class="lg:max-w-xs space-y-2 text-center lg:text-left shrink-0">
+                <span class="text-[10px] font-bold tracking-[0.25em] text-[#0091a1] uppercase block">
+                    {dict.home.accreditations.eyebrow}
+                </span>
+                <h3 class="font-fredoka text-xl font-bold text-[#0a0e35] leading-tight">
+                    {dict.home.accreditations.title}
+                </h3>
+                <p class="text-xs text-zinc-400 font-light font-readex leading-relaxed">
+                    {dict.home.accreditations.desc}
+                </p>
+            </div>
+
+            <!-- Fila de Diplomas Enmarcados con Imágenes de Unsplash -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full">
+
+                <!-- Diploma 1 (Mexican Vet Assoc.) -->
+                <div
+                    class="group aspect-[1.414/1] rounded-2xl border border-zinc-200/80 bg-[#fbfbf9]/40 p-2.5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                    <div class="w-full h-full rounded-lg overflow-hidden bg-white relative">
+                        <div
+                            class="absolute inset-0 bg-[#0091a1]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10">
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=400&auto=format&fit=crop&q=80"
+                            alt="Mexican Veterinary Association Approval"
+                            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+                    </div>
+                    <p class="mt-2 text-[10px] text-zinc-400 font-readex text-center leading-tight">
+                        {dict.home.accreditations.mexican}
+                    </p>
+                </div>
+
+                <!-- Diploma 2 (AAHA Standard) -->
+                <div
+                    class="group aspect-[1.414/1] rounded-2xl border border-zinc-200/80 bg-[#fbfbf9]/40 p-2.5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                    <div class="w-full h-full rounded-lg overflow-hidden bg-white relative">
+                        <div
+                            class="absolute inset-0 bg-[#0091a1]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10">
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1638636241638-aef5120c5153?q=80&w=3270&auto=format&fit=crop"
+                            alt="AAHA Standard Membership Certificate"
+                            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+                    </div>
+                    <p class="mt-2 text-[10px] text-zinc-400 font-readex text-center leading-tight">
+                        {dict.home.accreditations.aaha}
+                    </p>
+                </div>
+
+                <!-- Diploma 3 (USDA Certified) -->
+                <div
+                    class="group aspect-[1.414/1] rounded-2xl border border-zinc-200/80 bg-[#fbfbf9]/40 p-2.5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                    <div class="w-full h-full rounded-lg overflow-hidden bg-white relative">
+                        <div
+                            class="absolute inset-0 bg-[#0091a1]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10">
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1742415888265-d5044039d8e6?q=80&w=3192&auto=format&fit=crop"
+                            alt="USDA Certified Facility Document"
+                            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+                    </div>
+                    <p class="mt-2 text-[10px] text-zinc-400 font-readex text-center leading-tight">
+                        {dict.home.accreditations.usda}
+                    </p>
+                </div>
+
+                <!-- Diploma 4 (PV Excellence Award) -->
+                <div
+                    class="group aspect-[1.414/1] rounded-2xl border border-zinc-200/80 bg-[#fbfbf9]/40 p-2.5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                    <div class="w-full h-full rounded-lg overflow-hidden bg-white relative">
+                        <div
+                            class="absolute inset-0 bg-[#0091a1]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10">
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80"
+                            alt="PV Excellence Award Certificate"
+                            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+                    </div>
+                    <p class="mt-2 text-[10px] text-zinc-400 font-readex text-center leading-tight">
+                        {dict.home.accreditations.pv}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PREMIUM CLIENT TESTIMONIALS (Asymmetric Trust Hub & Smooth Fade Carousel with Dot Pagination) -->
+    <section
+        class="bg-gradient-to-br from-[#f2f8f9] via-[#e3f0f2] to-[#eef5f6] py-24 px-6 lg:px-8 relative z-10 overflow-hidden">
+
+        <!-- Reflejos de luz solar subyacentes -->
+        <div class="absolute -top-12 -left-12 w-80 h-80 rounded-full bg-white/40 blur-[80px] pointer-events-none"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 rounded-full bg-white/30 blur-[100px] pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+                <!-- Columna Izquierda: Bloque de Confianza Cuantitativo (5/12) -->
+                <div class="lg:col-span-5 space-y-8 text-center lg:text-left">
+                    <div class="space-y-3">
+                        <span class="text-xs font-bold uppercase tracking-[0.25em] text-[#0091a1] block">
+                            {dict.home.testimonials.eyebrow}
+                        </span>
+                        <h2
+                            class="font-fredoka text-3xl sm:text-4xl font-bold text-[#0a0e35] tracking-tight leading-tight">
+                            {dict.home.testimonials.title}
+                        </h2>
+                    </div>
+
+                    <!-- Panel de Calificación de Lujo -->
+                    <div
+                        class="inline-flex flex-col lg:flex-row items-center gap-5 bg-white/40 border border-white/60 p-6 rounded-3xl backdrop-blur-sm w-full max-w-sm mx-auto lg:mx-0">
+                        <!-- Gran Número de Calificación -->
+                        <div class="text-center sm:text-left shrink-0">
+                            <span
+                                class="font-fredoka text-5xl sm:text-6xl font-black text-[#0a0e35] leading-none">4.9</span>
+                            <span class="text-xs font-bold text-zinc-400 block mt-1">{dict.home.testimonials.outOf}</span>
+                        </div>
+                        <!-- Estrellas y Prueba Social -->
+                        <div class="space-y-1.5 text-center lg:text-left">
+                            <div class="flex justify-center lg:justify-start gap-1 text-amber-500">
+                                <span class="text-lg">★★★★★</span>
+                            </div>
+                            <p class="font-readex text-xs font-bold text-[#0a0e35] leading-snug">
+                                {dict.home.testimonials.trustedBy}
+                            </p>
+                            <p class="text-[10px] text-zinc-500 font-light leading-normal">
+                                {dict.home.testimonials.verifiedReviews}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Navegación del Slider -->
+                    <div class="flex justify-center lg:justify-start items-center gap-3 pt-4">
+                        <button id="prev-btn" aria-label="Previous Testimonial"
+                            class="w-11 h-11 rounded-full bg-[#0091a1] hover:bg-[#007b8a] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 focus:outline-none shadow-md shadow-[#0091a1]/25">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                            </svg>
+                        </button>
+                        <button id="next-btn" aria-label="Next Testimonial"
+                            class="w-11 h-11 rounded-full bg-[#0091a1] hover:bg-[#007b8a] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 focus:outline-none shadow-md shadow-[#0091a1]/25">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Tarjeta Monumental con Desvanecimiento y Paginación (7/12) -->
+                <div class="lg:col-span-7 w-full flex flex-col items-center">
+
+                    <!-- Tarjeta Única -->
+                    <div id="testimonial-card"
+                        class="w-full bg-white/95 backdrop-blur-xl border border-zinc-200/50 rounded-[2.5rem] p-10 sm:p-12 relative flex flex-col justify-between min-h-[300px] shadow-[0_25px_60px_-15px_rgba(0,145,161,0.08)] transition-all duration-300 ease-in-out opacity-100">
+
+                        <!-- Icono de comillas decorativo turquesa traslúcido -->
+                        <div class="absolute top-8 right-10 text-[#0091a1]/10 pointer-events-none select-none">
+                            <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-4.765 2.627-4.765 5.986h4.752v9.863h-9.965zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-4.766 2.627-4.766 5.986h4.75v9.863h-9.98z" />
+                            </svg>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Micro-badge de Verificación del Testimonio -->
+                            <div
+                                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0091a1]/10 text-[#0091a1] text-[9px] font-bold uppercase tracking-wider font-readex">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0091a1]"></span>
+                                {dict.home.testimonials.verified}
+                            </div>
+
+                            <!-- Texto de la Cita -->
+                            <p id="testimonial-quote"
+                                class="text-base sm:text-lg lg:text-xl text-slate-700 italic leading-relaxed font-light font-readex relative z-10 pr-6">
+                                "This vet was incredible! The entire staff is stellar. My dog was in bad shape, had
+                                severe gum disease and had to get teeth cleaned and extracted."
+                            </p>
+                        </div>
+
+                        <!-- Separador e Información del Autor -->
+                        <div
+                            class="mt-10 flex items-center justify-between border-t border-zinc-200/50 pt-6 relative z-10">
+                            <div class="space-y-0.5">
+                                <h4 id="testimonial-author" class="font-fredoka font-bold text-[#0a0e35] text-base">
+                                    Danielle O'Neill.</h4>
+                                <p id="testimonial-role"
+                                    class="text-[10px] text-zinc-400 font-bold uppercase tracking-wider leading-none font-readex">
+                                    Expat & Dog Owner
+                                </p>
+                            </div>
+
+                            <!-- Estrellas Activas Doradas -->
+                            <div class="flex gap-0.5 text-[#f59e0b]">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Puntos de Paginación Interactivos (Pill indicators) -->
+                    <div class="mt-6 flex justify-center items-center gap-2.5" id="slider-dots">
+                        {testimonials.map((_, index) => (
+                        <button data-index={index} aria-label={`Go to testimonial slide ${index + 1}`} class={`h-2
+                            rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${ index===0
+                            ? 'w-5 bg-[#0091a1]' : 'w-2 bg-zinc-300 hover:bg-[#0091a1]/50' }`}></button>
+                        ))}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / APPOINTMENTS -->
+    <section class="bg-[#fcfcfa] py-28 px-6 lg:px-8" id="contact">
+        <div class="max-w-7xl mx-auto">
+            <!-- MAIN CONTAINER -->
+            <div
+                class="grid grid-cols-1 lg:grid-cols-[1.12fr_.88fr] overflow-hidden rounded-[32px] border border-zinc-200/70 bg-white">
+                <!-- LEFT : FORM -->
+                <div class="bg-[#fcfbf8] px-8 py-10 sm:px-12 sm:py-14 lg:px-16 lg:py-16">
+                    <div class="max-w-xl">
+                        <span class="text-[10px] font-bold uppercase tracking-[0.24em] text-[#0091a1]">
+                            {dict.home.contact.eyebrow}
+                        </span>
+                        <h2 class="mt-4 font-fredoka text-4xl sm:text-5xl font-extrabold leading-[0.95] text-[#0a0e35]">
+                            {dict.home.contact.title}<br />
+                            {dict.home.contact.titleBr}
+                        </h2>
+                        <p class="mt-5 text-[15px] leading-relaxed text-zinc-500 font-light">
+                            {dict.home.contact.subtitle}
+                        </p>
+                    </div>
+
+                    <!-- FORM -->
+                    <form id="home-contact-form" method="POST" action="/contact.php"
+                        class="mt-10 space-y-5 font-readex">
+                        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+                            class="hidden" style="position:absolute;left:-9999px;" />
+                        <input type="hidden" name="ts" class="form-ts" />
+                        <input type="hidden" name="token" class="form-token" />
+                        <!-- ROW -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- OWNER -->
+                            <div>
+                                <label
+                                    class="block text-[11px] uppercase tracking-[0.16em] text-zinc-500 mb-2 font-bold">
+                                    {dict.home.contact.ownerName}
+                                </label>
+                                <input type="text" name="name" placeholder={lang === "en" ? "John Doe" : "Juan Pérez"} required
+                                    class="w-full rounded-2xl border border-zinc-200 bg-white px-5 py-4 text-sm text-[#0a0e35] shadow-sm shadow-black/[0.02] transition-all focus:outline-none focus:ring-2 focus:ring-[#0091a1]/15 focus:border-[#0091a1]" />
+                            </div>
+                            <!-- PET -->
+                            <div>
+                                <label
+                                    class="block text-[11px] uppercase tracking-[0.16em] text-zinc-500 mb-2 font-bold">
+                                    {dict.home.contact.petName}
+                                </label>
+                                <input type="text" name="pet" placeholder={lang === "en" ? "Rocky" : "Rocky"} 
+                                    class="w-full rounded-2xl border border-zinc-200 bg-white px-5 py-4 text-sm text-[#0a0e35] shadow-sm shadow-black/[0.02] transition-all focus:outline-none focus:ring-2 focus:ring-[#0091a1]/15 focus:border-[#0091a1]" />
+                            </div>
+                        </div>
+                        <!-- PHONE + EMAIL -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[11px] uppercase tracking-[0.16em] text-zinc-500 mb-2 font-bold">
+                                    {dict.home.contact.phoneNumber}
+                                </label>
+                                <input type="tel" name="phone" placeholder={dict.home.contact.phonePlaceholder} required
+                                    class="w-full rounded-2xl border border-zinc-200 bg-white px-5 py-4 text-sm text-[#0a0e35] shadow-sm shadow-black/[0.02] transition-all focus:outline-none focus:ring-2 focus:ring-[#0091a1]/15 focus:border-[#0091a1]" />
+                            </div>
+                            <div>
+                                <label class="block text-[11px] uppercase tracking-[0.16em] text-zinc-500 mb-2 font-bold">
+                                    {dict.home.contact.email}
+                                </label>
+                                <input type="email" name="email" placeholder={dict.home.contact.emailPlaceholder} required
+                                    class="w-full rounded-2xl border border-zinc-200 bg-white px-5 py-4 text-sm text-[#0a0e35] shadow-sm shadow-black/[0.02] transition-all focus:outline-none focus:ring-2 focus:ring-[#0091a1]/15 focus:border-[#0091a1]" />
+                            </div>
+                        </div>
+                        <!-- MESSAGE -->
+                        <div>
+                            <label class="block text-[11px] uppercase tracking-[0.16em] text-zinc-500 mb-2 font-bold">
+                                {dict.home.contact.reason}
+                            </label>
+                            <textarea rows="5" name="message" placeholder={dict.home.contact.reasonPlaceholder} required
+                                class="w-full rounded-2xl border border-zinc-200 bg-white px-5 py-4 text-sm text-[#0a0e35] resize-none shadow-sm shadow-black/[0.02] transition-all focus:outline-none focus:ring-2 focus:ring-[#0091a1]/15 focus:border-[#0091a1]"></textarea>
+                        </div>
+                        <!-- CAPTCHA -->
+                        <div>
+                            <label class="block text-[11px] uppercase tracking-[0.16em] text-zinc-500 mb-2 font-bold">
+                                {dict.contact.form.captchaLabel}
+                            </label>
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-[#0a0e35] font-semibold">{dict.contact.form.captchaPrompt}</span>
+                                <span class="captcha-q text-sm font-bold text-[#0091a1]">&#8230;</span>
+                                <span class="text-sm text-[#0a0e35] font-semibold">=</span>
+                                <input type="number" name="captcha" required
+                                    class="w-24 rounded-2xl border border-zinc-200 bg-white px-4 py-3 text-sm text-[#0a0e35] shadow-sm shadow-black/[0.02] transition-all focus:outline-none focus:ring-2 focus:ring-[#0091a1]/15 focus:border-[#0091a1]" />
+                            </div>
+                        </div>
+                        <!-- ACTIONS -->
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 pt-4">
+                            <p class="text-xs text-zinc-400 leading-relaxed max-w-xs">
+                                {dict.home.contact.note}
+                            </p>
+                            <button type="submit"
+                                class="shrink-0 inline-flex items-center justify-center rounded-full bg-[#0e144a] hover:bg-emerald-500 hover:text-[#0e144a] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition-all shadow-md">
+                                {dict.home.contact.send}
+                            </button>
+                        </div>
+                        <p id="home-form-status" role="status" aria-live="polite"
+                            class="hidden rounded-2xl px-5 py-4 text-sm font-semibold text-center"></p>
+                    </form>
+                </div>
+
+                <!-- RIGHT : MAP -->
+                <div class="relative lg:border-t-0 lg:border-l border-zinc-300/70 flex flex-col lg:block">
+
+                    <!-- MAP -->
+                    <div class="relative lg:absolute lg:inset-0 h-[250px] sm:h-[300px] lg:h-full pointer-events-none">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8867.603717868173!2d-105.23299985039534!3d20.596402533758756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x84215b2d3ed28443%3A0x1429ef04583bb3b!2sPet%20Friends%20Veterinary%20Hospital!5e2!3m2!1ses!2smx!4v1779737309908!5m2!1ses!2smx"
+                            class="absolute inset-0 w-full h-full border-0 grayscale-[15%]" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                    <!-- CONTENT CARD -->
+                    <div class="relative z-10 lg:absolute lg:inset-0 lg:flex lg:h-full lg:flex-col lg:justify-end">
+                        <div
+                            class="bg-white lg:bg-white/95 backdrop-blur-md rounded-none lg:rounded-2xl lg:mx-6 lg:mb-6 px-6 py-5 sm:px-8 sm:py-6 lg:p-8 shadow-xl text-[#0a0e35] border-t lg:border border-zinc-200/70">
+                            <div class="max-w-sm">
+                                <span class="text-[10px] uppercase tracking-[0.22em] text-[#0091a1] font-bold">
+                                    {dict.home.contact.location}
+                                </span>
+                                <h3 class="mt-2 text-2xl sm:text-3xl lg:text-4xl font-fredoka font-bold leading-none">
+                                    {dict.home.contact.romanticZone}
+                                </h3>
+                                <p class="mt-3 text-sm leading-relaxed text-zinc-600">
+                                    {dict.home.contact.address}
+                                </p>
+                                <a href="https://maps.app.goo.gl/LTNGTdttWT2TFGvn6" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-1.5 mt-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#0091a1] hover:text-[#007b8a] transition-colors">
+                                    <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
+                                    </svg>
+                                    {dict.home.contact.openMaps}
+                                </a>
+                            </div>
+
+                            <!-- BUTTONS -->
+                            <div class="flex flex-wrap gap-2 sm:gap-3 mt-4 pt-4 border-t border-zinc-200/70">
+                                <a href={`https://wa.me/523223846328?text=${encodeURIComponent(dict.whatsapp.general)}`} target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center justify-center gap-2 rounded-full bg-[#0091a1] text-white px-5 py-2.5 sm:px-6 sm:py-3 text-[11px] font-bold uppercase tracking-[0.16em] transition-all hover:bg-[#007b8a] shadow-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512"
+                                        class="w-4 h-4">
+                                        <path
+                                            d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                                    </svg>
+                                    {dict.home.contact.whatsapp}
+                                </a>
+                                <a href="tel:+523222232760"
+                                    class="inline-flex items-center justify-center gap-2 rounded-full bg-rose-50/80 border border-rose-200 text-rose-700 px-5 py-2.5 sm:px-6 sm:py-3 text-[11px] font-bold uppercase tracking-[0.16em] transition-all hover:bg-rose-100 hover:text-rose-800 shadow-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.634-5.165-3.974-6.799-6.8l1.293-.97a1.125 1.125 0 0 0 .417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                                    </svg>
+                                    {dict.home.contact.emergency}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <Footer lang={lang} />
+
+</body>
+
+</html>
+<style>
+    #testimonial-card {
+        transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+    }
+
+    #testimonial-card.opacity-0 {
+        opacity: 0;
+    }
+
+    #testimonial-card.scale-\[0\.98\] {
+        transform: scale(0.98);
+    }
+</style>
+<!-- Script de Transición y Sincronización de Puntos Nativos -->
+<script define:vars={{ list: testimonials }}>
+    let currentIndex = 0;
+
+    const card = document.getElementById('testimonial-card');
+    const quoteEl = document.getElementById('testimonial-quote');
+    const authorEl = document.getElementById('testimonial-author');
+    const roleEl = document.getElementById('testimonial-role');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const dots = document.querySelectorAll('#slider-dots button');
+
+    function updateTestimonial(index) {
+        if (!card || !quoteEl || !authorEl || !roleEl) return;
+
+        // 1. Desvanecer la tarjeta
+        card.classList.add('opacity-0', 'scale-[0.98]');
+
+        setTimeout(() => {
+            // 2. Intercambiar contenido
+            quoteEl.textContent = `"${list[index].quote}"`;
+            authorEl.textContent = list[index].author;
+            roleEl.textContent = list[index].role;
+
+            // 3. Sincronizar clases de los puntos de paginación (Pill active state)
+            dots.forEach((dot, dIndex) => {
+                if (dIndex === index) {
+                    dot.classList.remove('w-2', 'bg-zinc-300');
+                    dot.classList.add('w-5', 'bg-[#0091a1]');
+                } else {
+                    dot.classList.remove('w-5', 'bg-[#0091a1]');
+                    dot.classList.add('w-2', 'bg-zinc-300');
+                }
+            });
+
+            // 4. Volver a mostrar la tarjeta
+            card.classList.remove('opacity-0', 'scale-[0.98]');
+        }, 250);
+    }
+
+    // Eventos para botones de dirección
+    prevBtn?.addEventListener('click', () => {
+        currentIndex = (currentIndex === 0) ? list.length - 1 : currentIndex - 1;
+        updateTestimonial(currentIndex);
+    });
+
+    nextBtn?.addEventListener('click', () => {
+        currentIndex = (currentIndex === list.length - 1) ? 0 : currentIndex + 1;
+        updateTestimonial(currentIndex);
+    });
+
+    // Eventos para clic directo en los puntos (dots)
+    dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.getAttribute('data-index') || '0', 10);
+            if (index !== currentIndex) {
+                currentIndex = index;
+                updateTestimonial(currentIndex);
+            }
+        });
+    });
+</script>
+
+<script define:vars={{ sending: dict.contact.form.sending, success: dict.contact.form.success, errorMsg: dict.contact.form.error, errMap: { origin: dict.contact.form.errOrigin, token: dict.contact.form.errToken, fast: dict.contact.form.errToken, captcha: dict.contact.form.errCaptcha, fields: dict.contact.form.errFields, email: dict.contact.form.errEmail, limit: dict.contact.form.errLimit, mail: dict.contact.form.errMail } }}>
+    const homeForm = document.getElementById('home-contact-form');
+
+    if (homeForm) {
+        const ts = homeForm.querySelector('.form-ts');
+        const token = homeForm.querySelector('.form-token');
+        const status = document.getElementById('home-form-status');
+
+        const showStatus = (msg, ok) => {
+            if (!status) return;
+            status.textContent = msg;
+            status.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-700', 'bg-rose-50', 'text-rose-700');
+            status.classList.add(ok ? 'bg-emerald-50' : 'bg-rose-50');
+            status.classList.add(ok ? 'text-emerald-700' : 'text-rose-700');
+        };
+
+        const loadCaptcha = () => {
+            fetch('/captcha.php', { cache: 'no-store', credentials: 'same-origin' })
+                .then((r) => r.json())
+                .then((d) => {
+                    const q = homeForm.querySelector('.captcha-q');
+                    if (q) q.textContent = d.q;
+                    if (ts) ts.value = d.ts;
+                    if (token) token.value = d.token;
+                })
+                .catch(() => {});
+        };
+
+        loadCaptcha();
+
+        homeForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (status) status.classList.add('hidden');
+
+            const btn = homeForm.querySelector('button[type="submit"]');
+            const original = btn ? btn.textContent : '';
+            if (btn) { btn.disabled = true; btn.textContent = sending; }
+
+            try {
+                const res = await fetch('/contact.php', { method: 'POST', body: new FormData(homeForm), credentials: 'same-origin' });
+                const data = await res.json();
+
+                if (data.ok) {
+                    showStatus(success, true);
+                    homeForm.reset();
+                    loadCaptcha();
+                } else {
+                    showStatus(errMap[data.error] || errorMsg, false);
+                }
+            } catch (err) {
+                showStatus(errorMsg, false);
+            } finally {
+                if (btn) { btn.disabled = false; btn.textContent = original; }
+            }
+        });
+    }
+</script>

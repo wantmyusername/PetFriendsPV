@@ -1,0 +1,309 @@
+---
+import "../../styles/global.css";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { t } from "../../i18n/translations";
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: "es" } },
+  ];
+}
+
+const lang = Astro.params.lang || Astro.props.lang || "en";
+const dict = t[lang];
+
+const rawImages = [
+{ category: "sitting", src: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&auto=format&fit=crop&q=80" },
+{ category: "sitting", src: "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=600&auto=format&fit=crop&q=80" },
+{ category: "sitting", src: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=600&auto=format&fit=crop&q=80" },
+{ category: "sitting", src: "https://images.unsplash.com/photo-1544568100-847a948585b9?w=600&auto=format&fit=crop&q=80" },
+{ category: "sitting", src: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&auto=format&fit=crop&q=80" },
+{ category: "sitting", src: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=600&auto=format&fit=crop&q=80" },
+{ category: "veterinary", src: "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=600&auto=format&fit=crop&q=80" },
+{ category: "veterinary", src: "https://images.unsplash.com/photo-1612531386530-97286d97c2d2?w=600&auto=format&fit=crop&q=80" },
+{ category: "veterinary", src: "https://images.unsplash.com/photo-1581888227599-779811939961?w=600&auto=format&fit=crop&q=80" },
+{ category: "veterinary", src: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&auto=format&fit=crop&q=80" },
+{ category: "grooming", src: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=600&auto=format&fit=crop&q=80" },
+{ category: "grooming", src: "https://images.unsplash.com/photo-1527526029430-319f10814151?w=600&auto=format&fit=crop&q=80" },
+{ category: "grooming", src: "https://images.unsplash.com/photo-1534361960057-19889db9621e?w=600&auto=format&fit=crop&q=80" },
+{ category: "grooming", src: "https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?w=600&auto=format&fit=crop&q=80" },
+];
+
+const images = rawImages.map((item, i) => ({
+  ...item,
+  title: dict.gallery.images[i].title,
+  categoryLabel: dict.gallery.images[i].categories[lang],
+}));
+---
+
+<html lang={lang}>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{lang === "en" ? "Pet Friends PV Gallery | Veterinary Clinic in Puerto Vallarta" : "Galería Pet Friends PV | Clínica Veterinaria en Puerto Vallarta"}</title>
+    <meta name="description" content={lang === "en" ? "Browse our gallery of surgical suites, diagnostic imaging, grooming spa, and boarding facilities at Pet Friends Veterinary Hospital in Puerto Vallarta." : "Explora nuestra galería de quirófanos, imagenología diagnóstica, spa de estética y hospedaje en el Hospital Veterinario Pet Friends en Puerto Vallarta."} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/gallery" />
+    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/gallery" />
+</head>
+
+<body class="font-readex bg-white text-zinc-800 antialiased overflow-x-hidden">
+
+    <Navbar lang={lang} currentPath={Astro.url.pathname} />
+
+    <!-- HERO -->
+    <section class="relative pt-0 overflow-hidden">
+
+        <div class="relative h-[430px] md:h-[500px] bg-[#dcf1f4]">
+
+            <!-- Background Image -->
+            <img src="https://images.unsplash.com/photo-1517451330947-7809dead78d5?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Gallery Background"
+                class="absolute inset-0 h-full w-full object-cover object-center opacity-25 mix-blend-luminosity" />
+
+            <!-- Soft Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0e144a]/5 via-transparent to-white/10"></div>
+
+            <!-- Decorative Paw -->
+            <div class="absolute left-[-40px] top-24 w-40 h-40 opacity-[0.06] pointer-events-none hidden lg:block">
+                <img src="/huella.svg" alt="Decorative Paw" class="w-full h-full object-contain" />
+            </div>
+
+            <!-- Hero Content -->
+            <div class="relative z-20 flex h-full flex-col items-center justify-center text-center px-6 pt-24 md:pt-28">
+
+                <!-- Eyebrow -->
+                <span class="text-xs font-bold uppercase tracking-[0.28em] text-[#0e144a]/70 mb-3">
+                    {dict.gallery.hero.eyebrow}
+                </span>
+
+                <!-- Heading -->
+                <h1 class="font-fredoka text-5xl md:text-6xl font-bold text-[#0e144a] tracking-tight leading-none">
+                    {dict.gallery.hero.title}
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="mt-5 max-w-2xl text-sm md:text-base text-[#0e144a]/70 leading-relaxed font-readex">
+                    {dict.gallery.hero.subtitle}
+                </p>
+            </div>
+
+            <!-- Bottom Wave -->
+            <div class="absolute bottom-0 left-0 z-10 w-full leading-none">
+
+                <svg viewBox="0 0 1440 320" class="block h-[70px] md:h-[100px] w-full" preserveAspectRatio="none">
+                    <path fill="#ffffff"
+                        d="M0,160 C320,320 640,64 1080,192 C1260,240 1360,224 1440,192 L1440,320 L0,320 Z" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="relative bg-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+
+        <!-- Background Texture -->
+        <div class="absolute inset-0 opacity-[0.05] bg-cover bg-center pointer-events-none"
+            style="background-image: url('/blog-line-mask-image.webp');">
+        </div>
+
+        <!-- Decorative Paw -->
+        <div class="absolute left-[-40px] top-32 opacity-[0.035] pointer-events-none hidden lg:block">
+
+            <img src="/huella.svg" alt="Decorative Paw" class="w-64 h-64 object-contain rotate-[-18deg]" />
+        </div>
+
+        <div class="relative z-20 max-w-7xl mx-auto">
+
+            <!-- Heading -->
+            <div class="text-center mb-14">
+
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-600">
+                    {dict.gallery.heading.eyebrow}
+                </span>
+
+                <h2 class="font-fredoka text-4xl md:text-5xl font-bold text-[#0e144a] mt-3">
+                    {dict.gallery.heading.title}
+                </h2>
+            </div>
+
+            <!-- Filters -->
+            <div class="flex flex-wrap justify-center items-center gap-3 mb-14">
+
+                <button data-filter="all" class="filter-btn px-7 py-3 bg-[#0e144a] text-white text-[11px]
+                    font-bold uppercase tracking-[0.22em] rounded-full transition-all cursor-pointer active:scale-95">
+                    {dict.gallery.filters.all}
+                </button>
+
+                <button data-filter="sitting" class="filter-btn px-7 py-3 bg-[#f4f1eb]/80 text-[#0e144a]
+                    text-[11px] font-bold uppercase tracking-[0.22em]
+                    rounded-full border border-[#f4f1eb]
+                    transition-all cursor-pointer hover:bg-emerald-500
+                    hover:text-[#0e144a] active:scale-95">
+                    {dict.gallery.filters.sitting}
+                </button>
+
+                <button data-filter="veterinary" class="filter-btn px-7 py-3 bg-[#f4f1eb]/80 text-[#0e144a]
+                    text-[11px] font-bold uppercase tracking-[0.22em]
+                    rounded-full border border-[#f4f1eb]
+                    transition-all cursor-pointer hover:bg-emerald-500
+                    hover:text-[#0e144a] active:scale-95">
+                    {dict.gallery.filters.veterinary}
+                </button>
+
+                <button data-filter="grooming" class="filter-btn px-7 py-3 bg-[#f4f1eb]/80 text-[#0e144a]
+                    text-[11px] font-bold uppercase tracking-[0.22em]
+                    rounded-full border border-[#f4f1eb]
+                    transition-all cursor-pointer hover:bg-emerald-500
+                    hover:text-[#0e144a] active:scale-95">
+                    {dict.gallery.filters.grooming}
+                </button>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Dynamic Card -->
+                <div id="dynamic-info-card" class="relative overflow-hidden rounded-[2.5rem] p-8 flex flex-col justify-between
+                    bg-white/90 backdrop-blur-sm border border-zinc-100 h-80 shadow-sm
+                    transition-all duration-300">
+
+                    <!-- Texture -->
+                    <div class="absolute inset-0 opacity-[0.04] bg-cover bg-center pointer-events-none"
+                        style="background-image: url('/blog-line-mask-image.webp');">
+                    </div>
+
+                    <!-- Paw -->
+                    <div class="absolute right-[-20px] bottom-[-20px] opacity-[0.05]">
+
+                        <img src="/huella.svg" alt="Decorative Paw" class="w-32 h-32 object-contain rotate-[12deg]" />
+                    </div>
+
+                    <div class="relative z-10">
+
+                        <div class="w-24 h-24 mb-4" style="clip-path:path('M 50 8 C 72 2 93 18 95 45 C 97 72 82 93 55 96 C 28 99 5 85 3 58 C 1 31 28 14 50 8 Z');background:#f4e9d7;">
+                            <img id="card-icon" src="/veterinary-care.svg" alt="" class="w-full h-full object-cover p-3" />
+                        </div>
+
+                        <h3 class="font-fredoka text-xl font-bold leading-tight
+                            text-[#0e144a] mb-4" id="card-title">
+
+                            {dict.gallery.cards.all.title}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-zinc-500 max-w-sm" id="card-text">
+                            {dict.gallery.cards.all.text}
+                        </p>
+                    </div>
+
+                    <div class="relative z-10 text-[10px] font-bold uppercase
+                        tracking-[0.25em] text-emerald-600" id="card-tag">
+                        {dict.gallery.cards.all.tag}
+                    </div>
+                </div>
+
+                <!-- Gallery Items -->
+                {images.map((img) => (
+
+                <div data-category={img.category} class="gallery-item group relative overflow-hidden
+                        rounded-[2rem] bg-white h-80 border border-zinc-100
+                        shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+
+                    <img src={img.src} alt={img.title} class="absolute inset-0 h-full w-full object-cover
+                            transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+
+                    <div class="absolute inset-0 bg-gradient-to-t
+                            from-[#0e144a]/75 via-[#0e144a]/10 to-transparent
+                            opacity-0 group-hover:opacity-100 transition-all duration-500
+                            flex flex-col justify-end p-6">
+
+                        <span class="text-[10px] font-bold uppercase tracking-[0.22em]
+                                text-emerald-300 mb-2">
+                            {img.categoryLabel}
+                        </span>
+
+                        <h3 class="font-fredoka text-[22px] font-bold text-white leading-tight">
+
+                            {img.title}
+                        </h3>
+                    </div>
+                </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <Footer lang={lang} />
+
+    <script define:vars={{ cardData: dict.gallery.cards }}>
+        const buttons = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.gallery-item');
+
+        const cardTitle = document.getElementById('card-title');
+        const cardText = document.getElementById('card-text');
+        const cardTag = document.getElementById('card-tag');
+        const cardIcon = document.getElementById('card-icon');
+
+        const iconMap = {
+            all: "/health.svg",
+            sitting: "/dog-boarding.svg",
+            veterinary: "/veterinary-care.svg",
+            grooming: "/dog-grooming.svg"
+        };
+
+        buttons.forEach(button => {
+
+            button.addEventListener('click', () => {
+
+                const filterValue = button.getAttribute('data-filter');
+
+                buttons.forEach(btn => {
+
+                    btn.classList.remove('bg-[#0e144a]', 'text-white');
+
+                    btn.classList.add(
+                        'bg-[#f4f1eb]/80',
+                        'text-[#0e144a]'
+                    );
+                });
+
+                button.classList.remove(
+                    'bg-[#f4f1eb]/80',
+                    'text-[#0e144a]'
+                );
+
+                button.classList.add(
+                    'bg-[#0e144a]',
+                    'text-white'
+                );
+
+                const data = cardData[filterValue] || cardData.all;
+
+                if (cardTitle && cardText && cardTag && cardIcon) {
+
+                    const data = cardData[filterValue] || cardData.all;
+                    cardTitle.innerText = data.title;
+                    cardText.innerText = data.text;
+                    cardTag.innerText = data.tag;
+                    cardIcon.src = iconMap[filterValue] || iconMap.all;
+                }
+
+                items.forEach(item => {
+
+                    const htmlItem = item;
+                    const itemCategory = htmlItem.getAttribute('data-category');
+
+                    htmlItem.style.display =
+                        (filterValue === 'all' || filterValue === itemCategory)
+                            ? 'block'
+                            : 'none';
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

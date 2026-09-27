@@ -1,0 +1,239 @@
+---
+import { t } from "../i18n/translations";
+const { lang = "en" } = Astro.props;
+const dict = t[lang];
+const p = (path) => lang === "en" ? path : `/es${path}`;
+---
+
+<footer class="font-readex bg-[#fdfdfd] text-[#0a0e35] relative overflow-hidden">
+
+    <!-- Efecto decorativo de luz turquesa de fondo (Lujo Lujoso) -->
+    <div
+        class="absolute bottom-0 right-0 w-[450px] h-[450px] rounded-full bg-[#0091a1]/5 blur-[120px] pointer-events-none z-0">
+    </div>
+
+    <!-- 1. CLINICAL PILLARS -->
+    <div
+        class="relative z-10 border-t border-b border-zinc-200/60 bg-[#fbfbf9]/60 grid grid-cols-1 divide-y divide-zinc-200/50 sm:grid-cols-2 lg:grid-cols-4 lg:divide-y-0 lg:divide-x lg:divide-zinc-200/50">
+
+        <!-- Pillar 1: Aesthetic Medicine -->
+        <div class="group flex gap-6 p-10 transition-colors duration-300 hover:bg-[#0091a1]/[0.02]">
+            <div class="text-[#0091a1] flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-1">
+                <img src="/dog-grooming.svg" alt="" class="w-8 h-8"
+                    style="filter: brightness(0) saturate(100%) invert(39%) sepia(97%) saturate(635%) hue-rotate(148deg);" />
+            </div>
+            <div class="space-y-1">
+                <h3 class="font-fredoka text-base font-bold tracking-tight text-[#0a0e35]">{dict.footer.pillars.aesthetic.title}</h3>
+                <p class="text-xs text-zinc-500 leading-relaxed font-light">
+                    {dict.footer.pillars.aesthetic.desc}
+                </p>
+            </div>
+        </div>
+
+        <!-- Pillar 2: Advanced Therapeutics -->
+        <div class="group flex gap-6 p-10 transition-colors duration-300 hover:bg-[#0091a1]/[0.02]">
+            <div class="text-[#0091a1] flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-1">
+                <img src="/veterinary-care.svg" alt="" class="w-8 h-8"
+                    style="filter: brightness(0) saturate(100%) invert(39%) sepia(97%) saturate(635%) hue-rotate(148deg);" />
+            </div>
+            <div class="space-y-1">
+                <h3 class="font-fredoka text-base font-bold tracking-tight text-[#0a0e35]">{dict.footer.pillars.therapeutics.title}</h3>
+                <p class="text-xs text-zinc-500 leading-relaxed font-light">
+                    {dict.footer.pillars.therapeutics.desc}
+                </p>
+            </div>
+        </div>
+
+        <!-- Pillar 3: Prescription Nutrition -->
+        <div class="group flex gap-6 p-10 transition-colors duration-300 hover:bg-[#0091a1]/[0.02]">
+            <div class="text-[#0091a1] flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-1">
+                <img src="/nutritional.svg" alt="" class="w-8 h-8"
+                    style="filter: brightness(0) saturate(100%) invert(39%) sepia(97%) saturate(635%) hue-rotate(148deg);" />
+            </div>
+            <div class="space-y-1">
+                <h3 class="font-fredoka text-base font-bold tracking-tight text-[#0a0e35]">{dict.footer.pillars.nutrition.title}</h3>
+                <p class="text-xs text-zinc-500 leading-relaxed font-light">
+                    {dict.footer.pillars.nutrition.desc}
+                </p>
+            </div>
+        </div>
+
+        <!-- Pillar 4: Behavioral Therapy -->
+        <div class="group flex gap-6 p-10 transition-colors duration-300 hover:bg-[#0091a1]/[0.02]">
+            <div class="text-[#0091a1] flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-1">
+                <img src="/dog-training.svg" alt="" class="w-8 h-8"
+                    style="filter: brightness(0) saturate(100%) invert(39%) sepia(97%) saturate(635%) hue-rotate(148deg);" />
+            </div>
+            <div class="space-y-1">
+                <h3 class="font-fredoka text-base font-bold tracking-tight text-[#0a0e35]">{dict.footer.pillars.behavior.title}</h3>
+                <p class="text-xs text-zinc-500 leading-relaxed font-light">
+                    {dict.footer.pillars.behavior.desc}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MAIN FOOTER (Estructura de alta gama y espacio abierto) -->
+    <div class="relative z-10 max-w-7xl mx-auto px-8 py-24 grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-12">
+
+        <!-- Brand Identity (4/12 col) -->
+        <div class="space-y-8 lg:col-span-4">
+            <div class="flex items-center gap-4.5">
+                <img src="/logo-footer.png" alt="Pet Friends Puerto Vallarta" class="h-32 w-auto" />
+            </div>
+
+            <p class="text-zinc-500 text-sm leading-relaxed font-light max-w-sm">
+                {dict.footer.dedicated}
+            </p>
+
+            <!-- Social Links minimalistas en gris táctil -->
+            <div class="flex gap-4">
+                <a href="https://www.facebook.com/petfriendspv" aria-label="Facebook Link"
+                    class="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-500 transition-all hover:bg-[#0091a1]/10 hover:text-[#0091a1]">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M9 8H7v3h2v9h3v-9h4.5l.5-3H12V6c0-.88.72-1 1-1h3V2h-3c-3.31 0-6 2.69-6 6z" />
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/petfriendspv/" aria-label="Instagram Link"
+                    class="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-500 transition-all hover:bg-[#0091a1]/10 hover:text-[#0091a1]">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Specialties (texto plano, no clickeable) -->
+        <div class="lg:col-span-2 space-y-6">
+            <h3 class="font-fredoka text-xs font-bold uppercase tracking-[0.2em] text-[#0a0e35]">
+                {dict.footer.specialties}
+            </h3>
+            <ul class="space-y-4 text-xs font-medium text-zinc-500">
+                <li class="flex items-center gap-3">
+                    <span class="text-[#0091a1]">&#8212;</span>
+                    {dict.footer.surgeryIcu}
+                </li>
+                <li class="flex items-center gap-3">
+                    <span class="text-[#0091a1]">&#8212;</span>
+                    {dict.footer.internalMedicine}
+                </li>
+                <li class="flex items-center gap-3">
+                    <span class="text-[#0091a1]">&#8212;</span>
+                    {dict.footer.digitalRadiology}
+                </li>
+                <li class="flex items-center gap-3">
+                    <span class="text-[#0091a1]">&#8212;</span>
+                    {dict.footer.healthCertificates}
+                </li>
+                <li class="flex items-center gap-3">
+                    <span class="text-[#0091a1]">&#8212;</span>
+                    {dict.footer.aestheticTherapy}
+                </li>
+            </ul>
+        </div>
+
+        <!-- Site Sections (links del navbar) -->
+        <div class="lg:col-span-2 space-y-6">
+            <h3 class="font-fredoka text-xs font-bold uppercase tracking-[0.2em] text-[#0a0e35]">
+                {dict.footer.sections}
+            </h3>
+            <ul class="space-y-4 text-xs font-medium text-zinc-500">
+                <li>
+                    <a href={p('/')}
+                        class="group flex items-center gap-0 hover:text-[#0091a1] transition-all duration-300">
+                        <span
+                            class="w-0 opacity-0 text-[#0091a1] transition-all duration-300 group-hover:w-3.5 group-hover:opacity-100">&#8212;</span>
+                        {dict.nav.home}
+                    </a>
+                </li>
+                <li>
+                    <a href={p('/about-us')}
+                        class="group flex items-center gap-0 hover:text-[#0091a1] transition-all duration-300">
+                        <span
+                            class="w-0 opacity-0 text-[#0091a1] transition-all duration-300 group-hover:w-3.5 group-hover:opacity-100">&#8212;</span>
+                        {dict.nav.about}
+                    </a>
+                </li>
+                <li>
+                    <a href={p('/services')}
+                        class="group flex items-center gap-0 hover:text-[#0091a1] transition-all duration-300">
+                        <span
+                            class="w-0 opacity-0 text-[#0091a1] transition-all duration-300 group-hover:w-3.5 group-hover:opacity-100">&#8212;</span>
+                        {dict.nav.services}
+                    </a>
+                </li>
+                <li>
+                    <a href={p('/gallery')}
+                        class="group flex items-center gap-0 hover:text-[#0091a1] transition-all duration-300">
+                        <span
+                            class="w-0 opacity-0 text-[#0091a1] transition-all duration-300 group-hover:w-3.5 group-hover:opacity-100">&#8212;</span>
+                        {dict.nav.gallery}
+                    </a>
+                </li>
+                <li>
+                    <a href={p('/contact-us')}
+                        class="group flex items-center gap-0 hover:text-[#0091a1] transition-all duration-300">
+                        <span
+                            class="w-0 opacity-0 text-[#0091a1] transition-all duration-300 group-hover:w-3.5 group-hover:opacity-100">&#8212;</span>
+                        {dict.nav.contact}
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 3. PANEL DE ESTADO CLÍNICO ACTIVO (Editorial, limpio y premium) -->
+        <div
+            class="lg:col-span-4 space-y-8 lg:pl-6 border-t lg:border-t-0 lg:border-l border-zinc-200/60 pt-12 lg:pt-0">
+
+            <!-- Horarios detallados (Typographic style) -->
+            <div class="space-y-1">
+                <span class="text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-400 block">{dict.footer.consultationHours}</span>
+                <p class="text-sm font-semibold text-[#0a0e35]">Mon - Fri: 9:00 AM &mdash; 8:00 PM CST</p>
+                <p class="text-xs text-zinc-500 font-light">Sat: 9:00 AM &mdash; 7:00 PM CST</p>
+                <p class="text-xs text-zinc-500 font-light">Sun: 11:00 AM &mdash; 7:00 PM CST</p>
+            </div>
+
+            <!-- Hotline de Emergencias Editorial -->
+            <div class="space-y-2 pt-2">
+                <span class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0091a1] block">{dict.footer.traumaEmergency}</span>
+                <a href="tel:+523222232760"
+                    class="font-fredoka text-2xl font-bold tracking-tight text-[#0a0e35] hover:text-[#0091a1] transition-colors relative group inline-flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.634-5.165-3.974-6.799-6.8l1.293-.97a1.125 1.125 0 0 0 .417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                    </svg>
+                    +52 322 223 2760
+                    <span
+                        class="absolute bottom-0 left-0 w-28 h-0.5 bg-[#0091a1] transform scale-x-100 group-hover:scale-x-110 transition-transform duration-300"></span>
+                </a>
+                <p class="text-[11px] text-zinc-400 leading-normal font-light">
+                    {dict.footer.directValidation}
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 4. BOTTOM PANEL (Copyright & Créditos de pago discretos) -->
+    <div class="relative z-10 border-t border-zinc-200/50 bg-[#fbfbf9]/60">
+        <div
+            class="mx-auto max-w-7xl flex flex-col items-center justify-between gap-6 px-8 py-8 text-xs text-zinc-500 md:flex-row">
+            <p class="font-light tracking-wide">
+                &copy; {new Date().getFullYear()} Pet Friends Puerto Vallarta
+                <span class="mx-2 opacity-30">|</span>
+                <a href={p('/terms')} class="hover:text-[#0091a1] transition-colors">{dict.footer.terms}</a>
+            </p>
+
+            <!-- Payment Methods -->
+            <div class="flex items-center gap-3 select-none">
+                <span class="text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-400">
+                    {dict.footer.weAccept}
+                </span>
+                <img src="/visa_logo.svg" alt="Visa" class="h-6 w-auto opacity-70 transition-opacity duration-200 hover:opacity-100" />
+                <img src="/master-card.svg" alt="Mastercard" class="h-6 w-auto opacity-70 transition-opacity duration-200 hover:opacity-100" />
+            </div>
+        </div>
+    </div>
+</footer>

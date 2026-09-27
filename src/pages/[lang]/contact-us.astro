@@ -1,0 +1,391 @@
+---
+import "../../styles/global.css";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { t } from "../../i18n/translations";
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: "es" } },
+  ];
+}
+
+const lang = Astro.params.lang || Astro.props.lang || "en";
+const dict = t[lang];
+---
+
+<html lang={lang}>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{lang === "en" ? "Contact Pet Friends PV | Book a Vet Appointment in Puerto Vallarta" : "Contacta a Pet Friends PV | Agenda una Cita Veterinaria en Puerto Vallarta"}</title>
+    <meta name="description" content={lang === "en" ? "Schedule a veterinary appointment, call our 24/7 emergency hotline, or visit our bilingual clinic in Puerto Vallarta's Romantic Zone. Mon-Fri 9am-8pm, Sat 9am-7pm, Sun 11am-7pm." : "Agenda una cita veterinaria, llama a nuestra línea de emergencia 24/7 o visita nuestra clínica bilingüe en la Zona Romántica de Puerto Vallarta. Lun-Vie 9am-8pm, Sáb 9am-7pm, Dom 11am-7pm."} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/contact-us" />
+    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/contact-us" />
+</head>
+
+<body class="font-readex bg-white text-zinc-800 antialiased">
+
+    <Navbar lang={lang} currentPath={Astro.url.pathname} />
+
+    <!-- HERO -->
+    <section class="relative pt-0 overflow-hidden">
+
+        <!-- Background principal -->
+        <div class="relative h-[420px] md:h-[500px] overflow-hidden bg-[#dcf1f4]">
+
+            <!-- Imagen -->
+            <img src="https://images.unsplash.com/photo-1630359486912-4b085e38f1e7?q=80&w=3269&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Puppy Background"
+                class="absolute inset-0 h-full w-full object-cover object-center opacity-25 mix-blend-luminosity scale-105" />
+
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0e144a]/5 via-transparent to-[#0e144a]/10"></div>
+
+            <!-- Huella decorativa izquierda -->
+            <div
+                class="absolute left-[-40px] top-1/2 -translate-y-1/2 opacity-[0.08] pointer-events-none hidden lg:block">
+                <img src="/huella.svg" alt="Decorative Paw"
+                    class="w-[220px] h-[220px] object-contain rotate-[-12deg]" />
+            </div>
+
+            <!-- Huesito decorativo derecha -->
+            <div class="absolute right-[-30px] top-24 opacity-[0.06] pointer-events-none hidden lg:block">
+                <img src="/huesito.svg" alt="Decorative Bone"
+                    class="w-[180px] h-[180px] object-contain rotate-[18deg]" />
+            </div>
+
+            <!-- Contenido -->
+            <div class="relative z-20 flex h-full flex-col items-center justify-center text-center pt-28 md:pt-32 px-4">
+
+                <!-- Eyebrow -->
+                <span class="text-xs font-bold uppercase tracking-[0.28em] text-[#0e144a]/70 mb-3">
+                    {dict.contact.hero.eyebrow}
+                </span>
+
+                <!-- Heading -->
+                <h1 class="font-fredoka text-5xl md:text-6xl font-bold text-[#0e144a] tracking-tight leading-none">
+                    {dict.contact.hero.title}
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="mt-5 max-w-xl text-sm md:text-base text-[#0e144a]/70 leading-relaxed font-readex">
+                    {dict.contact.hero.subtitle}
+                </p>
+
+            </div>
+
+            <!-- Wave -->
+            <div class="absolute bottom-0 left-0 z-10 w-full leading-none">
+                <svg viewBox="0 0 1440 320" class="block h-[70px] md:h-[110px] w-full" preserveAspectRatio="none">
+                    <path fill="#ffffff"
+                        d="M0,160 C320,320 640,64 1080,192 C1260,240 1360,224 1440,192 L1440,320 L0,320 Z" />
+                </svg>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FORMULARIO & DETALLES -->
+    <section class="relative overflow-hidden bg-white pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+
+        <!-- Imagen decorativa derecha -->
+        <div class="absolute bottom-0 right-0 w-[420px] h-[420px] hidden xl:block pointer-events-none opacity-90 bg-no-repeat bg-right-bottom bg-contain"
+            style="background-image: url('/perro-telefono.webp');">
+        </div>
+
+        <div class="relative max-w-7xl mx-auto">
+
+            <div class="mb-12">
+                <span class="text-sm font-bold uppercase tracking-[0.25em] text-emerald-600">
+                    {dict.contact.form.eyebrow}
+                </span>
+                <h2 class="font-fredoka text-4xl font-bold text-[#0e144a] mt-2 md:text-5xl">
+                    {dict.contact.form.title}
+                </h2>
+                <p class="text-zinc-500 mt-4 max-w-xl text-base leading-relaxed font-readex">
+                    {dict.contact.form.desc}
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Inputs y botones del formulario ajustados a 16px (text-base) -->
+                <form id="contact-form" method="POST" action="/contact.php"
+                    class="md:col-span-2 bg-[#f4f1eb]/75 p-8 md:p-10 rounded-3xl space-y-5 font-readex border border-[#f4f1eb]">
+
+                    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+                        class="hidden" style="position:absolute;left:-9999px;" />
+                    <input type="hidden" name="ts" class="form-ts" />
+                    <input type="hidden" name="token" class="form-token" />
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <input type="text" name="firstName" placeholder={dict.contact.form.firstName} required
+                                class="w-full bg-white border border-zinc-200/80 rounded-xl px-4 py-3.5 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500/10 focus:border-[#0e144a] placeholder-zinc-400 text-[#0e144a] transition-all" />
+                        </div>
+                        <div>
+                            <input type="text" name="lastName" placeholder={dict.contact.form.lastName} required
+                                class="w-full bg-white border border-zinc-200/80 rounded-xl px-4 py-3.5 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500/10 focus:border-[#0e144a] placeholder-zinc-400 text-[#0e144a] transition-all" />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <input type="email" name="email" placeholder={dict.contact.form.email} required
+                                class="w-full bg-white border border-zinc-200/80 rounded-xl px-4 py-3.5 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500/10 focus:border-[#0e144a] placeholder-zinc-400 text-[#0e144a] transition-all" />
+                        </div>
+                        <div>
+                            <input type="tel" name="phone" placeholder={dict.contact.form.phone} required
+                                class="w-full bg-white border border-zinc-200/80 rounded-xl px-4 py-3.5 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500/10 focus:border-[#0e144a] placeholder-zinc-400 text-[#0e144a] transition-all" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <textarea rows="5" name="message"
+                            placeholder={dict.contact.form.message}
+                            class="w-full bg-white border border-zinc-200/80 rounded-xl px-4 py-3.5 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500/10 focus:border-[#0e144a] placeholder-zinc-400 text-[#0e144a] resize-none transition-all"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-[#0e144a] mb-2">{dict.contact.form.captchaLabel}</label>
+                        <div class="flex items-center gap-3">
+                            <span class="text-base text-[#0e144a] font-semibold">{dict.contact.form.captchaPrompt}</span>
+                            <span class="captcha-q text-base font-bold text-emerald-600">&#8230;</span>
+                            <span class="text-base text-[#0e144a] font-semibold">=</span>
+                            <input type="number" name="captcha" required
+                                class="w-24 bg-white border border-zinc-200/80 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500/10 focus:border-[#0e144a] text-[#0e144a] transition-all" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit"
+                            class="w-full bg-[#0e144a] hover:bg-emerald-500 hover:text-[#0e144a] text-white font-bold uppercase tracking-[0.15em] text-sm py-4 rounded-full transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 cursor-pointer">
+                            {dict.contact.form.send}
+                        </button>
+                    </div>
+                    <p id="contact-form-status" role="status" aria-live="polite"
+                        class="hidden rounded-2xl px-5 py-4 text-sm font-semibold text-center"></p>
+                </form>
+
+                <!-- Tarjeta de contacto lateral -->
+                <div
+                    class="bg-[#f4f1eb]/75 p-8 md:p-10 rounded-3xl flex flex-col justify-between font-readex border border-[#f4f1eb] gap-8">
+
+                    <!-- Títulos a 20px (text-[20px]) y textos a 16px (text-base) -->
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center text-emerald-600 shadow-sm mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-[20px] font-bold text-[#0e144a]">{dict.contact.sidebar.location}</h4>
+                            <p class="text-base text-zinc-600 mt-1 leading-relaxed" set:html={dict.contact.sidebar.address}></p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center text-emerald-600 shadow-sm mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.634-5.165-3.974-6.799-6.8l1.293-.97a1.125 1.125 0 0 0 .417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-[20px] font-bold text-[#0e144a]">{dict.contact.sidebar.phones}</h4>
+                            <p class="text-base text-zinc-600 mt-1 leading-relaxed">
+                                <a href="tel:+523222232760" class="hover:text-[#0091a1] transition-colors">+52 322 223 2760</a> <span class="text-zinc-400 text-sm">{dict.contact.sidebar.emergency}</span><br />
+                                <a href={`https://wa.me/523223846328?text=${encodeURIComponent(dict.whatsapp.general)}`} target="_blank" class="hover:text-[#0091a1] transition-colors">+52 322 384 6328</a> <span class="text-zinc-400 text-sm">WhatsApp</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center text-emerald-600 shadow-sm mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-[20px] font-bold text-[#0e144a]">{dict.contact.sidebar.email}</h4>
+                            <p class="text-base text-zinc-600 mt-1 leading-relaxed">
+                                <a href="mailto:petfriendspv@gmail.com" class="hover:text-[#0091a1] transition-colors">petfriendspv@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center text-emerald-600 shadow-sm mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-[20px] font-bold text-[#0e144a]">{dict.contact.sidebar.hours}</h4>
+                            <p class="text-base text-zinc-600 mt-1 leading-relaxed">{dict.contact.sidebar.monFri}</p>
+                            <p class="text-base text-zinc-600 leading-relaxed">{dict.contact.sidebar.sat}</p>
+                            <p class="text-base text-zinc-600 leading-relaxed">{dict.contact.sidebar.sun}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DEL MAPA A ANCHO COMPLETO CON TARJETA FLOTANTE -->
+    <section class="relative w-full overflow-hidden bg-zinc-100 z-0 flex flex-col md:block md:h-[600px]">
+
+        <!-- Google Maps Embed a ancho completo -->
+        <div class="relative md:absolute md:inset-0 h-[250px] sm:h-[300px] md:h-full">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8867.603717868173!2d-105.23299985039534!3d20.596402533758756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x84215b2d3ed28443%3A0x1429ef04583bb3b!2sPet%20Friends%20Veterinary%20Hospital!5e2!3m2!1ses!2smx!4v1779737309908!5m2!1ses!2smx"
+                class="absolute inset-0 w-full h-full border-0 grayscale-[20%] contrast-[95%]" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div class="absolute inset-0 bg-[#0e144a]/10 pointer-events-none"></div>
+        </div>
+
+        <div class="relative z-10 md:absolute md:inset-0 md:flex md:items-center md:justify-start md:px-8 md:pt-0">
+            <div
+                class="pointer-events-auto bg-[#f4f1eb]/95 backdrop-blur-md p-6 sm:p-8 md:p-10 rounded-none md:rounded-3xl w-full md:max-w-md border-t md:border border-white/40 shadow-xl text-[#0e144a]">
+
+                <span class="block text-xs font-bold uppercase tracking-[0.25em] text-emerald-600 mb-1">
+                    {dict.contact.map.eyebrow}
+                </span>
+                <h3 class="font-fredoka text-[24px] font-bold leading-tight">
+                    {dict.contact.map.title}
+                </h3>
+                <p class="text-sm text-zinc-600 mt-2 mb-6 leading-relaxed">
+                    {dict.contact.map.desc}
+                </p>
+
+                <!-- Lista de Horarios -->
+                <div class="space-y-3 text-base border-t border-zinc-300/60 pt-5">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold">{dict.contact.map.monday}</span>
+                        <span class="text-zinc-700 font-medium">9am - 8pm</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold">{dict.contact.map.tuesday}</span>
+                        <span class="text-zinc-700 font-medium">9am - 8pm</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold">{dict.contact.map.wednesday}</span>
+                        <span class="text-zinc-700 font-medium">9am - 8pm</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold">{dict.contact.map.thursday}</span>
+                        <span class="text-zinc-700 font-medium">9am - 8pm</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold">{dict.contact.map.friday}</span>
+                        <span class="text-zinc-700 font-medium">9am - 8pm</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold">{dict.contact.map.saturday}</span>
+                        <span class="text-zinc-700 font-medium">9am - 7pm</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold">{dict.contact.map.sunday}</span>
+                        <span class="text-zinc-700 font-medium">11am - 7pm</span>
+                    </div>
+                </div>
+
+                <!-- Bloque de Emergencias destacado al final -->
+                <a href="tel:+523222232760" class="mt-6 bg-[#0e144a] text-white p-4 rounded-2xl flex items-center gap-3.5 shadow-sm hover:bg-[#1a2060] transition-colors group">
+                    <div class="flex-shrink-0 text-amber-400 animate-pulse group-hover:animate-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.634-5.165-3.974-6.799-6.8l1.293-.97a1.125 1.125 0 0 0 .417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                        </svg>
+                    </div>
+                    <div class="font-readex">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400">{dict.contact.map.emergency}</h4>
+                        <p class="text-xs text-zinc-200 mt-0.5 group-hover:text-white">{dict.contact.map.call}</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+    <Footer lang={lang} />
+
+    <script define:vars={{ sending: dict.contact.form.sending, success: dict.contact.form.success, errorMsg: dict.contact.form.error, errMap: { origin: dict.contact.form.errOrigin, token: dict.contact.form.errToken, fast: dict.contact.form.errToken, captcha: dict.contact.form.errCaptcha, fields: dict.contact.form.errFields, email: dict.contact.form.errEmail, limit: dict.contact.form.errLimit, mail: dict.contact.form.errMail } }}>
+        const contactForm = document.getElementById('contact-form');
+
+        if (contactForm) {
+            const ts = contactForm.querySelector('.form-ts');
+            const token = contactForm.querySelector('.form-token');
+            const status = document.getElementById('contact-form-status');
+
+            const showStatus = (msg, ok) => {
+                if (!status) return;
+                status.textContent = msg;
+                status.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-700', 'bg-rose-50', 'text-rose-700');
+                status.classList.add(ok ? 'bg-emerald-50' : 'bg-rose-50');
+                status.classList.add(ok ? 'text-emerald-700' : 'text-rose-700');
+            };
+
+            const loadCaptcha = () => {
+                fetch('/captcha.php', { cache: 'no-store', credentials: 'same-origin' })
+                    .then((r) => r.json())
+                    .then((d) => {
+                        const q = contactForm.querySelector('.captcha-q');
+                        if (q) q.textContent = d.q;
+                        if (ts) ts.value = d.ts;
+                        if (token) token.value = d.token;
+                    })
+                    .catch(() => {});
+            };
+
+            loadCaptcha();
+
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                if (status) status.classList.add('hidden');
+
+                const btn = contactForm.querySelector('button[type="submit"]');
+                const original = btn ? btn.textContent : '';
+                if (btn) { btn.disabled = true; btn.textContent = sending; }
+
+                try {
+                    const res = await fetch('/contact.php', { method: 'POST', body: new FormData(contactForm), credentials: 'same-origin' });
+                    const data = await res.json();
+
+                    if (data.ok) {
+                        showStatus(success, true);
+                        contactForm.reset();
+                        loadCaptcha();
+                    } else {
+                        showStatus(errMap[data.error] || errorMsg, false);
+                    }
+                } catch (err) {
+                    showStatus(errorMsg, false);
+                } finally {
+                    if (btn) { btn.disabled = false; btn.textContent = original; }
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
