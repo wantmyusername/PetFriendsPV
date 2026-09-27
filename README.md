@@ -56,6 +56,7 @@ Añadir en **Settings → Secrets and variables → Actions**:
 | Secret | Valor |
 |---|---|
 | `FTP_PASSWORD` | Contraseña del usuario FTP `petfriends@petfriendspv.com` |
+| `PF_SECRET` | Cadena aleatoria larga para la clave HMAC anti-spam. El workflow genera `dist/pf-config.php` con este valor en cada deploy (no se guarda en el repo). |
 
 También se puede lanzar el deploy manualmente desde la pestaña **Actions** (`workflow_dispatch`).
 

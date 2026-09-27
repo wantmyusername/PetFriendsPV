@@ -28,6 +28,16 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Inject pf-config.php from secret
+        env:
+          PF_SECRET: ${{ secrets.PF_SECRET }}
+        run: |
+          {
+            echo '<?php'
+            echo '// Generado automáticamente en el deploy. Vive solo en el servidor, no en el repo.'
+            printf "\$PF_SECRET = '%s';\n" "$PF_SECRET"
+          } > dist/pf-config.php
+
       - name: Deploy dist/ to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

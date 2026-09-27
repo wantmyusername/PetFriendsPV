@@ -18,3 +18,6 @@ petfriendspv-host.zip
 # env
 .env
 .env.*
+
+# secret inyectado en el deploy (no debe vivir en el repo)
+public/pf-config.php

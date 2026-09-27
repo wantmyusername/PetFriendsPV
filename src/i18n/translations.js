@@ -354,7 +354,7 @@ export const t = {
     terms: {
       eyebrow: "Legal",
       title: "Terms & Conditions",
-      updated: "Last updated: May 2026",
+      updated: "Last updated: September 2026",
       sections: [
         { title: "1. General", content: "These terms and conditions govern your use of the Pet Friends Veterinary Hospital website and services. By using our website, you accept these terms in full." },
         { title: "2. Services", content: "Pet Friends PV provides veterinary medical services, grooming, boarding, and related pet care services. All services are subject to availability and professional medical discretion." },
@@ -723,7 +723,7 @@ export const t = {
     terms: {
       eyebrow: "Legal",
       title: "Términos y Condiciones",
-      updated: "Última actualización: Mayo 2026",
+      updated: "Última actualización: Septiembre 2026",
       sections: [
         { title: "1. General", content: "Estos términos y condiciones rigen el uso del sitio web y los servicios del Hospital Veterinario Pet Friends. Al usar nuestro sitio web, aceptas estos términos en su totalidad." },
         { title: "2. Servicios", content: "Pet Friends PV proporciona servicios médicos veterinarios, estética, hospedaje y servicios relacionados de cuidado de mascotas. Todos los servicios están sujetos a disponibilidad y criterio médico profesional." },
