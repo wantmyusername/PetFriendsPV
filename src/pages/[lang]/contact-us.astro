@@ -12,6 +12,14 @@ export async function getStaticPaths() {
 
 const lang = Astro.params.lang || Astro.props.lang || "en";
 const dict = t[lang];
+
+const title = lang === "en"
+    ? "Contact Pet Friends PV | Book a Vet Appointment in Puerto Vallarta"
+    : "Contacta a Pet Friends PV | Agenda una Cita Veterinaria en Puerto Vallarta";
+const description = lang === "en"
+    ? "Schedule a veterinary appointment, call our 24/7 emergency hotline, or visit our bilingual clinic in Puerto Vallarta's Romantic Zone. Mon-Fri 9am-8pm, Sat 9am-7pm, Sun 11am-7pm."
+    : "Agenda una cita veterinaria, llama a nuestra línea de emergencia 24/7 o visita nuestra clínica bilingüe en la Zona Romántica de Puerto Vallarta. Lun-Vie 9am-8pm, Sáb 9am-7pm, Dom 11am-7pm.";
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <html lang={lang}>
@@ -19,11 +27,20 @@ const dict = t[lang];
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{lang === "en" ? "Contact Pet Friends PV | Book a Vet Appointment in Puerto Vallarta" : "Contacta a Pet Friends PV | Agenda una Cita Veterinaria en Puerto Vallarta"}</title>
-    <meta name="description" content={lang === "en" ? "Schedule a veterinary appointment, call our 24/7 emergency hotline, or visit our bilingual clinic in Puerto Vallarta's Romantic Zone. Mon-Fri 9am-8pm, Sat 9am-7pm, Sun 11am-7pm." : "Agenda una cita veterinaria, llama a nuestra línea de emergencia 24/7 o visita nuestra clínica bilingüe en la Zona Romántica de Puerto Vallarta. Lun-Vie 9am-8pm, Sáb 9am-7pm, Dom 11am-7pm."} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/contact-us" />
-    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/contact-us" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pet Friends Puerto Vallarta" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://petfriendspv.com/hero-home.jpg" />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "es_MX"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/contact-us/" />
+    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/contact-us/" />
 </head>
 
 <body class="font-readex bg-white text-zinc-800 antialiased">

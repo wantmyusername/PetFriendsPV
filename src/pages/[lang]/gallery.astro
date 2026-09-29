@@ -13,6 +13,14 @@ export async function getStaticPaths() {
 const lang = Astro.params.lang || Astro.props.lang || "en";
 const dict = t[lang];
 
+const title = lang === "en"
+    ? "Pet Friends PV Gallery | Veterinary Clinic in Puerto Vallarta"
+    : "Galería Pet Friends PV | Clínica Veterinaria en Puerto Vallarta";
+const description = lang === "en"
+    ? "Browse our gallery of surgical suites, diagnostic imaging, grooming spa, and boarding facilities at Pet Friends Veterinary Hospital in Puerto Vallarta."
+    : "Explora nuestra galería de quirófanos, imagenología diagnóstica, spa de estética y hospedaje en el Hospital Veterinario Pet Friends en Puerto Vallarta.";
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
 const rawImages = [
 { category: "sitting", src: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&auto=format&fit=crop&q=80" },
 { category: "sitting", src: "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=600&auto=format&fit=crop&q=80" },
@@ -42,11 +50,20 @@ const images = rawImages.map((item, i) => ({
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{lang === "en" ? "Pet Friends PV Gallery | Veterinary Clinic in Puerto Vallarta" : "Galería Pet Friends PV | Clínica Veterinaria en Puerto Vallarta"}</title>
-    <meta name="description" content={lang === "en" ? "Browse our gallery of surgical suites, diagnostic imaging, grooming spa, and boarding facilities at Pet Friends Veterinary Hospital in Puerto Vallarta." : "Explora nuestra galería de quirófanos, imagenología diagnóstica, spa de estética y hospedaje en el Hospital Veterinario Pet Friends en Puerto Vallarta."} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/gallery" />
-    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/gallery" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pet Friends Puerto Vallarta" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://petfriendspv.com/hero-home.jpg" />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "es_MX"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/gallery/" />
+    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/gallery/" />
 </head>
 
 <body class="font-readex bg-white text-zinc-800 antialiased overflow-x-hidden">

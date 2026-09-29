@@ -1,0 +1,20 @@
+# Pet Friends PV - canonical host + HTTPS
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # HTTP -> HTTPS (también cubre http://www), preservando la ruta
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://petfriendspv.com%{REQUEST_URI} [L,R=301]
+
+  # https://www.petfriendspv.com -> https://petfriendspv.com
+  RewriteCond %{HTTP_HOST} ^www\.petfriendspv\.com$ [NC]
+  RewriteRule ^ https://petfriendspv.com%{REQUEST_URI} [L,R=301]
+
+  # /index.html -> /
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^ / [L,R=301]
+</IfModule>
+
+# Evitar listado de directorios
+Options -Indexes

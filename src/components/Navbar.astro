@@ -2,9 +2,14 @@
 import { t } from "../i18n/translations";
 const { lang = "en", currentPath = "/" } = Astro.props;
 const dict = t[lang];
-const p = (path) => lang === "en" ? path : `/es${path}`;
+const p = (path) => {
+  const withSlash = path === "/" ? "/" : `${path.replace(/\/+$/, "")}/`;
+  return lang === "en" ? withSlash : `/es${withSlash}`;
+};
 const toggleLang = lang === "en" ? "es" : "en";
-const togglePath = lang === "en" ? `/es${currentPath}` : currentPath.replace(/^\/es/, "") || "/";
+const basePath = currentPath.replace(/^\/es/, "") || "/";
+const toggledBase = basePath.endsWith("/") ? basePath : `${basePath}/`;
+const togglePath = lang === "en" ? `/es${toggledBase}` : toggledBase;
 ---
 
 <header id="main-header"

@@ -2,7 +2,10 @@
 import { t } from "../i18n/translations";
 const { lang = "en" } = Astro.props;
 const dict = t[lang];
-const p = (path) => lang === "en" ? path : `/es${path}`;
+const p = (path) => {
+  const withSlash = path === "/" ? "/" : `${path.replace(/\/+$/, "")}/`;
+  return lang === "en" ? withSlash : `/es${withSlash}`;
+};
 ---
 
 <footer class="font-readex bg-[#fdfdfd] text-[#0a0e35] relative overflow-hidden">

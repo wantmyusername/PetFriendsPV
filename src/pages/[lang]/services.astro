@@ -13,6 +13,14 @@ export async function getStaticPaths() {
 const lang = Astro.params.lang || Astro.props.lang || "en";
 const dict = t[lang];
 
+const title = lang === "en"
+    ? "Veterinary Services in Puerto Vallarta | Pet Friends PV"
+    : "Servicios Veterinarios en Puerto Vallarta | Pet Friends PV";
+const description = lang === "en"
+    ? "Comprehensive veterinary services in Puerto Vallarta: surgery, diagnostics, grooming, daycare, nutritional counseling, and 24/7 emergency care. Bilingual team, US-licensed vets."
+    : "Servicios veterinarios integrales en Puerto Vallarta: cirugía, diagnósticos, estética, guardería, asesoría nutricional y emergencias 24/7. Equipo bilingüe, veterinarios con licencia EUA.";
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
 const svgIcons = {
 veterinary: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 65" class="w-14 h-14">
     <g clip-path="url(#clip0_173_2402)">
@@ -231,11 +239,20 @@ const coreServices = dict.services.catalog.core.map((item, i) => ({
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{lang === "en" ? "Veterinary Services in Puerto Vallarta | Pet Friends PV" : "Servicios Veterinarios en Puerto Vallarta | Pet Friends PV"}</title>
-    <meta name="description" content={lang === "en" ? "Comprehensive veterinary services in Puerto Vallarta: surgery, diagnostics, grooming, daycare, nutritional counseling, and 24/7 emergency care. Bilingual team, US-licensed vets." : "Servicios veterinarios integrales en Puerto Vallarta: cirugía, diagnósticos, estética, guardería, asesoría nutricional y emergencias 24/7. Equipo bilingüe, veterinarios con licencia EUA."} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/services" />
-    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/services" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pet Friends Puerto Vallarta" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://petfriendspv.com/hero-home.jpg" />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "es_MX"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/services/" />
+    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/services/" />
 </head>
 
 <body class="font-readex bg-white text-zinc-800 antialiased overflow-x-hidden">
@@ -406,7 +423,7 @@ const coreServices = dict.services.catalog.core.map((item, i) => ({
                                     </svg>
                                     {dict.services.catalog.bookViaWhatsApp}
                                 </a>
-                                <a href={`/${lang === "en" ? "" : "es/"}contact-us`}
+                                <a href={`/${lang === "en" ? "" : "es/"}contact-us/`}
                                     class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#0e144a] text-[#0e144a] px-6 py-3.5 text-xs font-bold uppercase tracking-widest shadow-sm hover:bg-[#0e144a] hover:text-white transition-all duration-300 w-full sm:w-auto text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -475,7 +492,7 @@ const coreServices = dict.services.catalog.core.map((item, i) => ({
                     </svg>
                     {dict.services.steps.bookViaWhatsApp}
                 </a>
-                <a href={`/${lang === "en" ? "" : "es/"}contact-us`}
+                <a href={`/${lang === "en" ? "" : "es/"}contact-us/`}
                     class="inline-flex items-center justify-center gap-3 text-[#0e144a] text-xs sm:text-sm font-bold uppercase tracking-widest px-8 py-4 rounded-full border-2 border-[#0e144a] hover:bg-[#0e144a] hover:text-white transition-all duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-5 sm:h-5" fill="none"
                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">

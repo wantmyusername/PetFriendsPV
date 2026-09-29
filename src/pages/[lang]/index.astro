@@ -13,6 +13,14 @@ export async function getStaticPaths() {
 const lang = Astro.params.lang || Astro.props.lang || "en";
 const dict = t[lang];
 
+const title = lang === "en"
+    ? "Pet Friends Puerto Vallarta | Bilingual Veterinary Hospital & 24/7 ICU"
+    : "Pet Friends Puerto Vallarta | Hospital Veterinario Bilingüe y UCI 24/7";
+const description = lang === "en"
+    ? "Pet Friends PV is a bilingual veterinary hospital in Puerto Vallarta's Romantic Zone. Board-certified surgeons, advanced diagnostics, 24/7 emergency care, and fear-free protocols for expats and travelers."
+    : "Pet Friends PV es un hospital veterinario bilingüe en la Zona Romántica de Puerto Vallarta. Cirujanos certificados, diagnósticos avanzados, emergencias 24/7 y protocolos libres de miedo.";
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
 const medicalTeam = [
 {
 name: "Dr. Mohammad Soleimani",
@@ -31,11 +39,19 @@ const testimonials = dict.home.testimonials.list;
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{lang === "en" ? "Pet Friends Puerto Vallarta | Bilingual Veterinary Hospital & 24/7 ICU" : "Pet Friends Puerto Vallarta | Hospital Veterinario Bilingüe y UCI 24/7"}</title>
-    <meta name="description"
-        content={lang === "en" ? "Pet Friends PV is a bilingual veterinary hospital in Puerto Vallarta's Romantic Zone. Board-certified surgeons, advanced diagnostics, 24/7 emergency care, and fear-free protocols for expats and travelers." : "Pet Friends PV es un hospital veterinario bilingüe en la Zona Romántica de Puerto Vallarta. Cirujanos certificados, diagnósticos avanzados, emergencias 24/7 y protocolos libres de miedo."} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="theme-color" content="#0091a1" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pet Friends Puerto Vallarta" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://petfriendspv.com/hero-home.jpg" />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "es_MX"} />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="alternate" hreflang="en" href="https://petfriendspv.com/" />
     <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/" />
     <link rel="alternate" hreflang="x-default" href="https://petfriendspv.com/" />
@@ -561,7 +577,7 @@ const testimonials = dict.home.testimonials.list;
                     </div>
 
                     <div class="pt-8 relative z-10">
-                        <a href={lang === "en" ? "/services" : "/es/services"}
+                        <a href={lang === "en" ? "/services/" : "/es/services/"}
                             class="inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-6 py-3.5 text-[11px] font-bold uppercase tracking-widest text-[#0a0e35] shadow-md hover:bg-teal-50 active:scale-95 transition-all duration-300 w-full sm:w-auto">
                             <span>{dict.home.specialties.explore.btn}</span>
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"

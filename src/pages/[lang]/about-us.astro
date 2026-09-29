@@ -12,6 +12,14 @@ export async function getStaticPaths() {
 
 const lang = Astro.params.lang || Astro.props.lang || "en";
 const dict = t[lang];
+
+const title = lang === "en"
+    ? "About Pet Friends PV | Bilingual Vet Clinic in Puerto Vallarta"
+    : "Sobre Pet Friends PV | Clínica Veterinaria Bilingüe en Puerto Vallarta";
+const description = lang === "en"
+    ? "Meet Dr. Mohammad Soleimani and the Pet Friends team. Learn about our accredited bilingual veterinary hospital, clinical standards, and compassionate approach to pet care in Puerto Vallarta."
+    : "Conoce al Dr. Mohammad Soleimani y al equipo de Pet Friends. Conoce nuestro hospital veterinario bilingüe acreditado, estándares clínicos y enfoque compasivo.";
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <html lang={lang}>
@@ -19,11 +27,20 @@ const dict = t[lang];
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{lang === "en" ? "About Pet Friends PV | Bilingual Vet Clinic in Puerto Vallarta" : "Sobre Pet Friends PV | Clínica Veterinaria Bilingüe en Puerto Vallarta"}</title>
-    <meta name="description" content={lang === "en" ? "Meet Dr. Mohammad Soleimani and the Pet Friends team. Learn about our accredited bilingual veterinary hospital, clinical standards, and compassionate approach to pet care in Puerto Vallarta." : "Conoce al Dr. Mohammad Soleimani y al equipo de Pet Friends. Conoce nuestro hospital veterinario bilingüe acreditado, estándares clínicos y enfoque compasivo."} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/about-us" />
-    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/about-us" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pet Friends Puerto Vallarta" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://petfriendspv.com/hero-home.jpg" />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "es_MX"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="alternate" hreflang="en" href="https://petfriendspv.com/about-us/" />
+    <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/about-us/" />
 </head>
 
 <body class="font-readex bg-white text-zinc-800 antialiased overflow-x-hidden">
@@ -256,7 +273,7 @@ const dict = t[lang];
                 <!-- CTA -->
                 <div class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-6 pt-6">
 
-                    <a href={lang === "en" ? "/services" : "/es/services"}
+                    <a href={lang === "en" ? "/services/" : "/es/services/"}
                         class="inline-flex items-center justify-center gap-2.5 bg-[#0e144a] text-white font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-full shadow-md hover:bg-emerald-500 hover:text-[#0e144a] transition-all duration-300 w-full sm:w-auto text-center">
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -488,7 +505,7 @@ const dict = t[lang];
 
             <!-- View All Services Button -->
             <div class="mt-12 text-center">
-                    <a href={lang === "en" ? "/services" : "/es/services"}
+                    <a href={lang === "en" ? "/services/" : "/es/services/"}
                         class="inline-flex items-center justify-center gap-3 bg-[#0e144a] hover:bg-emerald-500 hover:text-[#0e144a] text-white font-fredoka font-medium text-lg px-8 py-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group">
                         <span>{dict.about.services.viewAll}</span>
                     <!-- SVG Icon (Arrow Right) -->
@@ -557,7 +574,7 @@ const dict = t[lang];
             <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
 
                 <!-- Primary Button -->
-                <a href={lang === "en" ? "/contact-us" : "/es/contact-us"}
+                <a href={lang === "en" ? "/contact-us/" : "/es/contact-us/"}
                     class="inline-flex items-center justify-center gap-2 bg-[#0e144a] text-white font-bold text-[11px] uppercase tracking-[0.18em] px-7 py-3 rounded-full hover:bg-emerald-500 hover:text-[#0e144a] transition-all duration-300 shadow-md w-full sm:w-auto text-center">
 
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
@@ -571,7 +588,7 @@ const dict = t[lang];
                 </a>
 
                 <!-- Secondary Button -->
-                <a href={lang === "en" ? "/services" : "/es/services"}
+                <a href={lang === "en" ? "/services/" : "/es/services/"}
                     class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#0e144a] text-[#0e144a] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.18em] hover:bg-[#0e144a] hover:text-white transition-all duration-300 w-full sm:w-auto text-center">
 
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
