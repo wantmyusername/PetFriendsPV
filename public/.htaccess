@@ -16,5 +16,8 @@
   RewriteRule ^ / [L,R=301]
 </IfModule>
 
+# Página 404 personalizada
+ErrorDocument 404 /404.html
+
 # Evitar listado de directorios
 Options -Indexes
