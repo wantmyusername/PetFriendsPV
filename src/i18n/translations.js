@@ -350,6 +350,19 @@ export const t = {
         call: "Call +52 322 223 2760",
       },
     },
+    // 404
+    notFound: {
+      code: "404",
+      badge: "Clinical Record Not Found",
+      title: "This Page Wandered Off",
+      subtitle: "Our clinic searched every chart and came back empty-pawed. This page may have been moved, renamed, or never made it to the waiting room.",
+      statusLabel: "Patient Status",
+      statusValue: "Off the Leash",
+      locatorLabel: "Pet Locator",
+      locatorValue: "Searching...",
+      home: "Return to Reception",
+      contact: "Call the Clinic",
+    },
     // Terms
     terms: {
       eyebrow: "Legal",
@@ -718,6 +731,19 @@ export const t = {
         emergency: "¿Emergencias 24/7?",
         call: "Llama al +52 322 223 2760",
       },
+    },
+    // 404
+    notFound: {
+      code: "404",
+      badge: "Registro Clínico No Encontrado",
+      title: "Esta Página Se Soltó de la Correa",
+      subtitle: "Nuestra clínica revisó cada expediente y volvió con las patas vacías. Puede que esta página haya sido movida, renombrada o nunca llegó a la sala de espera.",
+      statusLabel: "Estado del Paciente",
+      statusValue: "Se Soltó de la Correa",
+      locatorLabel: "Localizador de Mascotas",
+      locatorValue: "Buscando...",
+      home: "Volver a Recepción",
+      contact: "Llamar a la Clínica",
     },
     // Terms
     terms: {
