@@ -3,6 +3,7 @@ import "../../styles/global.css";
 import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
 import { t } from "../../i18n/translations";
+import Analytics from "../../components/Analytics.astro";
 
 export async function getStaticPaths() {
   return [
@@ -253,6 +254,7 @@ const coreServices = dict.services.catalog.core.map((item, i) => ({
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="alternate" hreflang="en" href="https://petfriendspv.com/services/" />
     <link rel="alternate" hreflang="es" href="https://petfriendspv.com/es/services/" />
+    <Analytics />
 </head>
 
 <body class="font-readex bg-white text-zinc-800 antialiased overflow-x-hidden">
