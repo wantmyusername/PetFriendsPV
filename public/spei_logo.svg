@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 40" width="96" height="40" role="img" aria-label="SPEI">
+  <text x="42" y="25" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800" fill="#00843D" letter-spacing="0.5">SPEI</text>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4">
+    <path d="M78 14h9" stroke="#00529B" />
+    <path d="M84 10l4 4-4 4" stroke="#00529B" />
+    <path d="M87 26h-9" stroke="#00843D" />
+    <path d="M81 22l-4 4 4 4" stroke="#00843D" />
+  </g>
+</svg>

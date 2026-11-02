@@ -51,15 +51,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
     <section class="py-24 px-6 lg:px-8">
         <div class="max-w-3xl mx-auto">
-            <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-600">{dict.terms.eyebrow}</span>
+            <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-700">{dict.terms.eyebrow}</span>
             <h1 class="font-fredoka text-4xl font-bold text-[#0e144a] mt-2">{dict.terms.title}</h1>
-            <p class="text-zinc-500 mt-4 text-sm">{dict.terms.updated}</p>
+            <p class="text-zinc-600 mt-4 text-base">{dict.terms.updated}</p>
 
-            <div class="mt-10 space-y-6 text-sm text-zinc-600 leading-relaxed">
+            <div class="mt-10 space-y-6 text-base text-zinc-600 leading-relaxed">
                 {dict.terms.sections.map((section) => (
                 <>
                 <h2 class="font-fredoka text-xl font-bold text-[#0e144a]">{section.title}</h2>
-                <p set:html={section.content.replace("petfriendspv@gmail.com", '<a href="mailto:petfriendspv@gmail.com" class="text-[#0091a1] hover:underline">petfriendspv@gmail.com</a>')}></p>
+                <p set:html={section.content.replace("petfriendspv@gmail.com", '<a href="mailto:petfriendspv@gmail.com" class="text-[#007b8a] hover:underline">petfriendspv@gmail.com</a>')}></p>
                 </>
                 ))}
             </div>

@@ -191,7 +191,9 @@ $html = <<<HTML
       <p style="margin:0;font-size:13px;color:#6b7280;line-height:1.6;">
         Pet Friends Veterinary Hospital<br>
         Púlpito 196, Zona Romántica, Puerto Vallarta<br>
-        <a href="tel:+523222232760" style="color:#0091a1;text-decoration:none;">+52 322 223 2760</a>
+        <a href="tel:+523222232760" style="color:#0091a1;text-decoration:none;">Oficina +52 322 223 2760</a>
+        &nbsp;·&nbsp;
+        <a href="https://wa.me/523223846328" style="color:#0091a1;text-decoration:none;">WhatsApp +52 322 384 6328</a>
         &nbsp;·&nbsp;
         <a href="$siteUrl" style="color:#0091a1;text-decoration:none;">petfriendspv.com</a>
       </p>

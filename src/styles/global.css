@@ -7,6 +7,24 @@
 @theme {
   --font-fredoka: 'Open Sans', sans-serif;
   --font-readex: 'Montserrat', sans-serif;
+
+  /* Brand palette */
+  --color-brand-50: #e6f4f6;
+  --color-brand-100: #cce9ed;
+  --color-brand-500: #0091a1;
+  --color-brand-600: #007b8a;
+  --color-brand-700: #006b78;
+
+  /* Neutrals */
+  --color-navy-900: #0e144a;
+  --color-navy-800: #1a2060;
+  --color-ink: #0e144a;
+  --color-warm: #f6f4ef;
+  --color-cool: #eef5f6;
+
+  /* Accents */
+  --color-accent: #047857;
+  --color-danger: #e11d48;
 }
 
 html {
@@ -14,6 +32,31 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+::selection {
+  background: #cce9ed;
+  color: #0e144a;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #007b8a;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 *,

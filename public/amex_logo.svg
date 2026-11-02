@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 40" width="64" height="40" role="img" aria-label="American Express">
+  <rect width="64" height="40" rx="5" fill="#2E77BC" />
+  <text x="32" y="22.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="0.6">AMEX</text>
+  <rect x="11" y="27.5" width="42" height="1.4" rx="0.7" fill="#ffffff" opacity="0.65" />
+</svg>

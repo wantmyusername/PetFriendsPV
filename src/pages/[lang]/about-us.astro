@@ -112,7 +112,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
         <!-- Background Grid -->
         <div
-            class="absolute inset-y-0 right-0 w-full lg:w-2/3 bg-[linear-gradient(to_right,#f4f1eb_1px,transparent_1px),linear-gradient(to_bottom,#f4f1eb_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0 opacity-40">
+            class="absolute inset-y-0 right-0 w-full lg:w-2/3 bg-[linear-gradient(to_right,#f6f4ef_1px,transparent_1px),linear-gradient(to_bottom,#f6f4ef_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0 opacity-40">
         </div>
 
         <!-- Decorative Paw -->
@@ -134,14 +134,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                 <!-- Floating Label -->
                 <div
                     class="absolute top-10 left-0 bg-white/90 backdrop-blur-md border border-zinc-100 rounded-full px-4 py-2 shadow-lg z-20">
-                    <p class="text-[10px] uppercase tracking-[0.2em] font-bold text-[#0e144a]">
+                    <p class="text-xs uppercase tracking-[0.2em] font-bold text-[#0e144a]">
                         Compassion • Trust
                     </p>
                 </div>
 
                 <!-- Main Image -->
                 <div
-                    class="relative w-[320px] h-[440px] sm:w-[400px] sm:h-[460px] rounded-[120px_220px_120px_220px] overflow-hidden bg-emerald-50 shadow-xl border-b-[24px] border-[#f4f1eb]">
+                    class="relative w-[320px] h-[440px] sm:w-[400px] sm:h-[460px] rounded-[120px_220px_120px_220px] overflow-hidden bg-emerald-50 shadow-xl border-b-[24px] border-[#f6f4ef]">
 
                     <img src="/pet-friends-about.jpg" alt="Veterinarians caring for a dog"
                         class="w-full h-full object-cover scale-105" />
@@ -151,7 +151,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                 <div
                     class="absolute -top-4 right-6 sm:right-2 bg-white border-[3px] border-[#0e144a] rounded-full w-28 h-28 flex flex-col items-center justify-center shadow-lg transform rotate-12 transition-transform hover:rotate-0 duration-300 z-20">
 
-                    <span class="text-[9px] font-bold tracking-[0.15em] text-[#0e144a]/60 uppercase">
+                    <span class="text-xs font-bold tracking-[0.15em] text-[#0e144a]/60 uppercase">
                         100%
                     </span>
 
@@ -159,7 +159,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                         Certified
                     </span>
 
-                    <span class="text-[9px] font-bold tracking-widest text-emerald-600 uppercase">
+                    <span class="text-xs font-bold tracking-widest text-emerald-700 uppercase">
                         Doctors
                     </span>
 
@@ -174,17 +174,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                 flex items-center gap-4 z-20 rotate-[-2deg]">
 
                     <div
-                        class="w-11 h-11 rounded-xl bg-[#f4f1eb] border border-zinc-200 flex items-center justify-center flex-shrink-0">
+                        class="w-11 h-11 rounded-xl bg-[#f6f4ef] border border-zinc-200 flex items-center justify-center flex-shrink-0">
 
                         <img src="/certified.svg" alt="" class="w-5 h-5" />
                     </div>
 
                     <div>
-                        <h5 class="text-[10px] font-bold text-[#0e144a] uppercase tracking-[0.18em] leading-none">
+                        <h5 class="text-xs font-bold text-[#0e144a] uppercase tracking-[0.18em] leading-none">
                             Accredited Clinic
                         </h5>
 
-                        <p class="font-fredoka text-sm font-bold text-emerald-600 mt-1 leading-none">
+                        <p class="font-fredoka text-sm font-bold text-emerald-700 mt-1 leading-none">
                             PET WELLBEING
                         </p>
                     </div>
@@ -204,7 +204,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                     {dict.about.story.title}
                 </h2>
 
-                <p class="text-sm sm:text-base text-zinc-500 leading-relaxed max-w-2xl font-normal font-readex">
+                <p class="text-sm sm:text-base text-zinc-600 leading-relaxed max-w-2xl font-normal font-readex">
                     {dict.about.story.desc}
                 </p>
 
@@ -216,7 +216,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                             12+
                         </h3>
 
-                        <p class="text-xs uppercase tracking-[0.18em] text-zinc-400 font-bold mt-1">
+                        <p class="text-xs uppercase tracking-[0.18em] text-zinc-600 font-bold mt-1">
                             {dict.about.story.years}
                         </p>
                     </div>
@@ -228,7 +228,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                             4.9★
                         </h3>
 
-                        <p class="text-xs uppercase tracking-[0.18em] text-zinc-400 font-bold mt-1">
+                        <p class="text-xs uppercase tracking-[0.18em] text-zinc-600 font-bold mt-1">
                             {dict.about.story.rating}
                         </p>
                     </div>
@@ -240,7 +240,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                             24/7
                         </h3>
 
-                        <p class="text-xs uppercase tracking-[0.18em] text-zinc-400 font-bold mt-1">
+                        <p class="text-xs uppercase tracking-[0.18em] text-zinc-600 font-bold mt-1">
                             {dict.about.story.emergency}
                         </p>
                     </div>
@@ -276,7 +276,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                 <div class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-6 pt-6">
 
                     <a href={lang === "en" ? "/services/" : "/es/services/"}
-                        class="inline-flex items-center justify-center gap-2.5 bg-[#0e144a] text-white font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-full shadow-md hover:bg-emerald-500 hover:text-[#0e144a] transition-all duration-300 w-full sm:w-auto text-center">
+                        class="inline-flex items-center justify-center gap-2.5 bg-[#0e144a] text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-md hover:bg-[#1a2060] transition-all duration-300 w-full sm:w-auto text-center">
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -286,7 +286,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                     </a>
 
                     <a href="tel:+523222232760"
-                        class="inline-flex items-center justify-center gap-2.5 bg-[#0091a1] text-white font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-full shadow-sm hover:bg-[#007b8a] transition-all duration-300 w-full sm:w-auto text-center">
+                        class="inline-flex items-center justify-center gap-2.5 bg-[#007b8a] text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-sm hover:bg-[#006b78] transition-all duration-300 w-full sm:w-auto text-center">
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="2">
@@ -305,14 +305,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     </section>
 
     <!-- MEET THE TEAM SECTION -->
-    <section class="bg-white py-20 sm:py-28 px-6 lg:px-8 border-t border-zinc-100">
+    <section class="bg-[#eef5f6] py-20 sm:py-28 px-6 lg:px-8 border-t border-zinc-100">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-14 space-y-2">
-                <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-600 block">{dict.about.team.eyebrow}</span>
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-700 block">{dict.about.team.eyebrow}</span>
                 <h2 class="font-fredoka text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0e144a]">{dict.about.team.title}</h2>
             </div>
 
-            <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 bg-[#f4f1eb]/30 rounded-[2.5rem] p-8 sm:p-12 lg:p-14 border border-[#f4f1eb]">
+            <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 bg-[#f6f4ef]/30 rounded-[2.5rem] p-8 sm:p-12 lg:p-14 border border-[#f6f4ef]">
                 <!-- Photo -->
                 <div class="flex-shrink-0">
                     <div class="relative">
@@ -320,7 +320,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                             <img src="/clinical-director-about.jpg" alt="Dr. Mohammad Soleimani"
                                 class="w-full h-full object-cover" />
                         </div>
-                        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full whitespace-nowrap shadow-md">
+                        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-emerald-700 text-white text-xs font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full whitespace-nowrap shadow-md">
                             {dict.about.team.role}
                         </div>
                     </div>
@@ -329,21 +329,21 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                 <!-- Info -->
                 <div class="flex-1 text-center lg:text-left space-y-5">
                     <h3 class="font-fredoka text-3xl sm:text-4xl font-bold text-[#0e144a]">Dr. Mohammad Soleimani</h3>
-                    <p class="text-sm sm:text-base text-zinc-500 leading-relaxed">
+                    <p class="text-sm sm:text-base text-zinc-600 leading-relaxed">
                         {dict.about.team.bio}
                     </p>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
                         <div class="bg-white rounded-xl px-4 py-3 border border-zinc-100 text-center">
-                            <span class="block text-[11px] font-bold uppercase tracking-wider text-emerald-600">{dict.about.team.surgery}</span>
-                            <span class="block text-xs text-zinc-500 mt-0.5">{dict.about.team.surgeryDesc}</span>
+                            <span class="block text-sm font-bold uppercase tracking-wider text-emerald-700">{dict.about.team.surgery}</span>
+                            <span class="block text-sm text-zinc-600 mt-0.5">{dict.about.team.surgeryDesc}</span>
                         </div>
                         <div class="bg-white rounded-xl px-4 py-3 border border-zinc-100 text-center">
-                            <span class="block text-[11px] font-bold uppercase tracking-wider text-emerald-600">{dict.about.team.medicine}</span>
-                            <span class="block text-xs text-zinc-500 mt-0.5">{dict.about.team.medicineDesc}</span>
+                            <span class="block text-sm font-bold uppercase tracking-wider text-emerald-700">{dict.about.team.medicine}</span>
+                            <span class="block text-sm text-zinc-600 mt-0.5">{dict.about.team.medicineDesc}</span>
                         </div>
                         <div class="bg-white rounded-xl px-4 py-3 border border-zinc-100 text-center col-span-2 sm:col-span-1">
-                            <span class="block text-[11px] font-bold uppercase tracking-wider text-emerald-600">{dict.about.team.dentistry}</span>
-                            <span class="block text-xs text-zinc-500 mt-0.5">{dict.about.team.dentistryDesc}</span>
+                            <span class="block text-sm font-bold uppercase tracking-wider text-emerald-700">{dict.about.team.dentistry}</span>
+                            <span class="block text-sm text-zinc-600 mt-0.5">{dict.about.team.dentistryDesc}</span>
                         </div>
                     </div>
                 </div>
@@ -364,7 +364,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
             <!-- Heading -->
             <div class="text-center mb-16 space-y-2">
 
-                <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-600 block">
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-700 block">
                     {dict.about.services.eyebrow}
                 </span>
 
@@ -379,7 +379,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
                 <!-- Dog Boarding -->
                 <div
-                    class="bg-[#fcfaf7] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                    class="bg-[#f6f4ef] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
                     style="background-image: url('/line-image.png'); background-size: cover; background-position: center;">
 
                     <div
@@ -393,14 +393,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                         {dict.about.services.items[0].title}
                     </h3>
 
-                    <p class="text-sm text-zinc-500 mt-2 leading-relaxed">
+                    <p class="text-sm text-zinc-600 mt-2 leading-relaxed">
                         {dict.about.services.items[0].desc}
                     </p>
                 </div>
 
                 <!-- Dog Daycare -->
                 <div
-                    class="bg-[#fcfaf7] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                    class="bg-[#f6f4ef] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
                     style="background-image: url('/line-image.png'); background-size: cover; background-position: center;">
 
                     <div
@@ -414,14 +414,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                         {dict.about.services.items[1].title}
                     </h3>
 
-                    <p class="text-sm text-zinc-500 mt-2 leading-relaxed">
+                    <p class="text-sm text-zinc-600 mt-2 leading-relaxed">
                         {dict.about.services.items[1].desc}
                     </p>
                 </div>
 
                 <!-- Pet Food -->
                 <div
-                    class="bg-[#fcfaf7] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                    class="bg-[#f6f4ef] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
                     style="background-image: url('/line-image.png'); background-size: cover; background-position: center;">
 
                     <div
@@ -435,14 +435,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                         {dict.about.services.items[2].title}
                     </h3>
 
-                    <p class="text-sm text-zinc-500 mt-2 leading-relaxed">
+                    <p class="text-sm text-zinc-600 mt-2 leading-relaxed">
                         {dict.about.services.items[2].desc}
                     </p>
                 </div>
 
                 <!-- Veterinary Care -->
                 <div
-                    class="bg-[#fcfaf7] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                    class="bg-[#f6f4ef] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
                     style="background-image: url('/line-image.png'); background-size: cover; background-position: center;">
 
                     <div
@@ -456,14 +456,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                         {dict.about.services.items[3].title}
                     </h3>
 
-                    <p class="text-sm text-zinc-500 mt-2 leading-relaxed">
+                    <p class="text-sm text-zinc-600 mt-2 leading-relaxed">
                         {dict.about.services.items[3].desc}
                     </p>
                 </div>
 
                 <!-- Dog Training -->
                 <div
-                    class="bg-[#fcfaf7] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                    class="bg-[#f6f4ef] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
                     style="background-image: url('/line-image.png'); background-size: cover; background-position: center;">
 
                     <div
@@ -477,14 +477,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                         {dict.about.services.items[4].title}
                     </h3>
 
-                    <p class="text-sm text-zinc-500 mt-2 leading-relaxed">
+                    <p class="text-sm text-zinc-600 mt-2 leading-relaxed">
                         {dict.about.services.items[4].desc}
                     </p>
                 </div>
 
                 <!-- Dog Grooming -->
                 <div
-                    class="bg-[#fcfaf7] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
+                    class="bg-[#f6f4ef] p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
                     style="background-image: url('/line-image.png'); background-size: cover; background-position: center;">
 
                     <div
@@ -498,7 +498,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                         {dict.about.services.items[5].title}
                     </h3>
 
-                    <p class="text-sm text-zinc-500 mt-2 leading-relaxed">
+                    <p class="text-sm text-zinc-600 mt-2 leading-relaxed">
                         {dict.about.services.items[5].desc}
                     </p>
                 </div>
@@ -508,7 +508,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
             <!-- View All Services Button -->
             <div class="mt-12 text-center">
                     <a href={lang === "en" ? "/services/" : "/es/services/"}
-                        class="inline-flex items-center justify-center gap-3 bg-[#0e144a] hover:bg-emerald-500 hover:text-[#0e144a] text-white font-fredoka font-medium text-lg px-8 py-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group">
+                        class="inline-flex items-center justify-center gap-3 bg-[#0e144a] hover:bg-[#1a2060] text-white font-fredoka font-medium text-lg px-8 py-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group">
                         <span>{dict.about.services.viewAll}</span>
                     <!-- SVG Icon (Arrow Right) -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
@@ -522,29 +522,29 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     </section>
 
     <!-- TESTIMONIALS SECTION -->
-    <section class="bg-white py-20 px-6 lg:px-8">
+    <section class="bg-[#f6f4ef] py-20 px-6 lg:px-8">
         <div class="max-w-4xl mx-auto text-center space-y-10">
             <div class="space-y-2">
-                <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-600 block">{dict.about.testimonials.eyebrow}</span>
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-700 block">{dict.about.testimonials.eyebrow}</span>
                 <h2 class="font-fredoka text-4xl font-bold text-[#0e144a]">{dict.about.testimonials.title}
                 </h2>
             </div>
 
-            <div class="bg-[#f4f1eb]/60 border border-zinc-100 p-8 md:p-12 rounded-[2.5rem] relative">
+            <div class="bg-[#f6f4ef]/60 border border-zinc-100 p-8 md:p-12 rounded-[2.5rem] relative">
                 <span class="absolute top-4 left-6 text-7xl text-[#0e144a]/10 font-serif pointer-events-none">“</span>
                 <p class="text-base md:text-lg text-zinc-700 italic leading-relaxed relative z-10 font-medium">
                     {dict.about.testimonials.quote}
                 </p>
                 <div class="mt-6 flex flex-col items-center gap-1">
                     <h4 class="font-fredoka font-bold text-[#0e144a] text-base">{dict.about.testimonials.owner}</h4>
-                    <p class="text-[11px] text-zinc-400 font-bold uppercase tracking-wider leading-none">{dict.about.testimonials.ownerRole}</p>
+                    <p class="text-xs text-zinc-600 font-bold uppercase tracking-wider leading-none">{dict.about.testimonials.ownerRole}</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FINAL CTA -->
-    <section class="relative bg-white py-24 px-6 lg:px-8 overflow-hidden border-t border-zinc-100">
+    <section class="relative bg-[#eef5f6] py-24 px-6 lg:px-8 overflow-hidden border-t border-zinc-100">
 
         <!-- Soft Background Glow -->
         <div
@@ -558,7 +558,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
         <div class="relative z-10 max-w-4xl mx-auto text-center">
 
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-600">
+            <span class="text-xs font-bold uppercase tracking-[0.3em] text-emerald-700">
                 {dict.about.cta.label}
             </span>
 
@@ -567,7 +567,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
                 {dict.about.cta.title}
             </h2>
 
-            <p class="mt-6 text-zinc-500 text-base leading-relaxed max-w-2xl mx-auto">
+            <p class="mt-6 text-zinc-600 text-base leading-relaxed max-w-2xl mx-auto">
 
                 {dict.about.cta.desc}
             </p>
@@ -577,7 +577,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
                 <!-- Primary Button -->
                 <a href={lang === "en" ? "/contact-us/" : "/es/contact-us/"}
-                    class="inline-flex items-center justify-center gap-2 bg-[#0e144a] text-white font-bold text-[11px] uppercase tracking-[0.18em] px-7 py-3 rounded-full hover:bg-emerald-500 hover:text-[#0e144a] transition-all duration-300 shadow-md w-full sm:w-auto text-center">
+                    class="inline-flex items-center justify-center gap-2 bg-[#007b8a] text-white font-bold text-sm uppercase tracking-[0.15em] px-7 py-3 rounded-full hover:bg-[#006b78] transition-all duration-300 shadow-md w-full sm:w-auto text-center">
 
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -591,7 +591,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
                 <!-- Secondary Button -->
                 <a href={lang === "en" ? "/services/" : "/es/services/"}
-                    class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#0e144a] text-[#0e144a] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.18em] hover:bg-[#0e144a] hover:text-white transition-all duration-300 w-full sm:w-auto text-center">
+                    class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#0e144a] text-[#0e144a] px-7 py-3 text-sm font-bold uppercase tracking-[0.15em] hover:bg-[#0e144a] hover:text-white transition-all duration-300 w-full sm:w-auto text-center">
 
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
